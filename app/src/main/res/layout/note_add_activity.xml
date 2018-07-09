@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/clRoot"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSofterGrey"
+    tools:context=".feature.noteAdd.ui.activity.NoteAddActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ToolBarTheme"
+        android:elevation="4dp"/>
+
+    <ScrollView
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="32dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/note_add_title"
+                android:inputType="textPersonName"
+                android:maxLength="40"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/note_add_ti_title_size"
+                android:textStyle="bold"
+                android:theme="@style/ThemeEditTextLight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:hint="@string/note_add_description"
+                android:inputType="textMultiLine"
+                android:maxLength="300"
+                android:padding="12dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/note_add_ti_tv_size"
+                android:theme="@style/ThemeEditTextLight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/note_add_date"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textIsSelectable="false"
+                android:textSize="@dimen/note_add_ti_tv_size"
+                android:theme="@style/ThemeEditTextLight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRelevance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:padding="10dp"
+                android:text="@string/note_add_relevance"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/note_add_ti_tv_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etDate" />
+
+            <com.xw.repo.BubbleSeekBar
+                android:id="@+id/sbRelevance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="8dp"
+                app:bsb_auto_adjust_section_mark="true"
+                app:bsb_second_track_color="@color/colorPrimaryDark"
+                app:bsb_section_count="5"
+                app:bsb_show_section_mark="true"
+                app:bsb_show_thumb_text="false"
+                app:bsb_thumb_text_size="18sp"
+                app:bsb_touch_to_seek="true"
+                app:bsb_show_section_text="false"
+                app:bsb_track_color="@color/colorPrimarySoft"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRelevance" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior"
+        android:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimary"
+        android:theme="@style/BottomBarTheme"
+        app:fabCradleMargin="0dp"
+        app:fabCradleRoundedCornerRadius="0dp"
+        app:fabAlignmentMode="end"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bvSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimarySoft"
+        app:fabSize="normal"
+        android:elevation="4dp"
+        app:srcCompat="@drawable/ic_save"
+        android:theme="@style/BottomBarTheme"
+        app:layout_anchor="@id/bottomBar"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

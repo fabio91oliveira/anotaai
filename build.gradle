@@ -1,0 +1,25 @@
+//
+// Created by Fabio Oliveira
+// Email: fabio91oliveira@gmail.com
+// Mobile: +55 (21) 98191-4951
+// LinkedIn: https://www.linkedin.com/in/fabio91oliveira
+//
+buildscript {
+    apply from: 'versions.gradle'
+    addRepos(repositories)
+    dependencies {
+        classpath deps.android_gradle_plugin
+        classpath deps.kotlin.plugin
+    }
+    repositories {
+        google()
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

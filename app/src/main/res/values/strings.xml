@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Get Notes</string>
+    
+    <string name="onboarding_first_page_title">Welcome to the Get Notes App</string>
+    <string name="onboarding_first_page_subtitle">It`s a simple application where you can put some notes, mark as done, remove it and all the notes are sorted by relevance and date</string>
+
+    <string name="onboarding_second_page_title">Red relevance</string>
+    <string name="onboarding_second_page_subtitle">When you select the relevance factor between 67 and 100, it is because it is your first priority. It is going to be on top</string>
+
+    <string name="onboarding_third_page_title">Yellow relevance</string>
+    <string name="onboarding_third_page_subtitle">When you select the relevance factor between 34 and 66, it is because it is your medium priority. It is going to be on the middle of the list</string>
+
+    <string name="onboarding_fourth_page_title">Blue relevance</string>
+    <string name="onboarding_fourth_page_subtitle">When you select the relevance factor between 1 and 33, it is because it is your low priority. It is going to be at the bottom of the list</string>
+
+    <string name="onboarding_fifth_page_title">Thanks and enjoy it</string>
+    <string name="onboarding_fifth_page_subtitle">I hope you like it and enjoy this experience</string>
+
+    <string name="onbarding_button_skip">Skip</string>
+    <string name="onbarding_button_finish">Finish</string>
+
+    <string name="note_list_search">Search</string>
+    <string name="note_list_no_notes">There are no notes here</string>
+    <string name="note_list_no_notes_dialog_title">No notes</string>
+    <string name="note_list_no_notes_dialog_message">There are no notes yet</string>
+    <string name="note_list_no_notes_dialog_message_content">Why dont you put some notes?!</string>
+    <string name="note_list_new_note">New Note</string>
+    <string name="note_list_done">Mark as done</string>
+    <string name="note_list_discard">Remove</string>
+    <string name="note_lit_marked_as_done">Marked as done</string>
+
+    <string name="about_dialog_title">About</string>
+    <string name="about_dialog_message">This application was developed by Fabio Oliveira</string>
+    <string name="about_dialog_email">fabio91oliveiradev@gmail.com</string>
+    <string name="about_linkedin">https://www.linkedin.com/in/fabio91oliveira</string>
+
+    <string name="note_add_save">Save note</string>
+    <string name="note_add_title">Title</string>
+    <string name="note_add_description">Description</string>
+    <string name="note_add_date">Date</string>
+    <string name="note_add_relevance">Relevance</string>
+    <string name="note_add_error_fields">You have to type all the fields</string>
+    <string name="note_add_error_date">Date cannot be before the present date</string>
+    <string name="note_generic_error">An unexpected error has occurred, please, contact the administrator</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/card_view_menu_done"
+        android:title="@string/note_list_done" />
+    <item android:id="@+id/card_view_menu_discard"
+        android:title="@string/note_list_discard" />
+</menu>

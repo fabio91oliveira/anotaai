@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="note_list_tv_done_size">12sp</dimen>
+    <dimen name="note_list_tv_remove_size">12sp</dimen>
+    <dimen name="note_item_tv_card_radius">8dp</dimen>
+    <dimen name="note_item_tv_title_size">18sp</dimen>
+    <dimen name="note_item_tv_content_description_size">12sp</dimen>
+    <dimen name="note_item_tv_marked_as_done_size">10sp</dimen>
+
+    <dimen name="note_add_ti_title_size">16sp</dimen>
+    <dimen name="note_add_ti_tv_size">14sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>
