@@ -6,7 +6,7 @@
  
 ## About the app
 
-The app simply sorts by date and has a relevancy criterion, where it is organized by:
+The app simply sorts by date and has a relevancy criterion, it is organized by:
 Red color - Very important
 Yellow - Medium Priority
 Blue color - Not so important
