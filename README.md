@@ -1,6 +1,6 @@
 # Anota Ai App - LATEST VERSION: 1.0.4
 
-<a href="https://play.google.com/store/apps/details?id=me.fabiooliveira.anotaai"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75"></a>
+<a href="https://play.google.com/store/apps/details?id=me.fabiooliveira.anotaai" target="_blank"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75"></a>
  
 <img src="https://lh3.googleusercontent.com/XSsZiyzvUHQ3zNbk-VU5HH1QLJCaNnjMVpUPuje5PYBtQRXRWeswRhf3CC9IbwQkLw=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/TrguQkcM1fcvXrb7YtAjx1BrDkl58Rn9P78lHSUBxgoeDEfgkMLkXikMql1HSW8vkA=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/KESQnIbezUize-xKCNVmUdEzYbkv9EqKZ40PKtpIyBrT-7bLqki-DzCeq-2B-HVm8g=w1604-h770-rw" width="280" />
  
@@ -37,3 +37,5 @@ The Android Jetpack components bring together the existing Support Library and A
 You can see more here: <a href="https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE">https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE</a>
 
 If you are interested about doing something in this app or have some idea. Contact me!
+<a href="https://www.linkedin.com/in/fabio91oliveira" target="_blank">https://www.linkedin.com/in/fabio91oliveira</a>
+<a href="mailto:fabio91oliveiradev@gmail.com">fabio91oliveiradev@gmail.com</a>
