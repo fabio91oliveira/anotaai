@@ -1,4 +1,4 @@
-# Anota Ai App
+# Anota Ai App - LATEST VERSION: 1.0.4
 
 <a href="https://play.google.com/store/apps/details?id=me.fabiooliveira.anotaai"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75"></a>
  
