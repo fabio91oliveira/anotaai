@@ -31,8 +31,8 @@ The Android Jetpack components bring together the existing Support Library and A
 * Dagger
 
 ## Testing
-* Unit Tests of the ViewModels
-** Instrumented tests in progress
+* Unit Tests of view models
+* Instrumented tests in progress
 
 You can see more here: <a href="https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE">https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE</a>
 
