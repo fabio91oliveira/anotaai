@@ -38,4 +38,5 @@ You can see more here: <a href="https://developer.android.com/jetpack/?gclid=EAI
 
 If you are interested about doing something in this app or have some idea. Contact me!
 <a href="https://www.linkedin.com/in/fabio91oliveira" target="_blank">https://www.linkedin.com/in/fabio91oliveira</a>
+
 <a href="mailto:fabio91oliveiradev@gmail.com">fabio91oliveiradev@gmail.com</a>
