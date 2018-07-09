@@ -18,6 +18,13 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_onboarding.view.*
 import me.fabiooliveira.anotaai.util.ViewUtil
 
+/**
+ * Created by Fabio Oliveira
+ * Email: fabio91oliveira@gmail.com
+ * Mobile: +55 (21) 98191-4951
+ * LinkedIn: https://www.linkedin.com/in/fabio91oliveira
+ */
+
 class OnboardingActivity : AppCompatActivity() {
 
     private val TOTAL_PAGES = 5
