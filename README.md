@@ -2,9 +2,7 @@
 
 <a href="https://play.google.com/store/apps/details?id=me.fabiooliveira.anotaai"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75"></a>
  
-<img src="https://lh3.googleusercontent.com/XSsZiyzvUHQ3zNbk-VU5HH1QLJCaNnjMVpUPuje5PYBtQRXRWeswRhf3CC9IbwQkLw=w1604-h770-rw" width="280"/> 
-<img src="https://lh3.googleusercontent.com/TrguQkcM1fcvXrb7YtAjx1BrDkl58Rn9P78lHSUBxgoeDEfgkMLkXikMql1HSW8vkA=w1604-h770-rw" width="280"/> 
-<img src="https://lh3.googleusercontent.com/KESQnIbezUize-xKCNVmUdEzYbkv9EqKZ40PKtpIyBrT-7bLqki-DzCeq-2B-HVm8g=w1604-h770-rw" width="280" />
+<img src="https://lh3.googleusercontent.com/XSsZiyzvUHQ3zNbk-VU5HH1QLJCaNnjMVpUPuje5PYBtQRXRWeswRhf3CC9IbwQkLw=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/TrguQkcM1fcvXrb7YtAjx1BrDkl58Rn9P78lHSUBxgoeDEfgkMLkXikMql1HSW8vkA=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/KESQnIbezUize-xKCNVmUdEzYbkv9EqKZ40PKtpIyBrT-7bLqki-DzCeq-2B-HVm8g=w1604-h770-rw" width="280" />
  
 ## About the app
 
