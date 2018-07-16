@@ -14,10 +14,10 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion build_versions.target_sdk
     defaultConfig {
-        applicationId "me.fabiooliveira.anotaai"
+        applicationId "me.fabiooliveira.getnotes"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 5
+        versionCode 1
         versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
