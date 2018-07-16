@@ -35,14 +35,6 @@ class NoteAddViewModel(private val repository: NoteRepository) : ViewModel() {
         )
     }
 
-    fun getRelevance(relevanceProgress: Int): Int {
-        return when (relevanceProgress) {
-            in 66..100 -> 1
-            in 33..65 -> 2
-            else -> 3
-        }
-    }
-
     fun isEmpty(text: String): Boolean {
         return text.isEmpty()
     }

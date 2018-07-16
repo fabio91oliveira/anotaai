@@ -51,7 +51,7 @@ class NotesListActivity : AppCompatActivity() {
 
         if(viewModel.resourceHashMapMutableLiveData.value == null) {
             showLoading()
-            viewModel.onCreate()
+            viewModel.refreshNoteList()
             viewModel.checkFirstLogin()
         }
         initListeners()
@@ -135,15 +135,32 @@ class NotesListActivity : AppCompatActivity() {
             override fun onPopupMenuClick(view: View, note: Note) {
                 val popupMenu = PopupMenu(this@NotesListActivity, view)
                 popupMenu.inflate(R.menu.card_view_menu)
-                if(note.isDone) {popupMenu.menu.removeItem(R.id.card_view_menu_done)}
+                if(note.isDone) {
+                    popupMenu.menu.removeItem(R.id.card_view_menu_done)
+                    popupMenu.menu.removeItem(R.id.card_view_menu_edit)
+                    if(note.title.isEmpty() || note.contentDescription.isEmpty()) {
+                        popupMenu.menu.removeItem(R.id.card_view_menu_undone)
+                    }
+                } else {
+                    popupMenu.menu.removeItem(R.id.card_view_menu_undone)
+                    if(note.title.isEmpty() || note.contentDescription.isEmpty()) {
+                        popupMenu.menu.removeItem(R.id.card_view_menu_done)
+                    }
+                }
                 popupMenu.setOnMenuItemClickListener {
                     when(it.itemId) {
-                        R.id.card_view_menu_done -> {
-                            viewModel.markAsDone(note)
+                        R.id.card_view_menu_done, R.id.card_view_menu_undone -> {
+                            viewModel.changeStatus(note)
                             true
                         }
                         R.id.card_view_menu_discard -> {
                             viewModel.deleteNote(note)
+                            true
+                        }
+                        R.id.card_view_menu_edit -> {
+                            val intent = Intent(this@NotesListActivity, NoteAddActivity::class.java)
+                            intent.putExtra("NOTE_EDIT", note)
+                            startActivityForResult(intent, ActivityStatusConstants.STATIC_INT)
                             true
                         }
                         else -> false

@@ -48,7 +48,13 @@ object DateUtil {
     }
 
     fun convertFormatDate(date: String): Date {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        var dateFormat: SimpleDateFormat
+
+        if(Locale.getDefault().language == "pt") {
+            dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        } else {
+            dateFormat = SimpleDateFormat("MM/dd/yyyy")
+        }
 
         val calendar = Calendar.getInstance()
         calendar.time = dateFormat.parse(date)
@@ -61,17 +67,15 @@ object DateUtil {
         return calendar.time
     }
 
-    fun getDateMinusTodayDate(): Date {
-        val cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_MONTH, -1)
-        return cal.time
-    }
-
     fun getCalendar(): Calendar {
         val calendar = Calendar.getInstance()
         calendar.time = Date()
+        return calendar
+    }
 
-
+    fun getCalendar(date: Date): Calendar {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
         return calendar
     }
 
@@ -79,7 +83,11 @@ object DateUtil {
         val day = if(dayOfMonth.toString().length == 1) "0" + dayOfMonth.toString() else dayOfMonth.toString()
         val month = if(monthOfYear.toString().length == 1) "0" + (monthOfYear+1).toString() else (monthOfYear+1).toString()
 
-        return "$day/$month/$year"
+        return if(Locale.getDefault().language == "pt") {
+            "$day/$month/$year"
+        } else {
+            "$month/$day/$year"
+        }
     }
 
     fun isSameDay(dateToday: Date, dateToCompare: Date): Boolean {

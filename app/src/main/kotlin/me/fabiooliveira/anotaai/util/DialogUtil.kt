@@ -1,7 +1,9 @@
 package me.fabiooliveira.anotaai.util
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
+import me.fabiooliveira.anotaai.R
 
 /**
  * Created by Fabio Oliveira
@@ -15,9 +17,21 @@ object DialogUtil {
         val builder = AlertDialog.Builder(context)
         builder.setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton("OK", { dialog, _ ->
+                .setPositiveButton("OK") { dialog, _ ->
                     dialog.dismiss()
-                })
+                }
+        val alert = builder.create()
+        alert.show()
+    }
+
+    fun showAlertDialog(context: Context, message: String, listener: DialogInterface.OnClickListener) {
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setNegativeButton(context.resources.getText(R.string.option_cancel)) { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                .setPositiveButton(context.resources.getText(R.string.option_ok), listener)
         val alert = builder.create()
         alert.show()
     }

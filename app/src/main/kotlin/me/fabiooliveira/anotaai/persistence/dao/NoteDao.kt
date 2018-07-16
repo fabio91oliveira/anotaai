@@ -20,5 +20,4 @@ interface NoteDao {
     fun markAsDone(note: Note): Int
     @Delete fun delete(note: Note): Int
     @Query("SELECT * FROM note") fun findAll(): Flowable<List<Note>>
-    @Query("UPDATE note SET isDone = 1 WHERE date < :date and isDone != 1") fun markAllAsDone(date: Date): Int
 }

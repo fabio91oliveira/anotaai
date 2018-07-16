@@ -68,7 +68,7 @@
                 android:gravity="top"
                 android:hint="@string/note_add_description"
                 android:inputType="textMultiLine"
-                android:maxLength="300"
+                android:maxLength="500"
                 android:padding="12dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/note_add_ti_tv_size"
