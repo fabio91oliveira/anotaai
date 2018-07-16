@@ -48,7 +48,7 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
         }
         view?.let {
             it.tvTitle.text = if(note.title.isEmpty()) context.resources.getText(R.string.note_list_untitled) else note.title
-            it.tvContentDescription.text = if(note.title.isEmpty()) context.resources.getText(R.string.note_list_undescriptioned) else note.title
+            it.tvContentDescription.text = if(note.contentDescription.isEmpty()) context.resources.getText(R.string.note_list_undescriptioned) else note.contentDescription
             it.ibPopMenu.setOnClickListener {
                 noteInfoInterface?.onPopupMenuClick(it.ibPopMenu, note)
             }
@@ -66,6 +66,8 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
 
                     if(note.title.isEmpty() || note.contentDescription.isEmpty()) {
                         it.tvDraft.visibility = View.VISIBLE
+                        it.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
+                        it.tvContentDescription.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
                     } else {
                         it.tvDraft.visibility = View.GONE
                     }

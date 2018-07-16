@@ -134,7 +134,7 @@ class NoteAddActivity: AppCompatActivity() {
             val dateCalendar = DateUtil.getCalendar(note.date)
             val date = DateUtil.formatDate(dateCalendar.get(Calendar.DAY_OF_MONTH), dateCalendar.get(Calendar.MONTH), dateCalendar.get(Calendar.YEAR))
             etDate.setText(date)
-
+            tvRelevance.setTextColor(ContextCompat.getColor(this@NoteAddActivity, R.color.colorPrimary))
             sbRelevance.setProgress(note.relevance.toFloat())
         } else {
             note = Note("", "", Date(), 0)
