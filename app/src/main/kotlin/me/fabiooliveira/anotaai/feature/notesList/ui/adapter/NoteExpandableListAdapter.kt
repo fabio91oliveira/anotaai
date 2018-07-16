@@ -47,8 +47,8 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
             view = layoutInflater.inflate(R.layout.expandable_list_item, null)
         }
         view?.let {
-            it.tvTitle.text = note.title
-            it.tvContentDescription.text = note.contentDescription
+            it.tvTitle.text = if(note.title.isEmpty()) context.resources.getText(R.string.note_list_untitled) else note.title
+            it.tvContentDescription.text = if(note.contentDescription.isEmpty()) context.resources.getText(R.string.note_list_undescriptioned) else note.contentDescription
             it.ibPopMenu.setOnClickListener {
                 noteInfoInterface?.onPopupMenuClick(it.ibPopMenu, note)
             }
@@ -56,18 +56,27 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
                 true ->  {
                     it.ivDone.visibility = View.VISIBLE
                     it.tvDone.visibility = View.VISIBLE
+                    it.tvDraft.visibility = View.GONE
                     it.clCard.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGreen))
                 }
                 false -> {
                     it.ivDone.visibility = View.GONE
                     it.tvDone.visibility = View.GONE
                     it.clCard.setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
+
+                    if(note.title.isEmpty() || note.contentDescription.isEmpty()) {
+                        it.tvDraft.visibility = View.VISIBLE
+                        it.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
+                        it.tvContentDescription.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
+                    } else {
+                        it.tvDraft.visibility = View.GONE
+                    }
                 }
             }
             when(note.relevance) {
-                1 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceFirst))
-                2 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceSecond))
-                3 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceThird ))
+                in 66..100 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceFirst))
+                in 33..65 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceSecond))
+                else -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceThird ))
             }
         }
         return view!!

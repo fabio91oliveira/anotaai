@@ -30,14 +30,14 @@ class NotesListViewModel(private val noteRepository: NoteRepository, private val
     val resourceBooleanMutableLiveData = MutableLiveData<Boolean>()
     val resourceInsertedLogMutableLiveData = MutableLiveData<Boolean>()
 
-    fun onCreate(){
-        compositeDisposables.add(noteRepository.markAllAsDone(DateUtil.getDateMinusTodayDate())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+    fun refreshNoteList(){
+        compositeDisposables.add(noteRepository.getNotes()
+                .map { noteList -> noteMapper.transform(noteList) }
+                .subscribeOn(Schedulers.newThread())
                 .subscribe ({
-                    findAllNotes()
+                    resourceHashMapMutableLiveData.postValue(Resource.success(it))
                 }, {
-                    resourceLongMutableLiveData.postValue(Resource.error(it.message!!, null))
+                    resourceHashMapMutableLiveData.postValue(Resource.error(it.message!!, null))
                 }))
     }
 
@@ -63,16 +63,11 @@ class NotesListViewModel(private val noteRepository: NoteRepository, private val
         return expandableNoteTitlesList
     }
 
-    fun refreshNoteList(){
-        findAllNotes()
-    }
-
-    fun markAsDone(note: Note) {
+    fun changeStatus(note: Note) {
         note.isDone = !note.isDone
 
         compositeDisposables.add(noteRepository.markAsDone(note)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
                 .subscribe ({
                     if(it.toInt() == 1) { resourceLongMutableLiveData.postValue(Resource.success(it)) }
                     else { resourceLongMutableLiveData.postValue(Resource.error("", null)) }
@@ -103,17 +98,5 @@ class NotesListViewModel(private val noteRepository: NoteRepository, private val
                         1 -> resourceInsertedLogMutableLiveData.postValue(true)
                     }
                 }, {resourceInsertedLogMutableLiveData.postValue(false)}))
-    }
-
-    private fun findAllNotes(){
-        compositeDisposables.add(noteRepository.getNotes()
-                .map { noteList -> noteMapper.transform(noteList) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe ({
-                    resourceHashMapMutableLiveData.postValue(Resource.success(it))
-                }, {
-                    resourceHashMapMutableLiveData.postValue(Resource.error(it.message!!, null))
-                }))
     }
 }

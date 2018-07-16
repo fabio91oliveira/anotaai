@@ -2,6 +2,7 @@ package me.fabiooliveira.anotaai.model.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.Date
 
 /**
@@ -12,10 +13,10 @@ import java.util.Date
  */
 
 @Entity(tableName = "note")
-data class Note(val title: String,
-                val contentDescription: String,
-                val date: Date,
-                val relevance: Int) {
+data class Note(var title: String,
+                var contentDescription: String,
+                var date: Date,
+                var relevance: Int): Serializable {
                 @PrimaryKey(autoGenerate = true) var id: Long = 0
                 var isDone: Boolean = false
 }

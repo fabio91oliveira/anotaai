@@ -23,10 +23,6 @@ class NoteRepository @Inject constructor(private val noteDao: NoteDao) {
         return Flowable.fromCallable {noteDao.markAsDone(note).toLong()}
     }
 
-    fun markAllAsDone(date: Date): Flowable<Long> {
-        return Flowable.fromCallable {noteDao.markAllAsDone(date).toLong()}
-    }
-
     fun deleteNote(note: Note): Flowable<Long> {
         return Flowable.fromCallable {noteDao.delete(note).toLong()}
     }
