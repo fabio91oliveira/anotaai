@@ -5,6 +5,8 @@ import io.reactivex.Flowable
 import me.fabiooliveira.getnotes.model.entity.Note
 import me.fabiooliveira.getnotes.feature.notesList.viewModel.NotesListViewModel
 import me.fabiooliveira.getnotes.feature.notesList.viewModel.mapper.NoteMapper
+import me.fabiooliveira.getnotes.model.entity.Log
+import me.fabiooliveira.getnotes.model.repository.LogRepository
 import me.fabiooliveira.getnotes.model.repository.NoteRepository
 import me.fabiooliveira.getnotes.util.RxImmediateSchedulerRule
 import org.junit.Before
@@ -26,43 +28,14 @@ class NoteListViewModelTest {
     @Rule @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
     @Mock lateinit var noteRepository: NoteRepository
+    @Mock lateinit var logRepository: LogRepository
     @Mock lateinit var noteMapper: NoteMapper
 
     private lateinit var viewModel: NotesListViewModel
 
     @Before
     fun setUp() {
-        viewModel = NotesListViewModel(noteRepository, noteMapper)
-    }
-
-    @Test
-    fun should_execute_onCreate_success(){
-        val noteList = mutableListOf<Note>()
-        val note = Note("", "", Date(), 1)
-        noteList.add(note)
-
-        val flowable = Flowable.just(noteList.toList())
-
-        Mockito.`when`(noteRepository.markAllAsDone(anyObject())).thenReturn(Flowable.just(11))
-        Mockito.`when`(noteRepository.getNotes()).thenReturn(flowable)
-        viewModel.onCreate()
-        Mockito.verify(noteRepository).markAllAsDone(anyObject())
-        Mockito.verify(noteRepository).getNotes()
-    }
-
-    @Test
-    fun should_execute_onCreate_error(){
-        Mockito.`when`(noteRepository.markAllAsDone(anyObject())).thenReturn(Flowable.error(Throwable("Error")))
-        viewModel.onCreate()
-        Mockito.verify(noteRepository).markAllAsDone(anyObject())
-    }
-
-    @Test
-    fun should_execute_getNotesTitles(){
-        var linkedHashMap = LinkedHashMap<String, MutableList<Note>>()
-        linkedHashMap["key"] = mutableListOf()
-
-        viewModel.getNotesTitles(linkedHashMap)
+        viewModel = NotesListViewModel(noteRepository, logRepository, noteMapper)
     }
 
     @Test
@@ -85,12 +58,63 @@ class NoteListViewModelTest {
     }
 
     @Test
-    fun should_execute_markAsDone_success(){
+    fun should_execute_checkFirstLogin_not_empty_success(){
+        val log = Log(Date())
+        val logList = listOf(log)
+
+        Mockito.`when`(logRepository.findFirst()).thenReturn(Flowable.just(logList))
+
+        viewModel.checkFirstLogin()
+        Mockito.verify(logRepository).findFirst()
+    }
+
+    @Test
+    fun should_execute_checkFirstLogin_not_empty_error(){
+        Mockito.`when`(logRepository.findFirst()).thenReturn(Flowable.error(Throwable("Error")))
+
+        viewModel.checkFirstLogin()
+        Mockito.verify(logRepository).findFirst()
+    }
+
+    @Test
+    fun should_execute_checkFirstLogin_empty_insert_log_success(){
+        val logList = mutableListOf<Log>()
+
+        Mockito.`when`(logRepository.findFirst()).thenReturn(Flowable.just(logList))
+        Mockito.`when`(logRepository.insertLog(anyObject())).thenReturn(Flowable.just(1))
+
+        viewModel.checkFirstLogin()
+        Mockito.verify(logRepository).findFirst()
+        Mockito.verify(logRepository).insertLog(anyObject())
+    }
+
+    @Test
+    fun should_execute_checkFirstLogin_empty_insert_log_error(){
+        val logList = mutableListOf<Log>()
+
+        Mockito.`when`(logRepository.findFirst()).thenReturn(Flowable.just(logList))
+        Mockito.`when`(logRepository.insertLog(anyObject())).thenReturn(Flowable.error(Throwable("Error")))
+
+        viewModel.checkFirstLogin()
+        Mockito.verify(logRepository).findFirst()
+        Mockito.verify(logRepository).insertLog(anyObject())
+    }
+
+    @Test
+    fun should_execute_getNotesTitles(){
+        var linkedHashMap = LinkedHashMap<String, MutableList<Note>>()
+        linkedHashMap["key"] = mutableListOf()
+
+        viewModel.getNotesTitles(linkedHashMap)
+    }
+
+    @Test
+    fun should_execute_changeStatus_success(){
         val note = Note("", "", Date(), 1)
 
         Mockito.`when`(noteRepository.markAsDone(note)).thenReturn(Flowable.just(1))
 
-        viewModel.markAsDone(note)
+        viewModel.changeStatus(note)
         Mockito.verify(noteRepository).markAsDone(note)
     }
 
@@ -100,7 +124,7 @@ class NoteListViewModelTest {
 
         Mockito.`when`(noteRepository.markAsDone(note)).thenReturn(Flowable.error(Throwable("Error")))
 
-        viewModel.markAsDone(note)
+        viewModel.changeStatus(note)
         Mockito.verify(noteRepository).markAsDone(note)
     }
 

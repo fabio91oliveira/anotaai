@@ -53,27 +53,6 @@ class NoteAddViewModelTest {
     }
 
     @Test
-    fun should_execute_getRelevance_and_get_relevance_1() {
-        val relevance = viewModel.getRelevance(68)
-
-        Assert.assertEquals(relevance, 1)
-    }
-
-    @Test
-    fun should_execute_getRelevance_and_get_relevance_2() {
-        val relevance = viewModel.getRelevance(34)
-
-        Assert.assertEquals(relevance, 2)
-    }
-
-    @Test
-    fun should_execute_getRelevance_and_get_relevance_3() {
-        val relevance = viewModel.getRelevance(2)
-
-        Assert.assertEquals(relevance, 3)
-    }
-
-    @Test
     fun should_execute_isEmpty_and_get_true() {
         val response = viewModel.isEmpty("")
 
