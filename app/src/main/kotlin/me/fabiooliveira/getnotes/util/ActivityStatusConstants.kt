@@ -8,8 +8,6 @@ package me.fabiooliveira.getnotes.util
  */
 
 object ActivityStatusConstants {
-    const val SUCCESS = 1
+    const val NOTE_EDIT = "NOTE_EDIT"
     const val ERROR = 2
-
-    const val STATIC_INT = 1
 }

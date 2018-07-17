@@ -74,14 +74,8 @@ class NotesListActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 1) {
-            when(resultCode){
-                ActivityStatusConstants.SUCCESS -> {
-                    showLoading()
-                    viewModel.refreshNoteList()
-                }
-                ActivityStatusConstants.ERROR -> DialogUtil.showAlertDialog(this, this.resources.getString(R.string.note_generic_error))
-            }
+        when(resultCode){
+            ActivityStatusConstants.ERROR -> DialogUtil.showAlertDialog(this, this.resources.getString(R.string.note_generic_error))
         }
     }
 
@@ -100,6 +94,7 @@ class NotesListActivity : AppCompatActivity() {
         viewModel.resourceHashMapMutableLiveData.observe(this, Observer {
             it?.let {
                 it.data?.apply {
+                    showLoading()
                     if(this.isEmpty()) {
                         tvNoNotes.visibility = View.VISIBLE
                         mountNoteList(this)
@@ -124,8 +119,7 @@ class NotesListActivity : AppCompatActivity() {
             it?.let { if(!it) DialogUtil.showAlertDialog(this, this.resources.getString(R.string.note_generic_error)) }
         })
         bvNewNote.setOnClickListener {
-            val intent = Intent(this, NoteAddActivity::class.java)
-            startActivityForResult(intent, ActivityStatusConstants.STATIC_INT)
+            startActivity(Intent(this, NoteAddActivity::class.java))
         }
     }
 
@@ -160,7 +154,7 @@ class NotesListActivity : AppCompatActivity() {
                         R.id.card_view_menu_edit -> {
                             val intent = Intent(this@NotesListActivity, NoteAddActivity::class.java)
                             intent.putExtra("NOTE_EDIT", note)
-                            startActivityForResult(intent, ActivityStatusConstants.STATIC_INT)
+                            startActivity(intent)
                             true
                         }
                         else -> false

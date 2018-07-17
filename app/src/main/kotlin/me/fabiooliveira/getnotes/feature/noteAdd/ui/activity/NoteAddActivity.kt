@@ -113,20 +113,13 @@ class NoteAddActivity: AppCompatActivity() {
 
     private fun initLiveDataListeners() {
         viewModel.resourceMutableLive.observe(this, Observer {
-            it?.let {
-                val returnIntent = Intent()
-                returnIntent.putExtra("result", it.statusEnum)
-                when (it.statusEnum) {
-                    StatusEnum.SUCCESS -> setResult(ActivityStatusConstants.SUCCESS, returnIntent)
-                    StatusEnum.ERROR -> setResult(ActivityStatusConstants.ERROR, returnIntent)
-                }
-                finish()
-            }})
+            it?.let {when (it.statusEnum) {StatusEnum.ERROR -> setResult(ActivityStatusConstants.ERROR)}}
+            finish()})
     }
 
     private fun initNoteToEdit(){
-        if(intent.getSerializableExtra("NOTE_EDIT") != null) {
-            note = intent.getSerializableExtra("NOTE_EDIT") as Note
+        if(intent.getSerializableExtra(ActivityStatusConstants.NOTE_EDIT) != null) {
+            note = intent.getSerializableExtra(ActivityStatusConstants.NOTE_EDIT) as Note
 
             etTitle.setText(note.title)
             etDescription.setText(note.contentDescription)

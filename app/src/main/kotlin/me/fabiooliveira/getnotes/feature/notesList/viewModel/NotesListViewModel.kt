@@ -31,8 +31,9 @@ class NotesListViewModel(private val noteRepository: NoteRepository, private val
 
     fun refreshNoteList(){
         compositeDisposables.add(noteRepository.getNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map { noteList -> noteMapper.transform(noteList) }
-                .subscribeOn(Schedulers.newThread())
                 .subscribe ({
                     resourceHashMapMutableLiveData.postValue(Resource.success(it))
                 }, {
@@ -66,7 +67,8 @@ class NotesListViewModel(private val noteRepository: NoteRepository, private val
         note.isDone = !note.isDone
 
         compositeDisposables.add(noteRepository.markAsDone(note)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
                     if(it.toInt() == 1) { resourceLongMutableLiveData.postValue(Resource.success(it)) }
                     else { resourceLongMutableLiveData.postValue(Resource.error("", null)) }
