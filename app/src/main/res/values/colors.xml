@@ -14,7 +14,7 @@
     <color name="colorGreen">#2c0f7b5a</color>
     <color name="colorRed">#FF0000</color>
 
-
+    <color name="colorSeekBar">#00574b</color>
     <color name="colorOnBoardingPageDefault">#008577</color>
     <color name="colorRelevanceFirst">#FF0000</color>
     <color name="colorRelevanceSecond">#e2ba09</color>

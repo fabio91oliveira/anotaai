@@ -20,7 +20,8 @@ import me.fabiooliveira.getnotes.feature.notesList.listener.NoteInfoInterface
  * LinkedIn: https://www.linkedin.com/in/fabio91oliveira
  */
 
-class NoteExpandableListAdapter(private val context: Context, private val expandableNoteTitlesList: List<String>,
+class
+NoteExpandableListAdapter(private val context: Context, private val expandableNoteTitlesList: List<String>,
                                 private var expandableNoteListDetail: Map<String, MutableList<Note>>): BaseExpandableListAdapter() {
 
     private var noteInfoInterface: NoteInfoInterface? = null
@@ -74,9 +75,9 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
                 }
             }
             when(note.relevance) {
-                in 66..100 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceFirst))
-                in 33..65 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceSecond))
-                else -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceThird ))
+                3 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceFirst))
+                2 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceSecond))
+                1 -> it.ivRelevance.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRelevanceThird ))
             }
         }
         return view!!
@@ -138,7 +139,7 @@ class NoteExpandableListAdapter(private val context: Context, private val expand
     private fun sortList(){
         var expandableNoteListDetailAux = mutableMapOf<String, List<Note>>()
         expandableNoteListDetail.entries.forEach {
-            val list = it.value.sortedWith(Comparator { n1, n2 -> n1.relevance - n2.relevance })
+            val list = it.value.sortedWith(Comparator { n1, n2 -> n2.relevance - n1.relevance })
             expandableNoteListDetailAux[it.key] = list
         }
         expandableNoteListDetail = expandableNoteListDetailAux as Map<String, MutableList<Note>>
