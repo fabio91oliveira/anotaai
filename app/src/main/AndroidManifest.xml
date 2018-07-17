@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.fabiooliveira.anotaai">
+    package="me.fabiooliveira.getnotes">
 
     <application
-        android:name=".base.MainApplication"
+        android:name="me.fabiooliveira.getnotes.base.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.onboarding.ui.activity.OnboardingActivity"
+        <activity android:name="me.fabiooliveira.getnotes.feature.onboarding.ui.activity.OnboardingActivity"
             android:theme="@style/AppThemeOnboarding">
         </activity>
         <activity
-            android:name=".feature.splashScreen.ui.activity.SplashScreenActivity"
+            android:name="me.fabiooliveira.getnotes.feature.splashScreen.ui.activity.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
             android:theme="@style/SplashTheme">
@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.notesList.ui.activity.NotesListActivity" />
+        <activity android:name="me.fabiooliveira.getnotes.feature.notesList.ui.activity.NotesListActivity" />
         <activity
-            android:name=".feature.noteAdd.ui.activity.NoteAddActivity"
+            android:name="me.fabiooliveira.getnotes.feature.noteAdd.ui.activity.NoteAddActivity"
             android:theme="@style/AppTheme.CircularColor" />
 
         <meta-data
