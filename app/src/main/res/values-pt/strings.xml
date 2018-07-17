@@ -8,13 +8,13 @@
     <string name="onboarding_first_page_subtitle">É um app bem simples aonde você adiciona suas notas. Elas são organizadas através da relevância e data</string>
 
     <string name="onboarding_second_page_title">Relevância vermelha</string>
-    <string name="onboarding_second_page_subtitle">Quando você seleciona a relevância entre 67 e 100, é porque é muito importante pra você. Sendo assim ela fica no topo da lista</string>
+    <string name="onboarding_second_page_subtitle">Quando você seleciona a relevância 1, é porque é muito importante pra você. Sendo assim ela fica no topo da lista</string>
 
     <string name="onboarding_third_page_title">Relevância amarela</string>
-    <string name="onboarding_third_page_subtitle">Quando você seleciona a relevância entre 34 e 66, é porque essa anotação está abaixo de muito importante. Ficam todas abaixo das vermelhas</string>
+    <string name="onboarding_third_page_subtitle">Quando você seleciona a relevância 2, é porque essa anotação está abaixo de muito importante. Ficam todas abaixo das vermelhas</string>
 
     <string name="onboarding_fourth_page_title">Relevância azul</string>
-    <string name="onboarding_fourth_page_subtitle">Quando você seleciona a relevância entre 1 e 33, é porque é aquela anotação que não tem tanta importância assim. Fica no final da lista</string>
+    <string name="onboarding_fourth_page_subtitle">Quando você seleciona a relevância 3, é porque é aquela anotação que não tem tanta importância assim. Fica no final da lista</string>
 
     <string name="onboarding_fifth_page_title">Aproveite o applicativo</string>
     <string name="onboarding_fifth_page_subtitle">Espero que você goste e aproveite ao máximo dessa experiência</string>
