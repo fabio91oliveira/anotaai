@@ -69,6 +69,7 @@ deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_g
 def espresso = [:]
 espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
 espresso.intent = "androidx.test.espresso:espresso-intents:$versions.espresso"
+espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
 espresso.runner = "androidx.test:runner:$versions.test"
 espresso.rules = "androidx.test:runner:$versions.test"
 deps.espresso = espresso

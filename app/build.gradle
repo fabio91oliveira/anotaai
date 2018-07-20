@@ -96,6 +96,7 @@ dependencies {
     androidTestImplementation deps.mockito.android
     androidTestImplementation deps.espresso.runner
     androidTestImplementation deps.espresso.rules
+    androidTestImplementation deps.espresso.contrib
     androidTestImplementation deps.espresso.core
     androidTestImplementation deps.espresso.intent
 }
