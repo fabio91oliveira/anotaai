@@ -71,6 +71,8 @@ NoteExpandableListAdapter(private val context: Context, private val expandableNo
                         it.tvContentDescription.setTextColor(ContextCompat.getColor(context, R.color.colorGrey))
                     } else {
                         it.tvDraft.visibility = View.GONE
+                        it.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.colorAccent))
+                        it.tvContentDescription.setTextColor(ContextCompat.getColor(context, R.color.colorBlack))
                     }
                 }
             }

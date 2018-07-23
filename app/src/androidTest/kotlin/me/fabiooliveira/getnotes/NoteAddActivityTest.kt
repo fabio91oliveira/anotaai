@@ -29,13 +29,10 @@ class NoteAddActivityTest {
                 .perform(ViewActions.typeText("Title"))
         Espresso.onView(ViewMatchers.withId(R.id.etDescription))
                 .perform(ViewActions.typeText("Description"))
-
-
-
-        Espresso.onView(ViewMatchers.withId(R.id.etDate))
-                .perform(ViewActions.typeTextIntoFocusedView("12/12/12"))
-//        Espresso.onView(ViewMatchers.withId(R.id.bvSave))
-//                .perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.etDate)).perform(PickerActions.setDate(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONDAY), calendar.get(Calendar.DAY_OF_MONTH)))
+        Espresso.onView(ViewMatchers.withId(R.id.bvSave))
+                .perform(ViewActions.click())
     }
 
     @Test
