@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><!--<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/cardWeek"-->
+<!--    style="@style/Widget.MaterialComponents.CardView"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="@dimen/spacing_01"-->
+<!--    android:layout_marginEnd="@dimen/spacing_01"-->
+<!--    android:layout_marginTop="@dimen/spacing_01"-->
+<!--    android:stateListAnimator="@anim/animation"-->
+<!--    app:cardCornerRadius="@dimen/spacing_half"-->
+<!--    app:cardElevation="@dimen/spacing_none">-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentNote"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="@dimen/spacing_02"
+    android:paddingBottom="@dimen/spacing_02">
+
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:id="@+id/ivRelevance"-->
+    <!--        android:layout_width="@dimen/spacing_01"-->
+    <!--        android:layout_marginStart="@dimen/spacing_half"-->
+    <!--        android:layout_marginTop="@dimen/spacing_half"-->
+    <!--        android:layout_height="@dimen/spacing_01"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/tvNoteTitle"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/gdStart"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/tvNoteTitle"-->
+    <!--        app:srcCompat="@drawable/list_notes_feature_bg_relevance_circle"-->
+    <!--        app:tint="@color/color_accent_dark" />-->
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="@dimen/spacing_02"
+        android:layout_height="@dimen/spacing_01"
+        android:background="@drawable/list_notes_feature_bg_relevance_rounded"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoteTitle"
+        android:layout_width="@dimen/spacing_none"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_accent_dark"
+        android:textSize="@dimen/text_size_05"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toEndOf="@+id/gdStart"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Component Notes" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoteShortDescription"
+        android:layout_width="@dimen/spacing_none"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_size_01"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="@color/color_grey"
+        android:textSize="@dimen/text_size_03"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toStartOf="@id/tvNoteTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteTitle"
+        app:lineHeight="@dimen/spacing_03"
+        tools:text="@tools:sample/lorem/random" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoteDate"
+        android:layout_width="@dimen/spacing_none"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_02"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_grey_soft"
+        android:textSize="@dimen/text_size_03"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintStart_toStartOf="@+id/tvNoteShortDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
+        tools:text="24/01/2020" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/spacing_04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/spacing_04" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--</com.google.android.material.card.MaterialCardView>-->

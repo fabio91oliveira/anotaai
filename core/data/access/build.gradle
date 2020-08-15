@@ -1,0 +1,12 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+    // Project
+    implementation project(Core.DataLocal)
+
+    // Koin
+    implementation Deps.koin_scope
+
+    // Timber
+    implementation Deps.timber
+}

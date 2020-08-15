@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:fontFamily">@font/didactgothic_regular</item>
+        <item name="android:windowBackground">@color/color_primary</item>
+        <item name="colorControlNormal">@color/color_accent_dark</item>
+        <item name="colorControlHighlight">@color/color_accent_dark_transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/color_primary_dark</item>
+    </style>
+
+</resources>
