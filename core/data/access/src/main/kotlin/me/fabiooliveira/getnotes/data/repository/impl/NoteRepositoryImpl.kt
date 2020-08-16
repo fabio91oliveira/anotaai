@@ -17,9 +17,9 @@ internal class NoteRepositoryImpl(
         val lista = mutableListOf<NoteEntity>().apply {
             val note = NoteEntity(
                     "Lorem Ipsom",
-                    "Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom",
+                    "Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom",
                     Date(),
-                    1
+                    (1..3).random()
             )
             add(note)
             add(note)
@@ -35,9 +35,9 @@ internal class NoteRepositoryImpl(
             calendar.add(Calendar.DAY_OF_MONTH, -2)
             val note2 = NoteEntity(
                     "Lorem Ipsom",
-                    "Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom",
+                    "Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom Lorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem IpsomLorem Ipsom",
                     calendar.time,
-                    1
+                    (1..3).random()
             )
 
             add(note2)

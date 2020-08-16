@@ -37,24 +37,44 @@
     <!--        app:tint="@color/color_accent_dark" />-->
 
     <View
-        android:id="@+id/line"
-        android:layout_width="@dimen/spacing_02"
-        android:layout_height="@dimen/spacing_01"
+        android:id="@+id/vRelevance"
+        android:layout_width="@dimen/spacing_none"
+        android:layout_height="@dimen/spacing_none"
         android:background="@drawable/list_notes_feature_bg_relevance_rounded"
-        app:layout_constraintEnd_toEndOf="@id/gdEnd"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvRelevance"
+        app:layout_constraintEnd_toEndOf="@+id/tvRelevance"
+        app:layout_constraintStart_toStartOf="@+id/tvRelevance"
+        app:layout_constraintTop_toTopOf="@+id/tvRelevance"
+        tools:backgroundTint="@color/color_transparent_high_relevance" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRelevance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_02"
+        android:paddingTop="@dimen/spacing_half"
+        android:paddingEnd="@dimen/spacing_02"
+        android:paddingBottom="@dimen/spacing_half"
+        android:theme="@style/TextBold.Small"
+        app:layout_constraintStart_toEndOf="@+id/gdStart"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="High"
+        tools:textColor="@color/color_high_relevance" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoteTitle"
         android:layout_width="@dimen/spacing_none"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_01"
+        android:layout_marginBottom="@dimen/spacing_half"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_accent_dark"
         android:theme="@style/TextBold.Huge"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRelevance"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
-        app:layout_constraintStart_toEndOf="@+id/gdStart"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRelevance"
+        app:layout_constraintTop_toTopOf="@+id/tvRelevance"
         tools:text="Component Notes" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -62,43 +82,59 @@
         android:layout_width="@dimen/spacing_none"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_size_01"
+        android:layout_marginEnd="@dimen/spacing_02"
         android:ellipsize="end"
         android:maxLines="4"
         android:textColor="@color/color_grey"
         android:theme="@style/TextRegular.Medium"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
-        app:layout_constraintStart_toStartOf="@id/tvNoteTitle"
+        app:layout_constraintStart_toStartOf="@id/gdStart"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteTitle"
         app:lineHeight="@dimen/spacing_03"
         tools:text="@tools:sample/lorem/random" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_02"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="@color/color_grey_soft"
+        android:theme="@style/TextRegular.Small"
+        app:layout_constraintEnd_toStartOf="@id/tvNoteNameOfDay"
+        app:layout_constraintStart_toStartOf="@+id/tvNoteShortDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
+        tools:text="24/01/2020" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoteNameOfDay"
         android:layout_width="@dimen/spacing_none"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_01"
         android:layout_marginTop="@dimen/spacing_02"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_grey_soft"
-        android:theme="@style/TextRegular.Small"
+        android:theme="@style/TextBold.Small"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
-        app:layout_constraintStart_toStartOf="@+id/tvNoteShortDescription"
+        app:layout_constraintStart_toEndOf="@+id/tvNoteDate"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
-        tools:text="24/01/2020" />
+        tools:text="Today" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/spacing_05" />
+        app:layout_constraintGuide_begin="@dimen/spacing_03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/spacing_05" />
+        app:layout_constraintGuide_end="@dimen/spacing_03" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,7 +1,8 @@
 package me.fabiooliveira.getnotes.di
 
+import me.fabiooliveira.getnotes.domain.usecase.GetListNotesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.MountNoteItemsUseCase
-import me.fabiooliveira.getnotes.domain.usecase.impl.GetListNotesUseCase
+import me.fabiooliveira.getnotes.domain.usecase.impl.GetListNotesUseCaseImpl
 import me.fabiooliveira.getnotes.domain.usecase.impl.MountNoteItemsUseCaseImpl
 import me.fabiooliveira.getnotes.navigation.ListNotesNavigation
 import me.fabiooliveira.getnotes.presentation.navigation.ListNotesNavigationImpl
@@ -12,8 +13,8 @@ import org.koin.dsl.module
 
 object ListNotesModule {
     private val domainModule = module {
-        factory {
-            GetListNotesUseCase(
+        factory<GetListNotesUseCase> {
+            GetListNotesUseCaseImpl(
                     notesRepository = get()
             )
         }

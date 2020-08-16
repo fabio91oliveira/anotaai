@@ -1,14 +1,16 @@
 package me.fabiooliveira.getnotes.presentation.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.map
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.domain.usecase.GetListNotesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.MountNoteItemsUseCase
-import me.fabiooliveira.getnotes.domain.usecase.impl.GetListNotesUseCase
 import me.fabiooliveira.getnotes.presentation.action.RecentListNotesAction
+import me.fabiooliveira.getnotes.presentation.viewstate.ListNotesViewState
 import me.fabiooliveira.getnotes.presentation.viewstate.RecentListNotesViewState
 
 internal class ListNotesViewModel(
@@ -22,13 +24,16 @@ internal class ListNotesViewModel(
     private val _recentListNotesViewState by lazy { MutableLiveData<RecentListNotesViewState>() }
     val recentListNotesViewState by lazy { _recentListNotesViewState }
 
+    private val _listNotesViewState by lazy { MutableLiveData<ListNotesViewState>() }
+    val listNotesViewState by lazy { _listNotesViewState }
+
     init {
-        initState()
+        initStates()
     }
 
     fun getNotesList() {
         viewModelScope.launch {
-            setViewState {
+            setRecentNotesViewState {
                 it.copy(isLoading = true,
                         isContentVisible = false)
             }
@@ -37,7 +42,7 @@ internal class ListNotesViewModel(
                         mountNoteItemsUseCase(it)
                     }
                     .fold(success = { notes ->
-                        setViewState {
+                        setRecentNotesViewState {
                             it.copy(
                                     isLoading = false,
                                     notes = notes,
@@ -50,25 +55,40 @@ internal class ListNotesViewModel(
         }
     }
 
+    fun setTabName(@StringRes tabNameRes: Int) {
+        setListNotesViewState {
+            it.copy(
+                    tabSelected = tabNameRes
+            )
+        }
+    }
+
     fun showRecentNotesAddButton() {
-        setViewState {
+        setRecentNotesViewState {
             it.copy(isAddButtonVisible = true)
         }
     }
 
     fun hideRecentNotesAddButton() {
-        setViewState {
+        setRecentNotesViewState {
             it.copy(isAddButtonVisible = false)
         }
     }
 
-    private fun setViewState(state: (RecentListNotesViewState) -> RecentListNotesViewState) {
+    private fun setListNotesViewState(state: (ListNotesViewState) -> ListNotesViewState) {
+        _listNotesViewState.value?.also {
+            _listNotesViewState.value = state(it)
+        }
+    }
+
+    private fun setRecentNotesViewState(state: (RecentListNotesViewState) -> RecentListNotesViewState) {
         _recentListNotesViewState.value?.also {
             _recentListNotesViewState.value = state(it)
         }
     }
 
-    private fun initState() {
+    private fun initStates() {
         _recentListNotesViewState.value = RecentListNotesViewState.init()
+        _listNotesViewState.value = ListNotesViewState.init()
     }
 }

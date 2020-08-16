@@ -25,6 +25,11 @@ internal class RecentListNotesFragment : Fragment(R.layout.list_notes_feature_fr
         setupRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        listNotesViewModel.setTabName(R.string.list_notes_feature_tab_recents)
+    }
+
     private fun setupObservables() {
         with(listNotesViewModel) {
             recentListNotesViewState.observe(viewLifecycleOwner, Observer {

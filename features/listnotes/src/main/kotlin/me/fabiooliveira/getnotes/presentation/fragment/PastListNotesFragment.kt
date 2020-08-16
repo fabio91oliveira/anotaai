@@ -25,6 +25,11 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
         setupRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        listNotesViewModel.setTabName(R.string.list_notes_feature_tab_past)
+    }
+
     private fun setupObservables() {
         with(listNotesViewModel) {
             recentListNotesViewState.observe(viewLifecycleOwner, Observer {

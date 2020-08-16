@@ -4,6 +4,8 @@ internal data class NoteItem(
         val id: Long,
         val title: String,
         val description: String,
-        val isDone: Boolean,
-        val date: String
+        val dateWithHour: String,
+        val dateName: String,
+        val relevance: RelevanceEnum,
+        val isToday: Boolean
 )

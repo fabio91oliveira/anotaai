@@ -1,6 +1,7 @@
 package me.fabiooliveira.getnotes.presentation.activity
 
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -41,9 +42,11 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         tvHeader.alpha = percentage
 
         if (percentage == 0f) {
-            abInside.alpha = 1.0f
+            search.alpha = 1.0f
+            tlOptions.alpha = 1.0f
         } else {
-            abInside.alpha = 1.0f - percentage * 2
+            search.alpha = 1.0f - percentage * 2
+            tlOptions.alpha = 1.0f - percentage
         }
     }
 
@@ -51,6 +54,9 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         with(listNotesViewModel) {
             recentListNotesViewState.observe(this@ListNotesActivity, Observer {
                 showAddButton(it.isAddButtonVisible)
+            })
+            listNotesViewState.observe(this@ListNotesActivity, Observer {
+                setHeaderTitle(it.tabSelected)
             })
         }
     }
@@ -65,21 +71,31 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
     private fun setupViewPager() {
         with(vpContent) {
             adapter = fragmentPagerAdapter
-            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            (getChildAt(TAB_FIRST_POSITION) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
     }
 
     private fun setupTabLayout() {
         TabLayoutMediator(tlOptions, vpContent) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Recents"
-                else -> "Past"
-            }
+            tab.text = getTabText(position)
         }.attach()
+    }
 
-        tvHeader.text = "Recents"
+    private fun getTabText(position: Int): String {
+        return when (position) {
+            TAB_FIRST_POSITION -> getString(R.string.list_notes_feature_tab_recents)
+            else -> getString(R.string.list_notes_feature_tab_past)
+        }
+    }
+
+    private fun setHeaderTitle(@StringRes titleRes: Int?) {
+        titleRes?.also { tvHeader.setText(it) }
     }
 
     private fun showAddButton(hasToShow: Boolean) =
             if (hasToShow) fbAdd.show() else fbAdd.hide()
+
+    companion object {
+        private const val TAB_FIRST_POSITION = 0
+    }
 }

@@ -11,6 +11,7 @@ internal class NotesPageMapper : Mapper<NoteEntity, Note> {
                 title = source.title,
                 description = source.contentDescription,
                 date = source.date,
+                relevance = source.relevance,
                 isDone = source.isDone
         )
     }

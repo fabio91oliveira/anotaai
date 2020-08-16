@@ -3,6 +3,7 @@ package me.fabiooliveira.getnotes.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import features.listnotes.R
 import kotlinx.android.extensions.LayoutContainer
@@ -41,7 +42,11 @@ internal class NoteItemsAdapter : RecyclerView.Adapter<NoteItemsAdapter.NoteView
         fun bind(noteItem: NoteItem) {
             tvNoteTitle.text = noteItem.title
             tvNoteShortDescription.text = noteItem.description
-            tvNoteDate.text = noteItem.date
+            tvNoteDate.text = noteItem.dateWithHour
+            tvNoteNameOfDay.text = if (noteItem.isToday) containerView.resources.getString(R.string.list_notes_feature_note_today) else noteItem.dateName
+            tvRelevance.text = containerView.resources.getString(noteItem.relevance.titleRes)
+            tvRelevance.setTextColor(ContextCompat.getColor(containerView.context, noteItem.relevance.textColorRes))
+            vRelevance.background.setTint(ContextCompat.getColor(containerView.context, noteItem.relevance.backgroundColorRes))
         }
     }
 }

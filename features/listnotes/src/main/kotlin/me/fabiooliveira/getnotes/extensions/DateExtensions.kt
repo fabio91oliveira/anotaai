@@ -1,33 +1,17 @@
 package me.fabiooliveira.getnotes.extensions
 
-import java.text.DateFormatSymbols
+import java.text.DateFormat.getDateTimeInstance
+import java.text.SimpleDateFormat
 import java.util.*
 
-fun Date.getMonthNumber(): Int {
-    val cal = Calendar.getInstance()
-    cal.time = this
+private const val DAY_NAME_PATTERN = "EEEE"
 
-    return cal.get(Calendar.MONTH) + 1
+fun Date.getDateString(): String {
+    val sdf = getDateTimeInstance()
+    return sdf.format(this)
 }
 
-fun Date.getDayNumber(): Int {
-    val cal = Calendar.getInstance()
-    cal.time = this
-
-    return cal.get(Calendar.DAY_OF_MONTH)
-}
-
-fun Date.getMonthName(): String {
-    val month = DateFormatSymbols().months[this.getMonthNumber() - 1]
-    val firstString = month.substring(0, 1).toUpperCase()
-    val restOfAll = month.substring(1, month.length)
-
-    return firstString + restOfAll
-}
-
-fun Date.getCurrentYear() = Calendar.getInstance().let {
-    val cal = Calendar.getInstance()
-    cal.time = this
-
-    cal.get(Calendar.YEAR).toString()
+fun Date.getNameOfTheDay(): String {
+    val sdf = SimpleDateFormat(DAY_NAME_PATTERN, Locale.getDefault())
+    return sdf.format(this)
 }

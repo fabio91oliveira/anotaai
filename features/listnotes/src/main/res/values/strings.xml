@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="list_notes_feature_tab_recents">Recents</string>
+    <string name="list_notes_feature_tab_past">Past</string>
+    <string name="list_notes_feature_note_today">Today</string>
+
+    <string name="list_notes_feature_relevance_high">High</string>
+    <string name="list_notes_feature_relevance_medium">Medium</string>
+    <string name="list_notes_feature_relevance_normal">Normal</string>
+</resources>
