@@ -4,6 +4,7 @@ import me.fabiooliveira.getnotes.presentation.vo.NoteItem
 
 internal data class RecentListNotesViewState(
         val isLoading: Boolean = false,
+        val isContentVisible: Boolean = false,
         val isAddButtonVisible: Boolean = true,
         val notes: List<NoteItem>? = null
 ) {

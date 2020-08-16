@@ -12,4 +12,44 @@
         <item name="android:statusBarColor">@color/color_primary_dark</item>
     </style>
 
+    <style name="TextBold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextRegular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextRegular.Small">
+        <item name="android:textSize">@dimen/text_size_01</item>
+    </style>
+
+    <style name="TextRegular.Medium">
+        <item name="android:textSize">@dimen/text_size_02</item>
+    </style>
+
+    <style name="TextRegular.Big">
+        <item name="android:textSize">@dimen/text_size_03</item>
+    </style>
+
+    <style name="TextRegular.Huge">
+        <item name="android:textSize">@dimen/text_size_04</item>
+    </style>
+
+    <style name="TextBold.Small">
+        <item name="android:textSize">@dimen/text_size_01</item>
+    </style>
+
+    <style name="TextBold.Medium">
+        <item name="android:textSize">@dimen/text_size_02</item>
+    </style>
+
+    <style name="TextBold.Big">
+        <item name="android:textSize">@dimen/text_size_03</item>
+    </style>
+
+    <style name="TextBold.Huge">
+        <item name="android:textSize">@dimen/text_size_04</item>
+    </style>
+
 </resources>

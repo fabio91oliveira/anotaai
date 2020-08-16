@@ -7,6 +7,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abContent"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_01"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:elevation="@dimen/spacing_none">
@@ -18,11 +19,12 @@
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <View
                 android:id="@+id/ivAvatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/list_notes_feature_ic_avatar" />
+                android:layout_width="@dimen/spacing_04"
+                android:layout_height="@dimen/spacing_04"
+                android:layout_marginStart="@dimen/spacing_01"
+                android:background="@drawable/list_notes_feature_ic_avatar" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvHeader"
@@ -30,8 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/color_accent_dark"
-                android:textSize="@dimen/text_size_04"
-                android:textStyle="bold"
+                android:theme="@style/TextBold.Huge"
                 android:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -73,8 +74,9 @@
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:tabIndicatorColor="@null"
                     app:tabMode="scrollable"
+                    android:layout_marginTop="@dimen/spacing_02"
+                    app:tabPaddingStart="@dimen/spacing_03"
                     app:tabRippleColor="@color/color_accent_dark_transparent"
-                    app:tabPaddingStart="@dimen/spacing_04"
                     app:tabSelectedTextColor="@color/color_accent_dark"
                     app:tabTextAppearance="@style/list_notes_feature_LowerCaseTabTextAppearance"
                     app:tabTextColor="@color/color_grey_soft" />
@@ -87,6 +89,7 @@
             android:id="@+id/vpContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/spacing_01"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

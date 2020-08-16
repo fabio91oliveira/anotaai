@@ -51,8 +51,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_accent_dark"
-        android:textSize="@dimen/text_size_05"
-        android:textStyle="bold"
+        android:theme="@style/TextBold.Huge"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toEndOf="@+id/gdStart"
         app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +65,7 @@
         android:ellipsize="end"
         android:maxLines="4"
         android:textColor="@color/color_grey"
-        android:textSize="@dimen/text_size_03"
+        android:theme="@style/TextRegular.Medium"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@id/tvNoteTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteTitle"
@@ -81,7 +80,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_grey_soft"
-        android:textSize="@dimen/text_size_03"
+        android:theme="@style/TextRegular.Small"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
         app:layout_constraintStart_toStartOf="@+id/tvNoteShortDescription"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
@@ -92,14 +91,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/spacing_04" />
+        app:layout_constraintGuide_begin="@dimen/spacing_05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/spacing_04" />
+        app:layout_constraintGuide_end="@dimen/spacing_05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

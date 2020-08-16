@@ -28,6 +28,10 @@ internal class ListNotesViewModel(
 
     fun getNotesList() {
         viewModelScope.launch {
+            setViewState {
+                it.copy(isLoading = true,
+                        isContentVisible = false)
+            }
             Result.of(getListNotesUseCase())
                     .map {
                         mountNoteItemsUseCase(it)
@@ -35,7 +39,9 @@ internal class ListNotesViewModel(
                     .fold(success = { notes ->
                         setViewState {
                             it.copy(
-                                    notes = notes
+                                    isLoading = false,
+                                    notes = notes,
+                                    isContentVisible = true
                             )
                         }
                     }, failure = {

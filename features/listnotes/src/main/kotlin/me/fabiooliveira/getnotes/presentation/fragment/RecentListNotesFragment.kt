@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import features.listnotes.R
-import kotlinx.android.synthetic.main.list_notes_feature_activity_list_notes.*
 import kotlinx.android.synthetic.main.list_notes_feature_fragment_recent_list_notes.*
 import me.fabiooliveira.getnotes.presentation.adapter.NoteItemsAdapter
 import me.fabiooliveira.getnotes.presentation.viewmodel.ListNotesViewModel
@@ -30,6 +29,8 @@ internal class RecentListNotesFragment : Fragment(R.layout.list_notes_feature_fr
         with(listNotesViewModel) {
             recentListNotesViewState.observe(viewLifecycleOwner, Observer {
                 addNotes(it.notes)
+                showContent(it.isContentVisible)
+                showLoading(it.isLoading)
             })
         }
     }
@@ -57,8 +58,15 @@ internal class RecentListNotesFragment : Fragment(R.layout.list_notes_feature_fr
         noteItemsList?.also {
             noteItemsAdapter.addNotes(it)
             noteItemsAdapter.notifyDataSetChanged()
-            rvRecentNotes.visibility = View.VISIBLE
         }
+    }
+
+    private fun showContent(isVisible: Boolean) {
+        rvRecentNotes.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun showLoading(isVisible: Boolean) {
+        if (isVisible) loading.show() else loading.hide()
     }
 
     companion object {
