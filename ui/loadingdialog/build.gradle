@@ -1,0 +1,11 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    resourcePrefix "loading_dialog"
+}
+
+dependencies {
+    // Support
+    implementation Deps.support_constraint_layout
+    implementation Deps.support_material
+}

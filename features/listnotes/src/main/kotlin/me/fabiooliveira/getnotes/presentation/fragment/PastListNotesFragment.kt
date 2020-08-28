@@ -13,16 +13,17 @@ import me.fabiooliveira.getnotes.presentation.viewmodel.ListNotesViewModel
 import me.fabiooliveira.getnotes.presentation.vo.NoteItem
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_fragment_past_list_notes) {
+internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_fragment_past_list_notes),
+        NoteItemsAdapter.NoteClickListener {
 
     private val listNotesViewModel: ListNotesViewModel by sharedViewModel()
-
-    private val noteItemsAdapter: NoteItemsAdapter by lazy { NoteItemsAdapter() }
+    private val noteItemsAdapter: NoteItemsAdapter by lazy { NoteItemsAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservables()
         setupRecyclerView()
+        listNotesViewModel.getPastNotesList()
     }
 
     override fun onResume() {
@@ -30,10 +31,17 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
         listNotesViewModel.setTabName(R.string.list_notes_feature_tab_past)
     }
 
+    override fun onClickNote(noteItem: NoteItem, view: View) {
+        listNotesViewModel.goToEditNote(noteItem, view.id)
+    }
+
     private fun setupObservables() {
         with(listNotesViewModel) {
-            recentListNotesViewState.observe(viewLifecycleOwner, Observer {
+            pastListNotesViewState.observe(viewLifecycleOwner, Observer {
                 addNotes(it.notes)
+                showContent(it.isContentVisible)
+                showLoading(it.isLoading)
+                showEmptyState(it.isEmptyState)
             })
         }
     }
@@ -51,11 +59,26 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
 
     private fun addNotes(noteItemsList: List<NoteItem>?) {
         noteItemsList?.also {
+            noteItemsAdapter.clearNotes()
             noteItemsAdapter.addNotes(it)
             noteItemsAdapter.notifyDataSetChanged()
-            rvPastNotes.visibility = View.VISIBLE
         }
     }
+
+    private fun showContent(isVisible: Boolean) {
+        rvPastNotes.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun showLoading(isVisible: Boolean) {
+        loading.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun showEmptyState(isVisible: Boolean) {
+        val visibility = if (isVisible) View.VISIBLE else View.GONE
+        ivSuccess.visibility = visibility
+        tvNotFound.visibility = visibility
+    }
+
 
     companion object {
         fun newInstance() =

@@ -8,8 +8,8 @@ object Config {
     const val minSdk = 23
     const val compileSdk = 28
     const val targetSdk = 28
-    const val versionCode = 1
-    const val versionName = "1.0"
+    const val versionCode = 4
+    const val versionName = "1.1.3"
     const val buildTools = "28.0.3"
     const val applicationId = "me.fabiooliveira.getnotes"
 

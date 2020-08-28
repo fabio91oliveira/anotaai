@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="popup_dialog_spacing_none">0dp</dimen>
+
+    <dimen name="popup_dialog_text_size_title">26sp</dimen>
+    <dimen name="popup_dialog_text_size_subtitle">16sp</dimen>
+
+    <dimen name="popup_dialog_corner_radius">10dp</dimen>
+    <dimen name="popup_dialog_margin_top_all">8dp</dimen>
+    <dimen name="popup_dialog_popup_margin_top_title">24dp</dimen>
+    <dimen name="popup_dialog_margin_sides_title">6dp</dimen>
+    <dimen name="popup_dialog_margin_top_subtitle">1dp</dimen>
+
+    <dimen name="popup_dialog_margin_top_confirm_button">24dp</dimen>
+    <dimen name="popup_dialog_margin_top_button_cancel">8dp</dimen>
+    <dimen name="popup_dialog_margin_bottom_gone">24dp</dimen>
+    <dimen name="popup_dialog_margin_bottom_cancel_button">16dp</dimen>
+
+    <dimen name="popup_dialog_padding_card">16dp</dimen>
+    <dimen name="popup_dialog_margin_sides_all">18dp</dimen>
+</resources>

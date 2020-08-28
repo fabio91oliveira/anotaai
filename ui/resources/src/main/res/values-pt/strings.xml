@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AnotaAi</string>
+
+    <!-- All -->
+    <string name="all_button_ok">Ok</string>
+    <string name="all_button_go_back">Voltar</string>
+    <string name="all_button_continue">Continuar</string>
+    <string name="all_button_yes">Sim</string>
+    <string name="all_button_no">Não</string>
+
+    <string name="all_please_wait">Aguarde…</string>
+    <string name="all_loading">Carregando…</string>
+</resources>

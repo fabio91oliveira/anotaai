@@ -4,12 +4,13 @@ object Versions {
     const val kotlin = "1.3.70"
     const val android_gradle_plugin = "3.4.0"
 
-    const val support = "1.1.0"
-    const val material = "1.2.0-alpha06"
+    const val support = "1.2.0"
+    const val material = "1.3.0-alpha02"
     const val recyclerview = "1.0.0"
-    const val constraint_layout = "1.1.3"
+    const val constraint_layout = "2.0.0"
     const val viewpager2 = "1.0.0"
     const val swipe_refresh_layout = "1.0.0"
+    const val lottie = "3.0.1"
 
     const val lifecycle = "2.2.0"
     const val navigation = "2.2.1"
@@ -39,6 +40,7 @@ object Deps {
     const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
     const val swipe_refresh_layout =
             "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_layout}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     const val lifecycle_viewmodel =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

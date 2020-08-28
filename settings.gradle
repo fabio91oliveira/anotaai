@@ -1,6 +1,11 @@
 include ':app',
         ':features:listnotes',
+        ':features:notedetails',
+        ':features:login',
+        ':features:settings',
         ':core:data:access',
         ':core:data:local',
         ':core:navigation',
-        ':ui:resources'
+        ':ui:resources',
+        ':ui:loadingdialog',
+        ':ui:popupdialog'

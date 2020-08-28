@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="list_notes_feature_tab_recents">Recentes</string>
+    <string name="list_notes_feature_tab_past">Passado</string>
+    <string name="list_notes_feature_note_today">Hoje</string>
+    <string name="list_notes_feature_not_found">Não há notas ainda!</string>
 
+    <string name="list_notes_feature_relevance_high">Alta</string>
+    <string name="list_notes_feature_relevance_medium">Média</string>
+    <string name="list_notes_feature_relevance_normal">Normal</string>
 </resources>

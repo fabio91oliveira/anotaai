@@ -3,6 +3,7 @@
     <string name="list_notes_feature_tab_recents">Recents</string>
     <string name="list_notes_feature_tab_past">Past</string>
     <string name="list_notes_feature_note_today">Today</string>
+    <string name="list_notes_feature_not_found">There are no notes yet!</string>
 
     <string name="list_notes_feature_relevance_high">High</string>
     <string name="list_notes_feature_relevance_medium">Medium</string>

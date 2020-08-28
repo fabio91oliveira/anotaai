@@ -9,8 +9,11 @@ object Core {
 
 object Features {
     const val ListNotes = ":features:listnotes"
+    const val NoteDetails = ":features:notedetails"
 }
 
 object UI {
     const val Resources = ":ui:resources"
+    const val LoadingDialog = ":ui:loadingdialog"
+    const val PopupDialog = ":ui:popupdialog"
 }

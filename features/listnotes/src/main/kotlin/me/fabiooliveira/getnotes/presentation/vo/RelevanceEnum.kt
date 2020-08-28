@@ -4,7 +4,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import features.listnotes.R
 
-internal enum class RelevanceEnum(
+enum class RelevanceEnum(
         val relevanceCode: Int,
         @StringRes val titleRes: Int,
         @ColorRes val textColorRes: Int,

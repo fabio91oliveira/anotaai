@@ -1,11 +1,9 @@
 package me.fabiooliveira.getnotes.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import androidx.room.Update
 import me.fabiooliveira.getnotes.entity.NoteEntity
 
 /**
@@ -20,12 +18,12 @@ interface NoteDao {
     @Insert(onConflict = REPLACE)
     fun insert(noteEntity: NoteEntity): Long
 
-    @Update
-    fun markAsDone(noteEntity: NoteEntity): Int
+    @Query("DELETE FROM note WHERE id == :id")
+    fun delete(id: Long): Int
 
-    @Delete
-    fun delete(noteEntity: NoteEntity): Int
+    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) >= strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
+    fun findNotesStartingFromToday(): List<NoteEntity>
 
-    @Query("SELECT * FROM note")
-    fun findAll(): List<NoteEntity>
+    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) < strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
+    fun findNotesBeforeToday(): List<NoteEntity>
 }

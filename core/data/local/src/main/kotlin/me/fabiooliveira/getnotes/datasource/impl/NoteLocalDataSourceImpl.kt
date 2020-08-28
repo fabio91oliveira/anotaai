@@ -7,11 +7,19 @@ import me.fabiooliveira.getnotes.entity.NoteEntity
 internal class NoteLocalDataSourceImpl(
         private val noteDao: NoteDao
 ) : NoteLocalDataSource {
-    override fun addNote(noteEntity: NoteEntity) {
+    override fun insertNote(noteEntity: NoteEntity) {
         noteDao.insert(noteEntity)
     }
 
-    override fun listNotes(): List<NoteEntity> {
-        return noteDao.findAll()
+    override fun remoteNote(id: Long) {
+        noteDao.delete(id)
+    }
+
+    override fun getNotesFromTodayToFuture(): List<NoteEntity> {
+        return noteDao.findNotesStartingFromToday()
+    }
+
+    override fun getNotesBeforeToday(): List<NoteEntity> {
+        return noteDao.findNotesBeforeToday()
     }
 }

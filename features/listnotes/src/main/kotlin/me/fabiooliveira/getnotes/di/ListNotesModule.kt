@@ -1,8 +1,10 @@
 package me.fabiooliveira.getnotes.di
 
-import me.fabiooliveira.getnotes.domain.usecase.GetListNotesUseCase
+import me.fabiooliveira.getnotes.domain.usecase.GetPastListNotesUseCase
+import me.fabiooliveira.getnotes.domain.usecase.GetRecentListNotesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.MountNoteItemsUseCase
-import me.fabiooliveira.getnotes.domain.usecase.impl.GetListNotesUseCaseImpl
+import me.fabiooliveira.getnotes.domain.usecase.impl.GetPastListNotesUseCaseImpl
+import me.fabiooliveira.getnotes.domain.usecase.impl.GetRecentListNotesUseCaseImpl
 import me.fabiooliveira.getnotes.domain.usecase.impl.MountNoteItemsUseCaseImpl
 import me.fabiooliveira.getnotes.navigation.ListNotesNavigation
 import me.fabiooliveira.getnotes.presentation.navigation.ListNotesNavigationImpl
@@ -13,9 +15,14 @@ import org.koin.dsl.module
 
 object ListNotesModule {
     private val domainModule = module {
-        factory<GetListNotesUseCase> {
-            GetListNotesUseCaseImpl(
-                    notesRepository = get()
+        factory<GetRecentListNotesUseCase> {
+            GetRecentListNotesUseCaseImpl(
+                    noteRepository = get()
+            )
+        }
+        factory<GetPastListNotesUseCase> {
+            GetPastListNotesUseCaseImpl(
+                    noteRepository = get()
             )
         }
         factory<MountNoteItemsUseCase> {
@@ -27,7 +34,8 @@ object ListNotesModule {
         factory<ListNotesNavigation> { ListNotesNavigationImpl() }
         viewModel {
             ListNotesViewModel(
-                    getListNotesUseCase = get(),
+                    getRecentListNotesUseCase = get(),
+                    getPastListNotesUseCase = get(),
                     mountNoteItemsUseCase = get()
             )
         }

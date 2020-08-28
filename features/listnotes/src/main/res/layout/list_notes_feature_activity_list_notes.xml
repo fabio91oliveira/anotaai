@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/mainContent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abContent"
@@ -18,14 +19,6 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <View
-                android:id="@+id/ivAvatar"
-                android:layout_width="@dimen/spacing_05"
-                android:layout_height="@dimen/spacing_05"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/spacing_03"
-                android:background="@drawable/list_notes_feature_ic_avatar" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvHeader"
@@ -70,17 +63,17 @@
                         android:id="@+id/search"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_07"
-                        android:layout_marginTop="@dimen/spacing_03"
                         android:layout_marginStart="@dimen/spacing_03"
+                        android:layout_marginTop="@dimen/spacing_03"
                         android:layout_marginEnd="@dimen/spacing_03"
                         android:background="@drawable/list_notes_feature_bg_search_rounded"
                         android:drawableStart="@drawable/list_notes_feature_ic_search"
                         android:drawablePadding="@dimen/spacing_01"
                         android:hint="Search..."
-                        android:textSize="@dimen/text_size_02"
                         android:paddingStart="@dimen/spacing_02"
                         android:paddingTop="@dimen/spacing_01"
                         android:paddingBottom="@dimen/spacing_01"
+                        android:textSize="@dimen/text_size_02"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.tabs.TabLayout
@@ -120,8 +113,8 @@
             android:layout_margin="@dimen/spacing_02"
             android:clickable="true"
             android:focusable="true"
-            app:backgroundTint="@color/color_accent_dark"
-            app:rippleColor="@color/color_accent"
+            app:backgroundTint="@color/color_accent"
+            app:rippleColor="@color/color_accent_dark"
             app:srcCompat="@android:drawable/ic_input_add"
             app:tint="@android:color/white" />
 

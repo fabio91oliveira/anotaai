@@ -18,6 +18,9 @@ dependencies {
     implementation Deps.support_constraint_layout
     implementation Deps.swipe_refresh_layout
 
+    // Lottie
+    implementation Deps.lottie
+
     // Lifecycle
     implementation Deps.lifecycle_viewmodel
     implementation Deps.lifecycle_livedata

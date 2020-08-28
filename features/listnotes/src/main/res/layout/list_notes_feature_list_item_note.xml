@@ -1,16 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:id="@+id/cardWeek"-->
-<!--    style="@style/Widget.MaterialComponents.CardView"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_marginStart="@dimen/spacing_01"-->
-<!--    android:layout_marginEnd="@dimen/spacing_01"-->
-<!--    android:layout_marginTop="@dimen/spacing_01"-->
-<!--    android:stateListAnimator="@anim/animation"-->
-<!--    app:cardCornerRadius="@dimen/spacing_half"-->
-<!--    app:cardElevation="@dimen/spacing_none">-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,23 +6,12 @@
     android:id="@+id/contentNote"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_02"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
     android:paddingTop="@dimen/spacing_02"
     android:paddingBottom="@dimen/spacing_02">
-
-    <!--    <androidx.appcompat.widget.AppCompatImageView-->
-    <!--        android:id="@+id/ivRelevance"-->
-    <!--        android:layout_width="@dimen/spacing_01"-->
-    <!--        android:layout_marginStart="@dimen/spacing_half"-->
-    <!--        android:layout_marginTop="@dimen/spacing_half"-->
-    <!--        android:layout_height="@dimen/spacing_01"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/tvNoteTitle"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/gdStart"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/tvNoteTitle"-->
-    <!--        app:srcCompat="@drawable/list_notes_feature_bg_relevance_circle"-->
-    <!--        app:tint="@color/color_accent_dark" />-->
 
     <View
         android:id="@+id/vRelevance"
@@ -72,7 +49,7 @@
         android:textColor="@color/color_accent_dark"
         android:theme="@style/TextBold.Huge"
         app:layout_constraintBottom_toBottomOf="@+id/tvRelevance"
-        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintEnd_toStartOf="@id/gdEnd"
         app:layout_constraintStart_toEndOf="@+id/tvRelevance"
         app:layout_constraintTop_toTopOf="@+id/tvRelevance"
         tools:text="Component Notes" />
@@ -94,7 +71,7 @@
         tools:text="@tools:sample/lorem/random" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNoteDate"
+        android:id="@+id/etNoteDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_02"
@@ -118,7 +95,7 @@
         android:textColor="@color/color_grey_soft"
         android:theme="@style/TextBold.Small"
         app:layout_constraintEnd_toEndOf="@id/gdEnd"
-        app:layout_constraintStart_toEndOf="@+id/tvNoteDate"
+        app:layout_constraintStart_toEndOf="@+id/etNoteDate"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
         tools:text="Today" />
 
@@ -137,5 +114,3 @@
         app:layout_constraintGuide_end="@dimen/spacing_03" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--</com.google.android.material.card.MaterialCardView>-->

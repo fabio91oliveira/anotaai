@@ -32,6 +32,7 @@ object KoinStarter {
 
             // Features
             ListNotesModule.load()
+            NoteDetailsModule.load()
         }
     }
 }

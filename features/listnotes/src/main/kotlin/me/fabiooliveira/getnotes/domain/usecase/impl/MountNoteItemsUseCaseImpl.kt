@@ -18,7 +18,7 @@ internal class MountNoteItemsUseCaseImpl : MountNoteItemsUseCase {
                     id = note.id,
                     title = note.title,
                     description = note.description,
-                    dateWithHour = note.date.getDateString(),
+                    date = note.date.getDateString(),
                     dateName = note.date.getNameOfTheDay(),
                     relevance = getRelevance(note.relevance),
                     isToday = DateUtils.isToday(note.date.time)

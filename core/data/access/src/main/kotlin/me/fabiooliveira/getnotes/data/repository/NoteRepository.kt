@@ -1,8 +1,10 @@
 package me.fabiooliveira.getnotes.data.repository
 
 import me.fabiooliveira.getnotes.domain.model.Note
-import me.fabiooliveira.getnotes.entity.NoteEntity
 
 interface NoteRepository {
-    suspend fun getNotes(): List<Note>
+    suspend fun publishNote(note: Note)
+    suspend fun remoteNote(id: Long)
+    suspend fun getNotesFromTodayToFuture(): List<Note>
+    suspend fun getNotesBefore(): List<Note>
 }

@@ -21,6 +21,7 @@ dependencies {
 
     // Features
     implementation project(Features.ListNotes)
+    implementation project(Features.NoteDetails)
 
     // Koin
     implementation Deps.koin_scope
