@@ -7,5 +7,4 @@ android {
 dependencies {
     // Support
     implementation Deps.support_constraint_layout
-    implementation Deps.support_material
 }

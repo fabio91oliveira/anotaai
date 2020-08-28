@@ -16,7 +16,6 @@ dependencies {
     implementation Deps.support_material
     implementation Deps.support_recyclerview
     implementation Deps.support_constraint_layout
-    implementation Deps.swipe_refresh_layout
 
     // Lottie
     implementation Deps.lottie
@@ -24,7 +23,6 @@ dependencies {
     // Lifecycle
     implementation Deps.lifecycle_viewmodel
     implementation Deps.lifecycle_livedata
-    implementation Deps.lifecycle_viewmodel_savedstate
     kapt Deps.lifecycle_compiler
 
     // Koin

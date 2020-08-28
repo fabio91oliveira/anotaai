@@ -1,28 +1,20 @@
 apply from: "$rootProject.projectDir/android-library.gradle"
 
 android {
-    resourcePrefix "note_details_feature"
+    resourcePrefix "search_feature"
 }
 
 dependencies {
-    implementation project(Features.ListNotes)
-
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
 
     // Ui
     implementation project(UI.Resources)
-    implementation project(UI.LoadingDialog)
-    implementation project(UI.PopupDialog)
 
     // Support
-    implementation Deps.support_material
     implementation Deps.support_recyclerview
     implementation Deps.support_constraint_layout
-
-    // Lottie
-    implementation Deps.lottie
 
     // Lifecycle
     implementation Deps.lifecycle_viewmodel

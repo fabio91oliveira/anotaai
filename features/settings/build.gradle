@@ -5,40 +5,4 @@ android {
 }
 
 dependencies {
-    // Core
-    implementation project(Core.Navigation)
-    implementation project(Core.DataAccess)
-
-    // Ui
-    implementation project(UI.Resources)
-
-    // Support
-    implementation Deps.support_material
-    implementation Deps.support_recyclerview
-    implementation Deps.support_constraint_layout
-    implementation Deps.swipe_refresh_layout
-
-    // Lottie
-    implementation Deps.lottie
-
-    // Lifecycle
-    implementation Deps.lifecycle_viewmodel
-    implementation Deps.lifecycle_livedata
-    implementation Deps.lifecycle_viewmodel_savedstate
-    kapt Deps.lifecycle_compiler
-
-    // Koin
-    implementation Deps.koin_scope
-    implementation Deps.koin_viemmodel
-
-    // Coroutines
-    implementation Deps.coroutines_core
-    implementation Deps.coroutines_android
-
-    // Result
-    implementation Deps.result_core
-    implementation Deps.result_coroutines
-
-    // Timber
-    implementation Deps.timber
 }
