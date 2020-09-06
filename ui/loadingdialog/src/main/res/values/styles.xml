@@ -3,7 +3,7 @@
     <style name="loading_dialog_LoadingDialogTheme" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@color/color_primary</item>
     </style>
 
 </resources>

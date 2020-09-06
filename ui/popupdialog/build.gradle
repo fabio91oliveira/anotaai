@@ -5,6 +5,9 @@ android {
 }
 
 dependencies {
+    // Ui
+    implementation project(UI.Resources)
+
     // Support
     implementation Deps.support_constraint_layout
     implementation Deps.support_material

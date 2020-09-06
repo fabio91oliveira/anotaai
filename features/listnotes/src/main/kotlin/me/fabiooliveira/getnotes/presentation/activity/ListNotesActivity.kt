@@ -12,7 +12,10 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import features.listnotes.R
 import kotlinx.android.synthetic.main.list_notes_feature_activity_list_notes.*
+import me.fabiooliveira.getnotes.extensions.disableDarkMode
 import me.fabiooliveira.getnotes.extensions.doSlideDownAnimation
+import me.fabiooliveira.getnotes.extensions.enableDarkMode
+import me.fabiooliveira.getnotes.extensions.isDarkMode
 import me.fabiooliveira.getnotes.navigation.CREATE_NOTE_REQUEST_CODE
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
 import me.fabiooliveira.getnotes.navigation.NoteDetailsNavigation
@@ -85,6 +88,8 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
                 when (it) {
                     is ListNotesAction.GoToEditNote -> openEditNote(it.noteItem, it.viewId)
                     is ListNotesAction.GoToCreateNote -> openCreateNote()
+                    is ListNotesAction.SetDarkMode -> setDarkMode()
+                    is ListNotesAction.SetLightMode -> setLightMode()
                 }
             })
         }
@@ -113,6 +118,9 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
     private fun setupClickListener() {
         fbAdd.setOnClickListener {
             listNotesViewModel.goToCreateNote()
+        }
+        ivDarkMode.setOnClickListener {
+            listNotesViewModel.switchDarkMode(isDarkMode())
         }
     }
 
@@ -160,5 +168,13 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         noteDetailsNavigation.navigateToFeature(
                 this,
                 CREATE_NOTE_REQUEST_CODE)
+    }
+
+    private fun setDarkMode() {
+        enableDarkMode()
+    }
+
+    private fun setLightMode() {
+        disableDarkMode()
     }
 }

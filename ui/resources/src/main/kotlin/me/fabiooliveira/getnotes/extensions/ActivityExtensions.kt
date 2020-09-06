@@ -5,6 +5,8 @@ import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityOptionsCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.color.MaterialColors
@@ -48,3 +50,23 @@ private fun buildContainerTransformTransparent(mainContent: View, rootView: View
             interpolator = FastOutSlowInInterpolator()
             fadeMode = MaterialContainerTransform.FADE_MODE_IN
         }
+
+fun Activity.enableDarkMode() {
+    setDarkMode(AppCompatDelegate
+            .MODE_NIGHT_YES)
+}
+
+fun Activity.disableDarkMode() {
+    setDarkMode(AppCompatDelegate
+            .MODE_NIGHT_NO)
+}
+
+fun Activity.isDarkMode() =
+        AppCompatDelegate.getDefaultNightMode() ==
+                AppCompatDelegate.MODE_NIGHT_YES
+
+private fun setDarkMode(mode: Int) {
+    AppCompatDelegate
+            .setDefaultNightMode(
+                    mode)
+}

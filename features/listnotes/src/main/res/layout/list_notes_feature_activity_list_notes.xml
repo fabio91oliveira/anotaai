@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainContent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/mainContent">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_01"
+        android:background="@color/color_primary"
         android:fitsSystemWindows="true"
         app:elevation="@dimen/spacing_none">
 
@@ -29,6 +30,18 @@
                 android:theme="@style/TextBold.Huge"
                 android:visibility="visible" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDarkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:tint="@color/list_notes_feature_color_dark_mode_button"
+                android:focusable="true"
+                android:padding="@dimen/spacing_02"
+                app:srcCompat="@drawable/list_notes_feature_ic_dark_mode" />
+
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -42,6 +55,7 @@
             android:id="@+id/abInside"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_primary"
             android:fitsSystemWindows="true"
             app:elevation="@dimen/spacing_none">
 
@@ -81,15 +95,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_03"
+                        android:background="@color/color_primary"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintTop_toBottomOf="@+id/search"
                         app:tabIndicatorColor="@null"
                         app:tabMode="scrollable"
                         app:tabPaddingStart="@dimen/spacing_03"
-                        app:tabRippleColor="@color/color_accent_dark_transparent"
-                        app:tabSelectedTextColor="@color/color_accent_dark"
+                        app:tabRippleColor="@color/color_ripple"
+                        app:tabSelectedTextColor="@color/color_accent"
                         app:tabTextAppearance="@style/list_notes_feature_LowerCaseTabTextAppearance"
-                        app:tabTextColor="@color/color_grey_soft" />
+                        app:tabTextColor="@color/color_scale_4" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

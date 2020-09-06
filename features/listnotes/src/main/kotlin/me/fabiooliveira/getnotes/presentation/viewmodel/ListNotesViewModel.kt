@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.github.kittinunf.result.Result
 import com.github.kittinunf.result.map
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.domain.usecase.ChangeDarkModePreferencesUseCase
+import me.fabiooliveira.getnotes.domain.usecase.GetDarkModePreferencesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.GetPastListNotesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.GetRecentListNotesUseCase
 import me.fabiooliveira.getnotes.domain.usecase.MountNoteItemsUseCase
@@ -15,11 +17,14 @@ import me.fabiooliveira.getnotes.presentation.viewstate.ListNotesViewState
 import me.fabiooliveira.getnotes.presentation.viewstate.PastListNotesViewState
 import me.fabiooliveira.getnotes.presentation.viewstate.RecentListNotesViewState
 import me.fabiooliveira.getnotes.presentation.vo.NoteItem
+import timber.log.Timber
 
 internal class ListNotesViewModel(
         private val getRecentListNotesUseCase: GetRecentListNotesUseCase,
         private val getPastListNotesUseCase: GetPastListNotesUseCase,
-        private val mountNoteItemsUseCase: MountNoteItemsUseCase
+        private val mountNoteItemsUseCase: MountNoteItemsUseCase,
+        private val getDarkModePreferencesUseCase: GetDarkModePreferencesUseCase,
+        private val changeDarkModePreferencesUseCase: ChangeDarkModePreferencesUseCase
 ) : ViewModel() {
 
     private val _listNotesViewState by lazy { MutableLiveData<ListNotesViewState>() }
@@ -36,6 +41,7 @@ internal class ListNotesViewModel(
 
     init {
         initStates()
+        setColorScheme()
     }
 
     fun getRecentNotesList() {
@@ -63,6 +69,7 @@ internal class ListNotesViewModel(
                                     isAddButtonVisible = true)
                         }
                     }, failure = {
+                        Timber.e(it)
                     })
         }
     }
@@ -88,6 +95,7 @@ internal class ListNotesViewModel(
                             )
                         }
                     }, failure = {
+                        Timber.e(it)
                     })
         }
     }
@@ -108,6 +116,40 @@ internal class ListNotesViewModel(
         ListNotesAction.GoToCreateNote.sendAction()
     }
 
+    fun switchDarkMode(isDarkModeEnabled: Boolean) {
+        viewModelScope.launch {
+            Result.of(changeDarkModePreferencesUseCase(isDarkModeEnabled.not()))
+                    .fold(success = {
+                        handleDarkMode(isDarkModeEnabled.not())
+                    },
+                            failure = {
+                                Timber.e(it)
+                            }
+                    )
+        }
+    }
+
+    private fun setColorScheme() {
+        viewModelScope.launch {
+            Result.of(getDarkModePreferencesUseCase())
+                    .fold(
+                            success = { isDarkMode ->
+                                handleDarkMode(isDarkMode)
+                            },
+                            failure = {
+                                ListNotesAction.SetLightMode.sendAction()
+                                Timber.e(it)
+                            }
+                    )
+        }
+    }
+
+    private fun handleDarkMode(isDarkModeEnabled: Boolean) {
+        when (isDarkModeEnabled) {
+            true -> ListNotesAction.SetDarkMode.sendAction()
+            else -> ListNotesAction.SetLightMode.sendAction()
+        }
+    }
 
     private fun setListNotesViewState(state: (ListNotesViewState) -> ListNotesViewState) {
         _listNotesViewState.value?.also {

@@ -1,6 +1,8 @@
 package me.fabiooliveira.getnotes.domain.usecase.impl
 
 import android.text.format.DateUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import me.fabiooliveira.getnotes.domain.model.Note
 import me.fabiooliveira.getnotes.domain.usecase.MountNoteItemsUseCase
 import me.fabiooliveira.getnotes.extensions.getDateString
@@ -9,8 +11,8 @@ import me.fabiooliveira.getnotes.presentation.vo.NoteItem
 import me.fabiooliveira.getnotes.presentation.vo.RelevanceEnum
 
 internal class MountNoteItemsUseCaseImpl : MountNoteItemsUseCase {
-    override suspend fun invoke(notesList: List<Note>): List<NoteItem> {
-        return notesList.map(::transform)
+    override suspend fun invoke(notesList: List<Note>) = withContext(Dispatchers.IO) {
+        notesList.map(::transform)
     }
 
     private fun transform(note: Note) =

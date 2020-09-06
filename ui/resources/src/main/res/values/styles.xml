@@ -7,12 +7,10 @@
         <item name="android:fontFamily">@font/didactgothic_regular</item>
         <item name="android:windowBackground">@color/color_primary</item>
         <item name="colorControlNormal">@color/color_accent_dark</item>
-        <item name="colorControlHighlight">@color/color_accent_dark_transparent</item>
+        <item name="colorControlHighlight">@color/color_ripple</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/color_primary_dark</item>
         <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
-
-        <!-- Change Overflow Menu ListView Item Height & Property -->
         <item name="android:listPreferredItemPaddingLeft">2dp</item>
         <item name="android:listPreferredItemPaddingRight">2dp</item>
     </style>
@@ -21,7 +19,7 @@
         <item name="colorOnPrimary">@color/color_accent</item>
         <item name="android:textSize">@dimen/text_size_04</item>
         <item name="android:fontFamily">@font/didactgothic_regular</item>
-        <item name="colorControlHighlight">@color/color_accent_dark_transparent</item>
+        <item name="colorControlHighlight">@color/color_ripple</item>
     </style>
 
     <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">

@@ -28,6 +28,7 @@ object KoinStarter {
             androidContext(application)
 
             // Data
+            AppModule.load()
             DataAccessModule.load()
 
             // Features

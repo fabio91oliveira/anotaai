@@ -3,13 +3,14 @@
     <color name="color_primary">#FFFFFF</color>
     <color name="color_primary_dark">#F8F8F8</color>
 
-    <color name="color_grey">#838383</color>
-    <color name="color_grey_soft">#BCBBBB</color>
-    <color name="color_grey_dark">#494848</color>
+    <color name="color_scale_1">#838383</color>
+    <color name="color_scale_2">#BCBBBB</color>
+    <color name="color_scale_3">#494848</color>
+    <color name="color_scale_4">#E1DFDF</color>
 
     <color name="color_accent">#3F51B5</color>
     <color name="color_accent_dark">#2E3B87</color>
-    <color name="color_accent_dark_transparent">#202E3B87</color>
+    <color name="color_ripple">#202E3B87</color>
 
     <color name="color_high_relevance">#BF1851</color>
     <color name="color_medium_relevance">#CDBD2F</color>
