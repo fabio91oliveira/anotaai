@@ -146,6 +146,10 @@ class PopupDialog : DialogFragment() {
                 confirm.onClickConfirmButton()
                 dismiss()
             }
+        } ?: run {
+            btnConfirm.setOnClickListener {
+                dismiss()
+            }
         }
         setupConfirmButtonColor()
     }

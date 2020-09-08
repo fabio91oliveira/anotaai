@@ -3,6 +3,7 @@ package me.fabiooliveira.getnotes.listnotes.presentation.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import me.fabiooliveira.getnotes.extensions.disableDarkMode
 import me.fabiooliveira.getnotes.extensions.doSlideDownAnimation
 import me.fabiooliveira.getnotes.extensions.enableDarkMode
 import me.fabiooliveira.getnotes.extensions.isDarkMode
+import me.fabiooliveira.getnotes.extensions.openDialog
 import me.fabiooliveira.getnotes.extensions.whenNull
 import me.fabiooliveira.getnotes.listnotes.presentation.action.ListNotesAction
 import me.fabiooliveira.getnotes.listnotes.presentation.adapter.CustomFragmentPagerAdapter
@@ -53,7 +55,8 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         setupAdapter()
         setupViewPager()
         setupTabLayout()
-        setupListeners()
+        setupSearch()
+        setupClickListeners()
         savedInstanceState?.also {
             viewModel.checkIfShowsOnBoarding()
         }.whenNull {
@@ -77,10 +80,10 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         tvHeader.alpha = percentage
 
         if (percentage == PERCENTAGE_ZERO) {
-            search.alpha = FULL_ALPHA
+            etSearch.alpha = FULL_ALPHA
             tlOptions.alpha = FULL_ALPHA
         } else {
-            search.alpha = FULL_ALPHA - percentage * DOUBLE
+            etSearch.alpha = FULL_ALPHA - percentage * DOUBLE
             tlOptions.alpha = FULL_ALPHA - percentage
         }
     }
@@ -125,7 +128,13 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         }.attach()
     }
 
-    private fun setupListeners() {
+    private fun setupSearch() {
+        etSearch.setOnClickListener {
+            openDialog(R.string.list_notes_feature_coming_soon_title, R.string.list_notes_feature_coming_soon_description)
+        }
+    }
+
+    private fun setupClickListeners() {
         fbAdd.setOnClickListener {
             viewModel.goToCreateNote()
         }
@@ -133,6 +142,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
             viewModel.switchDarkMode(isDarkMode())
         }
         abInside.addOnOffsetChangedListener(this)
+
     }
 
     private fun getTabText(position: Int): String {
@@ -157,7 +167,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
     }
 
     private fun showSearchAnimation() {
-        search.doSlideDownAnimation()
+        etSearch.doSlideDownAnimation()
         ctContent.doSlideDownAnimation()
     }
 

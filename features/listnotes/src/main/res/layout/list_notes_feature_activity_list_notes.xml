@@ -37,9 +37,9 @@
                 android:layout_gravity="end"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:tint="@color/list_notes_feature_color_dark_mode_button"
                 android:focusable="true"
                 android:padding="@dimen/spacing_02"
+                android:tint="@color/list_notes_feature_color_dark_mode_button"
                 app:srcCompat="@drawable/list_notes_feature_ic_dark_mode" />
 
         </com.google.android.material.appbar.MaterialToolbar>
@@ -74,7 +74,7 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/search"
+                        android:id="@+id/etSearch"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_07"
                         android:layout_marginStart="@dimen/spacing_03"
@@ -83,7 +83,10 @@
                         android:background="@drawable/list_notes_feature_bg_search_rounded"
                         android:drawableStart="@drawable/list_notes_feature_ic_search"
                         android:drawablePadding="@dimen/spacing_01"
-                        android:hint="Search..."
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/list_notes_feature_search_hint"
                         android:paddingStart="@dimen/spacing_02"
                         android:paddingTop="@dimen/spacing_01"
                         android:paddingBottom="@dimen/spacing_01"
@@ -97,7 +100,7 @@
                         android:layout_marginTop="@dimen/spacing_03"
                         android:background="@color/color_primary"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        app:layout_constraintTop_toBottomOf="@+id/search"
+                        app:layout_constraintTop_toBottomOf="@+id/etSearch"
                         app:tabIndicatorColor="@null"
                         app:tabMode="scrollable"
                         app:tabPaddingStart="@dimen/spacing_03"

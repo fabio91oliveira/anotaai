@@ -9,6 +9,22 @@
     <string name="list_notes_feature_relevance_medium">Média</string>
     <string name="list_notes_feature_relevance_normal">Normal</string>
 
+    <string name="list_notes_feature_search_hint">Pesquisar…</string>
+    <string name="list_notes_feature_coming_soon_title">Em breve!</string>
+    <string name="list_notes_feature_coming_soon_description">Essa funcionalidade estará disponível em breve.</string>
+
     <string name="list_notes_feature_on_boarding_next_button">Próximo</string>
     <string name="list_notes_feature_on_boarding_go_to_app_button">Ir para o app</string>
+
+    <string name="list_notes_feature_on_boarding_first_screen_title">Olá, bem-vindo!</string>
+    <string name="list_notes_feature_on_boarding_first_screen_description">O Anota Ai é um simlpes aplicativo onde você pode anotar tudo o que você quiser! Nós melhores nossa cara pra te trazer uma experiência mais agradável.</string>
+
+    <string name="list_notes_feature_on_boarding_second_screen_title">Anote tudo o quê vem na sua cabeça</string>
+    <string name="list_notes_feature_on_boarding_second_screen_description">Você pode criar uma simples nota e ordenar por relevância.</string>
+
+    <string name="list_notes_feature_on_boarding_third_screen_title">Precisa ir às compras?!</string>
+    <string name="list_notes_feature_on_boarding_third_screen_description">Então só anota aqui! E não esquece de deixar a gente te ajudar nisso.</string>
+
+    <string name="list_notes_feature_on_boarding_fourth_screen_title">Aproveite o app</string>
+    <string name="list_notes_feature_on_boarding_fourth_screen_description">Esperamos que você goste e em breve teremos novidades em funcionalidades.</string>
 </resources>

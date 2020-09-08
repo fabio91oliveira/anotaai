@@ -25,7 +25,6 @@ object KoinStarter {
                     }
                 }
             })
-//            androidLogger()
             androidContext(application)
 
             // Data

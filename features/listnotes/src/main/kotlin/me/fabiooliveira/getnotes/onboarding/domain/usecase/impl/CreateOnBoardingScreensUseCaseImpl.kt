@@ -13,26 +13,26 @@ internal class CreateOnBoardingScreensUseCaseImpl : CreateOnBoardingScreensUseCa
                     mutableListOf<OnBoardingScreen>().apply {
                         add(
                                 OnBoardingScreen(R.drawable.list_notes_features_ic_on_boarding_first_screen,
-                                        R.string.app_name,
-                                        R.string.all_button_yes)
+                                        R.string.list_notes_feature_on_boarding_first_screen_title,
+                                        R.string.list_notes_feature_on_boarding_first_screen_description)
                         )
 
                         add(
                                 OnBoardingScreen(R.drawable.list_notes_features_ic_on_boarding_second_screen,
-                                        R.string.app_name,
-                                        R.string.all_button_yes)
+                                        R.string.list_notes_feature_on_boarding_second_screen_title,
+                                        R.string.list_notes_feature_on_boarding_second_screen_description)
                         )
 
                         add(
                                 OnBoardingScreen(R.drawable.list_notes_features_ic_on_boarding_third_screen,
-                                        R.string.app_name,
-                                        R.string.all_button_yes)
+                                        R.string.list_notes_feature_on_boarding_third_screen_title,
+                                        R.string.list_notes_feature_on_boarding_third_screen_description)
                         )
 
                         add(
                                 OnBoardingScreen(R.drawable.list_notes_features_ic_on_boarding_fourth_screen,
-                                        R.string.app_name,
-                                        R.string.all_button_yes)
+                                        R.string.list_notes_feature_on_boarding_fourth_screen_title,
+                                        R.string.list_notes_feature_on_boarding_fourth_screen_description)
                         )
                     }
             )

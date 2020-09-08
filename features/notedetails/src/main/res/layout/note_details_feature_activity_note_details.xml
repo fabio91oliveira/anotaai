@@ -9,10 +9,10 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_primary"
         android:elevation="@dimen/popup_dialog_spacing_none"
         android:theme="@style/AppToolBarTheme"
         app:elevation="@dimen/popup_dialog_spacing_none"
-        android:background="@color/color_primary"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
@@ -163,11 +163,14 @@
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_01"
+                android:layout_marginBottom="@dimen/spacing_02"
                 app:cardBackgroundColor="@color/color_transparent_high_relevance"
                 app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/cvMedium">
+                app:layout_constraintTop_toBottomOf="@+id/cvMedium"
+                app:layout_constraintVertical_bias="0.0">
 
                 <RadioButton
                     android:id="@+id/rbHigh"

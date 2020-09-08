@@ -11,6 +11,7 @@ dependencies {
 
     // Ui
     implementation project(UI.Resources)
+    implementation project(UI.PopupDialog)
 
     // Support
     implementation Deps.support_material
