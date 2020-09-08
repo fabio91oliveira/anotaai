@@ -11,7 +11,7 @@ import timber.log.Timber
 object KoinStarter {
     fun start(application: Application) {
         startKoin {
-            logger(object : Logger(Level.DEBUG) {
+            logger(object : Logger(Level.ERROR) {
                 override fun log(
                         level: Level,
                         msg: MESSAGE
@@ -25,6 +25,7 @@ object KoinStarter {
                     }
                 }
             })
+//            androidLogger()
             androidContext(application)
 
             // Data

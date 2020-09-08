@@ -1,7 +1,7 @@
 @file:Suppress("unused")
 
 object Versions {
-    const val kotlin = "1.3.70"
+    const val kotlin = "1.4.0"
     const val android_gradle_plugin = "3.4.0"
 
     const val support = "1.2.0"
@@ -9,17 +9,15 @@ object Versions {
     const val recyclerview = "1.0.0"
     const val constraint_layout = "2.0.0"
     const val viewpager2 = "1.0.0"
-    const val swipe_refresh_layout = "1.0.0"
     const val lottie = "3.0.1"
 
     const val lifecycle = "2.2.0"
     const val navigation = "2.2.1"
 
-    const val coroutines = "1.3.2"
+    const val coroutines = "1.3.9"
     const val room = "2.2.5"
-    const val gson = "2.8.6"
 
-    const val koin = "2.1.3"
+    const val koin = "2.1.6"
     const val timber = "4.7.1"
 }
 
@@ -36,8 +34,6 @@ object Deps {
     const val support_constraint_layout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}"
     const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
-    const val swipe_refresh_layout =
-            "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_layout}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     const val lifecycle_viewmodel =
@@ -58,7 +54,6 @@ object Deps {
     const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
-    const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
     const val koin_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koin_viemmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
