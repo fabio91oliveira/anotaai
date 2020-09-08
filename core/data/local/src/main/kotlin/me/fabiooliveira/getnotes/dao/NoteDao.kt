@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 import me.fabiooliveira.getnotes.entity.NoteEntity
 
 /**
@@ -22,8 +23,8 @@ interface NoteDao {
     fun delete(id: Long): Int
 
     @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) >= strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
-    fun findNotesStartingFromToday(): List<NoteEntity>
+    fun findNotesStartingFromToday(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) < strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
-    fun findNotesBeforeToday(): List<NoteEntity>
+    fun findNotesBeforeToday(): Flow<List<NoteEntity>>
 }

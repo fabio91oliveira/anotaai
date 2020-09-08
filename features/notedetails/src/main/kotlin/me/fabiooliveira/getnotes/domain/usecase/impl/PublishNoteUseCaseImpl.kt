@@ -1,12 +1,11 @@
 package me.fabiooliveira.getnotes.domain.usecase.impl
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
 import me.fabiooliveira.getnotes.data.repository.NoteRepository
-import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.model.Note
+import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.extensions.getDateFromString
-import me.fabiooliveira.getnotes.presentation.vo.RelevanceEnum
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 
 internal class PublishNoteUseCaseImpl(
         private val noteRepository: NoteRepository
@@ -15,7 +14,7 @@ internal class PublishNoteUseCaseImpl(
                                 titleNote: String,
                                 descriptionNote: String,
                                 date: String,
-                                relevance: RelevanceEnum) = withContext(Dispatchers.IO) {
+                                relevance: RelevanceEnum): Flow<Long> {
         val note = Note(
                 id = idNote ?: 0,
                 title = titleNote,
@@ -23,6 +22,6 @@ internal class PublishNoteUseCaseImpl(
                 date = date.getDateFromString(),
                 relevance = relevance.relevanceCode
         )
-        noteRepository.publishNote(note)
+        return noteRepository.publishNote(note)
     }
 }

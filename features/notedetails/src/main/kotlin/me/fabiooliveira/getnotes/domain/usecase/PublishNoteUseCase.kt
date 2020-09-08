@@ -1,6 +1,7 @@
 package me.fabiooliveira.getnotes.domain.usecase
 
-import me.fabiooliveira.getnotes.presentation.vo.RelevanceEnum
+import kotlinx.coroutines.flow.Flow
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 
 internal interface PublishNoteUseCase {
     suspend operator fun invoke(
@@ -9,5 +10,5 @@ internal interface PublishNoteUseCase {
             descriptionNote: String,
             date: String,
             relevance: RelevanceEnum
-    )
+    ): Flow<Long>
 }

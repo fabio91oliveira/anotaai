@@ -22,8 +22,8 @@ import me.fabiooliveira.getnotes.presentation.extensions.openDialog
 import me.fabiooliveira.getnotes.presentation.fragment.SelectDateFragment
 import me.fabiooliveira.getnotes.presentation.viewmodel.NoteDetailsViewModel
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
-import me.fabiooliveira.getnotes.presentation.vo.NoteItem
-import me.fabiooliveira.getnotes.presentation.vo.RelevanceEnum
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 

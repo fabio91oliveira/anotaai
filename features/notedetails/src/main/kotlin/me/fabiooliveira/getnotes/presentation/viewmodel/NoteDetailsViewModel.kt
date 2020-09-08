@@ -3,16 +3,19 @@ package me.fabiooliveira.getnotes.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.kittinunf.result.Result
 import features.notedetails.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.ValidateEmptyFieldsUseCase
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import me.fabiooliveira.getnotes.presentation.action.NoteDetailsAction
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
-import me.fabiooliveira.getnotes.presentation.vo.RelevanceEnum
 
 private const val DELAY_ANIMATION_SUCCESS = 1200L
 
@@ -40,28 +43,27 @@ internal class NoteDetailsViewModel(
             relevance: RelevanceEnum
     ) {
         viewModelScope.launch {
-            Result.of(validateEmptyFieldsUseCase(
+            validateEmptyFieldsUseCase(
                     titleNote = titleNote,
                     descriptionNote = descriptionNote,
-                    date = date))
-                    .fold(
-                            success = {
-                                if (it) {
-                                    saveNote(
-                                            idNote = idNote,
-                                            titleNote = titleNote,
-                                            descriptionNote = descriptionNote,
-                                            date = date,
-                                            relevance = relevance
-                                    )
-                                } else {
-                                    showEmptyFieldsDialog()
-                                }
-                            },
-                            failure = {
-                                NoteDetailsAction.Error.sendAction()
-                            }
-                    )
+                    date = date)
+                    .flowOn(Dispatchers.Default)
+                    .catch {
+                        NoteDetailsAction.Error.sendAction()
+                    }
+                    .collect { isValid ->
+                        if (isValid) {
+                            saveNote(
+                                    idNote = idNote,
+                                    titleNote = titleNote,
+                                    descriptionNote = descriptionNote,
+                                    date = date,
+                                    relevance = relevance
+                            )
+                        } else {
+                            showEmptyFieldsDialog()
+                        }
+                    }
         }
     }
 
@@ -69,17 +71,16 @@ internal class NoteDetailsViewModel(
         viewModelScope.launch {
             noteId?.also {
                 handleLoading()
-                Result.of(removeNoteUseCase(noteId))
-                        .fold(
-                                success = {
-                                    handleLoading()
-                                    handleSuccess()
-                                },
-                                failure = {
-                                    handleLoading()
-                                    NoteDetailsAction.Error.sendAction()
-                                }
-                        )
+                removeNoteUseCase(noteId)
+                        .flowOn(Dispatchers.IO)
+                        .catch {
+                            handleLoading()
+                            NoteDetailsAction.Error.sendAction()
+                        }
+                        .collect {
+                            handleLoading()
+                            handleSuccess()
+                        }
             }
         }
     }
@@ -117,22 +118,22 @@ internal class NoteDetailsViewModel(
             relevance: RelevanceEnum
     ) {
         handleLoading()
-        Result.of(publishNoteUseCase(
+
+        publishNoteUseCase(
                 idNote = idNote,
                 titleNote = titleNote,
                 descriptionNote = descriptionNote,
                 date = date,
                 relevance = relevance)
-        ).fold(
-                success = {
-                    handleLoading()
-                    handleSuccess()
-                },
-                failure = {
+                .flowOn(Dispatchers.IO)
+                .catch {
                     handleLoading()
                     NoteDetailsAction.Error.sendAction()
                 }
-        )
+                .collect {
+                    handleLoading()
+                    handleSuccess()
+                }
     }
 
     private suspend fun handleSuccess() {

@@ -1,7 +1,7 @@
 package me.fabiooliveira.getnotes.domain.usecase.impl
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import me.fabiooliveira.getnotes.domain.usecase.ValidateEmptyFieldsUseCase
 
 internal class ValidateEmptyFieldsUseCaseImpl : ValidateEmptyFieldsUseCase {
@@ -9,7 +9,9 @@ internal class ValidateEmptyFieldsUseCaseImpl : ValidateEmptyFieldsUseCase {
             titleNote: String,
             descriptionNote: String,
             date: String
-    ) = withContext(Dispatchers.Default) {
-        titleNote.isNotEmpty() && descriptionNote.isNotEmpty() && date.isNotEmpty()
+    ): Flow<Boolean> {
+        return flow {
+            emit(titleNote.isNotEmpty() && descriptionNote.isNotEmpty() && date.isNotEmpty())
+        }
     }
 }

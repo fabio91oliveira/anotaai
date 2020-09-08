@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
 import me.fabiooliveira.getnotes.navigation.NoteDetailsNavigation
 import me.fabiooliveira.getnotes.presentation.activity.NoteDetailsActivity
-import me.fabiooliveira.getnotes.presentation.vo.NoteItem
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
 
 class NoteDetailsDetailsNavigationImpl : NoteDetailsNavigation {
     override fun navigateToFeature(fragmentActivity: FragmentActivity,

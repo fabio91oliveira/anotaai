@@ -8,4 +8,7 @@
     <string name="list_notes_feature_relevance_high">Alta</string>
     <string name="list_notes_feature_relevance_medium">Média</string>
     <string name="list_notes_feature_relevance_normal">Normal</string>
+
+    <string name="list_notes_feature_on_boarding_next_button">Próximo</string>
+    <string name="list_notes_feature_on_boarding_go_to_app_button">Ir para o app</string>
 </resources>

@@ -16,9 +16,7 @@ object Versions {
     const val navigation = "2.2.1"
 
     const val coroutines = "1.3.2"
-    const val resultcore = "2.2.0"
-    const val resultcoroutines = "2.2.0"
-    const val room = "2.2.2"
+    const val room = "2.2.5"
     const val gson = "2.8.6"
 
     const val koin = "2.1.3"
@@ -57,12 +55,9 @@ object Deps {
     const val coroutines_android =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
-    const val result_core = "com.github.kittinunf.result:result:${Versions.resultcore}"
-    const val result_coroutines =
-            "com.github.kittinunf.result:result-coroutines:${Versions.resultcoroutines}"
-
     const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
     const val koin_scope = "org.koin:koin-androidx-scope:${Versions.koin}"

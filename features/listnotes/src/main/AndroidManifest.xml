@@ -4,7 +4,15 @@
 
     <application android:theme="@style/AppTheme">
         <activity
-            android:name="me.fabiooliveira.getnotes.presentation.activity.ListNotesActivity"
+            android:name="me.fabiooliveira.getnotes.listnotes.presentation.activity.ListNotesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="me.fabiooliveira.getnotes.onboarding.presentation.activity.OnBoardingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
