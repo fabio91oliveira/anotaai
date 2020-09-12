@@ -1,55 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:homeAsUpIndicator">@color/colorWhite</item>
-        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppThemeOnboarding" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ToolBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:textColorSecondary">@color/colorWhite</item>
-        <item name="android:textColorPrimaryInverse">@color/colorWhite</item>
-    </style>
-
-    <style name="BottomBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:textColorSecondary">@color/colorWhite</item>
-        <item name="android:textColorPrimaryInverse">@color/colorWhite</item>
-    </style>
-
-    <style name="EditScreenTextInputLayoutStyle" parent="AppTheme">
-        <item name="colorControlNormal">@color/colorWhite</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorAccent">@color/colorWhite</item>
-        <item name="android:textColorHint">@color/colorAccent</item>
-    </style>
-
-    <style name="MyAppTheme.TextInputLayout" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/colorRed</item>
-    </style>
-
-    <style name="ThemeEditTextLight">
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlNormal">@color/colorGrey</item>
-        <item name="android:textColor">@color/colorGrey</item>
-        <item name="android:textColorHint">@color/colorGrey</item>
-    </style>
-
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="AppTheme.CircularColor" parent="AppTheme">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">true</item>
-
-    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

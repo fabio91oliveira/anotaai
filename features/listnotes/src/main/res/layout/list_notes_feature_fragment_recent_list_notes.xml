@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecentNotes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:visibility="invisible"
+        tools:layoutAnimation="@null"
+        tools:listitem="@layout/list_notes_feature_list_item_note" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="@dimen/spacing_12"
+        android:layout_height="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_08"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="list_notes_feature_ic_loading.json"
+        app:lottie_loop="true" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ivSuccess"
+        android:layout_width="@dimen/spacing_12"
+        android:layout_height="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_08"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="list_notes_feature_ic_not_found.json"
+        app:lottie_loop="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNotFound"
+        style="@style/TextRegular.Huge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_01"
+        android:text="@string/list_notes_feature_not_found"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/ivSuccess"
+        app:layout_constraintStart_toStartOf="@+id/ivSuccess"
+        app:layout_constraintTop_toBottomOf="@+id/ivSuccess"
+        app:layout_constraintVertical_bias="0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

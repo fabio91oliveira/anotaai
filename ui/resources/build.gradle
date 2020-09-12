@@ -1,0 +1,7 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+    // Support
+    implementation Deps.support_app_compat
+    implementation Deps.support_material
+}

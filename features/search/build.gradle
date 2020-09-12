@@ -1,0 +1,35 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    resourcePrefix "search_feature"
+}
+
+dependencies {
+    // Core
+    implementation project(Core.Navigation)
+    implementation project(Core.DataAccess)
+
+    // Ui
+    implementation project(UI.Resources)
+
+    // Support
+    implementation Deps.support_recyclerview
+    implementation Deps.support_constraint_layout
+
+    // Lifecycle
+    implementation Deps.lifecycle_viewmodel
+    implementation Deps.lifecycle_livedata
+    implementation Deps.lifecycle_viewmodel_savedstate
+    kapt Deps.lifecycle_compiler
+
+    // Koin
+    implementation Deps.koin_scope
+    implementation Deps.koin_viemmodel
+
+    // Coroutines
+    implementation Deps.coroutines_core
+    implementation Deps.coroutines_android
+
+    // Timber
+    implementation Deps.timber
+}

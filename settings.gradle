@@ -1,1 +1,13 @@
-include ':app'
+include ':app',
+        ':features:listnotes',
+        ':features:notedetails',
+        ':features:login',
+        ':features:settings',
+        ':features:search',
+        ':core:data:access',
+        ':core:data:local',
+        ':core:data:remote',
+        ':core:navigation',
+        ':ui:resources',
+        ':ui:loadingdialog',
+        ':ui:popupdialog'

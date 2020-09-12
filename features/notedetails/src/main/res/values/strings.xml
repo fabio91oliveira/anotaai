@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="note_details_feature_menu_publish">Publish</string>
+    <string name="note_details_feature_menu_more_options">More Options</string>
+    <string name="note_details_feature_menu_save">Save</string>
+    <string name="note_details_feature_menu_remove">Remove</string>
+
+    <string name="note_details_feature_title_hint">Title</string>
+    <string name="note_details_feature_description_hint">Type something…</string>
+    <string name="note_details_feature_date_hint">Select date</string>
+    <string name="note_details_feature_select_relevance">Select relevance</string>
+    <string name="note_details_feature_continue">Continue</string>
+
+    <string name="note_details_feature_remove_note_title">Warning</string>
+    <string name="note_details_feature_remove_note_message">Are you sure to remove this note?</string>
+
+    <string name="note_details_feature_empty_fields_note_title">Warning</string>
+    <string name="note_details_feature_empty_fields_note_message">Please! Don`t forget to filled all the fields.</string>
+</resources>

@@ -1,0 +1,17 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+    // Room
+    implementation Deps.room_runtime
+    kapt Deps.room_compiler
+    implementation Deps.room_ktx
+
+    // Koin
+    implementation Deps.koin_scope
+
+    // Coroutines
+    implementation Deps.coroutines_core
+
+    // Timber
+    implementation Deps.timber
+}

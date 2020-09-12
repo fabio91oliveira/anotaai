@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="loading_dialog_spacing_none">0dp</dimen>
+    <dimen name="loading_dialog_padding_popup">24dp</dimen>
+    <dimen name="loading_dialog_corner_radius">4dp</dimen>
+    <dimen name="loading_dialog_loading_size">50dp</dimen>
+    <dimen name="loading_dialog_loading_margin_top">20dp</dimen>
+    <dimen name="loading_dialog_description_margin_start">16dp</dimen>
+
+    <dimen name="loading_dialog_text_title_size">18sp</dimen>
+    <dimen name="loading_dialog_text_description_size">14sp</dimen>
+</resources>

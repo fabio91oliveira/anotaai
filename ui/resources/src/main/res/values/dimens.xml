@@ -1,0 +1,31 @@
+<resources>
+    <dimen name="text_size_min">10sp</dimen>
+    <dimen name="text_size_01">12sp</dimen>
+    <dimen name="text_size_02">14sp</dimen>
+    <dimen name="text_size_03">16sp</dimen>
+    <dimen name="text_size_04">18sp</dimen>
+    <dimen name="text_size_05">20sp</dimen>
+    <dimen name="text_size_06">22sp</dimen>
+    <dimen name="text_size_07">24sp</dimen>
+    <dimen name="text_size_08">26sp</dimen>
+    <dimen name="text_size_09">28sp</dimen>
+    <dimen name="text_size_10">30sp</dimen>
+    <dimen name="text_size_11">32sp</dimen>
+    <dimen name="text_size_12">34sp</dimen>
+
+    <dimen name="spacing_none">0dp</dimen>
+    <dimen name="spacing_min">1dp</dimen>
+    <dimen name="spacing_half">4dp</dimen>
+    <dimen name="spacing_01">8dp</dimen>
+    <dimen name="spacing_02">16dp</dimen>
+    <dimen name="spacing_03">24dp</dimen>
+    <dimen name="spacing_04">32dp</dimen>
+    <dimen name="spacing_05">40dp</dimen>
+    <dimen name="spacing_06">46dp</dimen>
+    <dimen name="spacing_07">56dp</dimen>
+    <dimen name="spacing_08">64dp</dimen>
+    <dimen name="spacing_09">70dp</dimen>
+    <dimen name="spacing_10">80dp</dimen>
+    <dimen name="spacing_11">88dp</dimen>
+    <dimen name="spacing_12">96dp</dimen>
+</resources>

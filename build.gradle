@@ -1,24 +1,67 @@
-//
-// Created by Fabio Oliveira
-// Email: fabio91oliveira@gmail.com
-// Mobile: +55 (21) 98191-4951
-// LinkedIn: https://www.linkedin.com/in/fabio91oliveira
-//
 buildscript {
-    apply from: 'versions.gradle'
-    addRepos(repositories)
-    dependencies {
-        classpath deps.android_gradle_plugin
-        classpath deps.kotlin.plugin
-    }
     repositories {
+        jcenter()
         google()
+    }
+    dependencies {
+        classpath Deps.tools_android_gradle_plugin
+        classpath Deps.tools_kotlin_plugin
     }
 }
 
 allprojects {
-    addRepos(repositories)
+    repositories {
+        maven { url Repo.jitpack }
+        jcenter()
+        google()
+    }
 }
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')) {
+            android {
+                buildToolsVersion Config.buildTools
+                compileSdkVersion Config.compileSdk
+
+                defaultConfig {
+                    minSdkVersion Config.minSdk
+                    targetSdkVersion Config.targetSdk
+                    testInstrumentationRunner Config.runner
+                }
+
+                if (project.plugins.findPlugin('kotlin-android-extensions')) {
+                    androidExtensions {
+                        experimental = true
+                    }
+                }
+                sourceSets {
+                    main.java.srcDirs += Config.srcDirMain
+                    test.java.srcDirs += Config.srcDirTest
+                    androidTest.java.srcDirs += Config.srcDirAndroidTest
+                }
+                compileOptions {
+                    sourceCompatibility Config.javaVersion
+                    targetCompatibility Config.javaVersion
+                }
+                defaultConfig {
+                    multiDexEnabled true
+                }
+                buildTypes {
+                    release {
+                        minifyEnabled true
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
+                }
+            }
+            dependencies {
+                api fileTree(dir: 'libs', include: ['*.jar'])
+                api Deps.kotlin_stdlib
+            }
+        }
+    }
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:elevation="@dimen/popup_dialog_spacing_none"
+        android:theme="@style/AppToolBarTheme"
+        app:elevation="@dimen/popup_dialog_spacing_none"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppToolBarTheme"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/popup_dialog_spacing_none"
+            app:elevation="@dimen/popup_dialog_spacing_none"
+            app:navigationIcon="@drawable/ic_close" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/svContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/popup_dialog_spacing_none"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/itNoteTitle"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_03"
+                android:background="@null"
+                android:hint="@string/note_details_feature_title_hint"
+                android:imeOptions="actionNext"
+                android:maxLength="200"
+                android:singleLine="true"
+                android:textColor="@color/color_accent"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/itNoteDescription"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_04"
+                android:background="@null"
+                android:focusable="true"
+                android:gravity="top"
+                android:hint="@string/note_details_feature_description_hint"
+                android:imeOptions="actionNext"
+                android:minHeight="@dimen/spacing_12"
+                android:textColor="@color/color_accent"
+                android:textSize="@dimen/text_size_04"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/itNoteTitle" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etNoteDate"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_03"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:hint="@string/note_details_feature_date_hint"
+                android:paddingTop="@dimen/spacing_02"
+                android:paddingBottom="@dimen/spacing_02"
+                android:singleLine="true"
+                android:textColor="@color/color_accent"
+                android:theme="@style/TextRegular.Huge"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/itNoteDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSelectRelevance"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_04"
+                android:text="@string/note_details_feature_select_relevance"
+                android:textColor="@color/color_scale_1"
+                android:theme="@style/TextRegular.Huge"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/etNoteDate" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvNormal"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_01"
+                app:cardBackgroundColor="@color/color_transparent_normal_relevance"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectRelevance">
+
+                <RadioButton
+                    android:id="@+id/rbNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_01"
+                    android:buttonTint="@color/color_normal_relevance"
+                    android:onClick="onRadioButtonClicked"
+                    android:paddingStart="@dimen/spacing_01"
+                    android:paddingTop="@dimen/spacing_02"
+                    android:paddingBottom="@dimen/spacing_02"
+                    android:text="@string/list_notes_feature_relevance_normal"
+                    android:textColor="@color/color_normal_relevance"
+                    android:theme="@style/TextRegular.Big" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvMedium"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_01"
+                app:cardBackgroundColor="@color/color_transparent_medium_relevance"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/cvNormal">
+
+                <RadioButton
+                    android:id="@+id/rbMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_01"
+                    android:buttonTint="@color/color_medium_relevance"
+                    android:onClick="onRadioButtonClicked"
+                    android:paddingStart="@dimen/spacing_01"
+                    android:paddingTop="@dimen/spacing_02"
+                    android:paddingBottom="@dimen/spacing_02"
+                    android:text="@string/list_notes_feature_relevance_medium"
+                    android:textColor="@color/color_medium_relevance"
+                    android:theme="@style/TextRegular.Big" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvHigh"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_01"
+                android:layout_marginBottom="@dimen/spacing_02"
+                app:cardBackgroundColor="@color/color_transparent_high_relevance"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/cvMedium"
+                app:layout_constraintVertical_bias="0.0">
+
+                <RadioButton
+                    android:id="@+id/rbHigh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_01"
+                    android:buttonTint="@color/color_high_relevance"
+                    android:onClick="onRadioButtonClicked"
+                    android:paddingStart="@dimen/spacing_01"
+                    android:paddingTop="@dimen/spacing_02"
+                    android:paddingBottom="@dimen/spacing_02"
+                    android:text="@string/list_notes_feature_relevance_high"
+                    android:textColor="@color/color_high_relevance"
+                    android:theme="@style/TextRegular.Big" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gdStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_03" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gdEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_primary"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ivSuccess"
+            android:layout_width="@dimen/spacing_12"
+            android:layout_height="@dimen/spacing_12"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="note_details_feature_ic_success_animation.json"
+            app:lottie_loop="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

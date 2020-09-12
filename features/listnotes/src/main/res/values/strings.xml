@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_notes_feature_tab_recents">Recents</string>
+    <string name="list_notes_feature_tab_past">Past</string>
+    <string name="list_notes_feature_note_today">Today</string>
+    <string name="list_notes_feature_not_found">There are no notes yet!</string>
+
+    <string name="list_notes_feature_relevance_high">High</string>
+    <string name="list_notes_feature_relevance_medium">Medium</string>
+    <string name="list_notes_feature_relevance_normal">Normal</string>
+
+    <string name="list_notes_feature_search_hint">Search…</string>
+    <string name="list_notes_feature_coming_soon_title">Coming soon!</string>
+    <string name="list_notes_feature_coming_soon_description">This feature will be released soon.</string>
+
+    <string name="list_notes_feature_on_boarding_next_button">Next</string>
+    <string name="list_notes_feature_on_boarding_go_to_app_button">Go to App</string>
+
+    <string name="list_notes_feature_on_boarding_first_screen_title">Hello, welcome!</string>
+    <string name="list_notes_feature_on_boarding_first_screen_description">This a simple application where you can note everything that you wanted! We improved our design just to suit you better.</string>
+
+    <string name="list_notes_feature_on_boarding_second_screen_title">Note everything got to your head</string>
+    <string name="list_notes_feature_on_boarding_second_screen_description">You can just note a simple thing and order it by relevance and dates.</string>
+
+    <string name="list_notes_feature_on_boarding_third_screen_title">Need shopping?!</string>
+    <string name="list_notes_feature_on_boarding_third_screen_description">Just put here. Remember later but don\'t forget to allow us to help in it.</string>
+
+    <string name="list_notes_feature_on_boarding_fourth_screen_title">Enjoy the app</string>
+    <string name="list_notes_feature_on_boarding_fourth_screen_description">I hope you like this new experience. Coming soon new features.</string>
+</resources>

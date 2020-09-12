@@ -1,0 +1,69 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:fontFamily">@font/didactgothic_regular</item>
+        <item name="android:windowBackground">@color/color_primary</item>
+        <item name="colorControlNormal">@color/color_accent_dark</item>
+        <item name="colorControlHighlight">@color/color_ripple</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/color_primary_dark</item>
+        <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+        <item name="android:listPreferredItemPaddingLeft">2dp</item>
+        <item name="android:listPreferredItemPaddingRight">2dp</item>
+    </style>
+
+    <style name="AppToolBarTheme" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorOnPrimary">@color/color_accent</item>
+        <item name="android:textSize">@dimen/text_size_04</item>
+        <item name="android:fontFamily">@font/didactgothic_regular</item>
+        <item name="colorControlHighlight">@color/color_ripple</item>
+    </style>
+
+    <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="TextBold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextRegular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextRegular.Small">
+        <item name="android:textSize">@dimen/text_size_01</item>
+    </style>
+
+    <style name="TextRegular.Medium">
+        <item name="android:textSize">@dimen/text_size_02</item>
+    </style>
+
+    <style name="TextRegular.Big">
+        <item name="android:textSize">@dimen/text_size_03</item>
+    </style>
+
+    <style name="TextRegular.Huge">
+        <item name="android:textSize">@dimen/text_size_04</item>
+    </style>
+
+    <style name="TextBold.Small">
+        <item name="android:textSize">@dimen/text_size_01</item>
+    </style>
+
+    <style name="TextBold.Medium">
+        <item name="android:textSize">@dimen/text_size_02</item>
+    </style>
+
+    <style name="TextBold.Big">
+        <item name="android:textSize">@dimen/text_size_03</item>
+    </style>
+
+    <style name="TextBold.Huge">
+        <item name="android:textSize">@dimen/text_size_04</item>
+    </style>
+
+</resources>

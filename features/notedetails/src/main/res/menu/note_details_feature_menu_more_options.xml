@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/iMoreOptions"
+        android:icon="@drawable/list_notes_feature_ic_more_horiz"
+        android:orderInCategory="100"
+        android:title="@string/note_details_feature_menu_more_options"
+        app:showAsAction="ifRoom" />
+</menu>

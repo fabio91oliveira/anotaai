@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#1f1f1f</color>
+    <color name="color_primary_dark">#2f2f2f</color>
+
+    <color name="color_scale_1">#a8a8a8</color>
+    <color name="color_scale_2">#cacaca</color>
+    <color name="color_scale_3">#757575</color>
+    <color name="color_scale_4">#3C3C3C</color>
+
+    <color name="color_accent">#5262bc</color>
+    <color name="color_accent_dark">#3f51b5</color>
+    <color name="color_ripple">#20FFFFFF</color>
+
+    <color name="color_high_relevance">#BF1851</color>
+    <color name="color_medium_relevance">#CDBD2F</color>
+    <color name="color_normal_relevance">#03A9F4</color>
+
+    <color name="color_transparent_high_relevance">#4DBF1851</color>
+    <color name="color_transparent_medium_relevance">#3CCDBD2F</color>
+    <color name="color_transparent_normal_relevance">#3603A9F4</color>
+</resources>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_01"
+        android:background="@color/color_primary"
+        android:fitsSystemWindows="true"
+        app:elevation="@dimen/spacing_none">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tbContent"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/color_accent_dark"
+                android:theme="@style/TextBold.Huge"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDarkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/spacing_02"
+                android:tint="@color/list_notes_feature_color_dark_mode_button"
+                app:srcCompat="@drawable/list_notes_feature_ic_dark_mode" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/abContent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abInside"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:fitsSystemWindows="true"
+            app:elevation="@dimen/spacing_none">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/ctContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="@dimen/spacing_none"
+                app:expandedTitleGravity="center|top"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_07"
+                        android:layout_marginStart="@dimen/spacing_03"
+                        android:layout_marginTop="@dimen/spacing_03"
+                        android:layout_marginEnd="@dimen/spacing_03"
+                        android:background="@drawable/list_notes_feature_bg_search_rounded"
+                        android:drawableStart="@drawable/list_notes_feature_ic_search"
+                        android:drawablePadding="@dimen/spacing_01"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/list_notes_feature_search_hint"
+                        android:paddingStart="@dimen/spacing_02"
+                        android:paddingTop="@dimen/spacing_01"
+                        android:paddingBottom="@dimen/spacing_01"
+                        android:textSize="@dimen/text_size_02"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tlOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_03"
+                        android:background="@color/color_primary"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintTop_toBottomOf="@+id/etSearch"
+                        app:tabIndicatorColor="@null"
+                        app:tabMode="scrollable"
+                        app:tabPaddingStart="@dimen/spacing_03"
+                        app:tabRippleColor="@color/color_ripple"
+                        app:tabSelectedTextColor="@color/color_accent"
+                        app:tabTextAppearance="@style/list_notes_feature_LowerCaseTabTextAppearance"
+                        app:tabTextColor="@color/color_scale_4" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/spacing_01"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/spacing_02"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/color_accent"
+            app:rippleColor="@color/color_accent_dark"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="@android:color/white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>

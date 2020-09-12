@@ -1,0 +1,39 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    resourcePrefix "list_notes_feature"
+}
+
+dependencies {
+    // Core
+    implementation project(Core.Navigation)
+    implementation project(Core.DataAccess)
+
+    // Ui
+    implementation project(UI.Resources)
+    implementation project(UI.PopupDialog)
+
+    // Support
+    implementation Deps.support_material
+    implementation Deps.support_recyclerview
+    implementation Deps.support_constraint_layout
+
+    // Lottie
+    implementation Deps.lottie
+
+    // Lifecycle
+    implementation Deps.lifecycle_viewmodel
+    implementation Deps.lifecycle_livedata
+    kapt Deps.lifecycle_compiler
+
+    // Koin
+    implementation Deps.koin_scope
+    implementation Deps.koin_viemmodel
+
+    // Coroutines
+    implementation Deps.coroutines_core
+    implementation Deps.coroutines_android
+
+    // Timber
+    implementation Deps.timber
+}

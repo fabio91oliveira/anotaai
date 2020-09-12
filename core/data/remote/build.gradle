@@ -1,0 +1,6 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+    // Timber
+    implementation Deps.timber
+}

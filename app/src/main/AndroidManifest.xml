@@ -3,35 +3,20 @@
     package="me.fabiooliveira.getnotes">
 
     <application
-        android:name="me.fabiooliveira.getnotes.base.MainApplication"
+        android:name=".GetNotesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:fullBackupContent="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="me.fabiooliveira.getnotes.feature.onboarding.ui.activity.OnboardingActivity"
-            android:theme="@style/AppThemeOnboarding">
-        </activity>
-        <activity
-            android:name="me.fabiooliveira.getnotes.feature.splashScreen.ui.activity.SplashScreenActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".presentation.activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="me.fabiooliveira.getnotes.feature.notesList.ui.activity.NotesListActivity" />
-        <activity
-            android:name="me.fabiooliveira.getnotes.feature.noteAdd.ui.activity.NoteAddActivity"
-            android:theme="@style/AppTheme.CircularColor" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
