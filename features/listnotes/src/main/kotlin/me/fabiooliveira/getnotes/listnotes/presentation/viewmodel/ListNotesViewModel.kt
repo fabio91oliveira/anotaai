@@ -1,6 +1,7 @@
 package me.fabiooliveira.getnotes.listnotes.presentation.viewmodel
 
 import androidx.annotation.StringRes
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,16 +35,16 @@ internal class ListNotesViewModel(
 ) : ViewModel() {
 
     private val _listNotesViewState by lazy { MutableLiveData<ListNotesViewState>() }
-    val listNotesViewState by lazy { _listNotesViewState }
+    val listNotesViewState: LiveData<ListNotesViewState> = _listNotesViewState
 
     private val _recentListNotesViewState by lazy { MutableLiveData<RecentListNotesViewState>() }
-    val recentListNotesViewState by lazy { _recentListNotesViewState }
+    val recentListNotesViewState: LiveData<RecentListNotesViewState> = _recentListNotesViewState
 
     private val _pastListNotesViewState by lazy { MutableLiveData<PastListNotesViewState>() }
-    val pastListNotesViewState by lazy { _pastListNotesViewState }
+    val pastListNotesViewState: LiveData<PastListNotesViewState> = _pastListNotesViewState
 
     private val _listNotesAction by lazy { MutableLiveData<ListNotesAction>() }
-    val listNotesAction by lazy { _listNotesAction }
+    val listNotesAction: LiveData<ListNotesAction> = _listNotesAction
 
     init {
         initStates()
@@ -119,8 +120,8 @@ internal class ListNotesViewModel(
         }
     }
 
-    fun goToEditNote(noteItem: NoteItem, viewId: Int) {
-        ListNotesAction.GoToEditNote(noteItem, viewId).sendAction()
+    fun goToEditNote(noteItem: NoteItem) {
+        ListNotesAction.GoToEditNote(noteItem).sendAction()
     }
 
     fun goToCreateNote() {
@@ -215,7 +216,6 @@ internal class ListNotesViewModel(
     private fun ListNotesAction.sendAction() {
         _listNotesAction.value = this
     }
-
 
     private fun initStates() {
         _recentListNotesViewState.value = RecentListNotesViewState.init()

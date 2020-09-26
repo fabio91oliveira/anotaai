@@ -1,4 +1,4 @@
-package me.fabiooliveira.getnotes.listnotes.presentation.adapter
+package me.fabiooliveira.getnotes.searchnotes.presentation.adapter
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -9,9 +9,9 @@ import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import features.listnotes.R
+import features.searchnotes.R
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_notes_feature_list_item_note.*
+import kotlinx.android.synthetic.main.search_notes_feature_list_item_note.*
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
 
 private const val DURATION = 300L
@@ -34,7 +34,7 @@ internal class NoteItemsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                        R.layout.list_notes_feature_list_item_note,
+                        R.layout.search_notes_feature_list_item_note,
                         parent,
                         false
                 )

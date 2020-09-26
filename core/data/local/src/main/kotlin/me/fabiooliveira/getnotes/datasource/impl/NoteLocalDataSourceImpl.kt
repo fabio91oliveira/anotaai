@@ -28,4 +28,8 @@ internal class NoteLocalDataSourceImpl(
     override fun getNotesBeforeToday(): Flow<List<NoteEntity>> {
         return noteDao.findNotesBeforeToday()
     }
+
+    override fun getNotesByText(text: String): Flow<List<NoteEntity>> {
+       return noteDao.findNotesByText(text)
+    }
 }

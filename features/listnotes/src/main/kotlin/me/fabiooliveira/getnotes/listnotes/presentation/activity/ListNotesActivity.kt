@@ -3,7 +3,6 @@ package me.fabiooliveira.getnotes.listnotes.presentation.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,6 @@ import me.fabiooliveira.getnotes.extensions.disableDarkMode
 import me.fabiooliveira.getnotes.extensions.doSlideDownAnimation
 import me.fabiooliveira.getnotes.extensions.enableDarkMode
 import me.fabiooliveira.getnotes.extensions.isDarkMode
-import me.fabiooliveira.getnotes.extensions.openDialog
 import me.fabiooliveira.getnotes.extensions.whenNull
 import me.fabiooliveira.getnotes.listnotes.presentation.action.ListNotesAction
 import me.fabiooliveira.getnotes.listnotes.presentation.adapter.CustomFragmentPagerAdapter
@@ -25,9 +23,11 @@ import me.fabiooliveira.getnotes.listnotes.presentation.fragment.PastListNotesFr
 import me.fabiooliveira.getnotes.listnotes.presentation.fragment.RecentListNotesFragment
 import me.fabiooliveira.getnotes.listnotes.presentation.viewmodel.ListNotesViewModel
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
-import me.fabiooliveira.getnotes.navigation.CREATE_NOTE_REQUEST_CODE
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
+import me.fabiooliveira.getnotes.navigation.NOTE_REQUEST_CODE
 import me.fabiooliveira.getnotes.navigation.NoteDetailsNavigation
+import me.fabiooliveira.getnotes.navigation.SEARCH_NOTES_REQUEST_CODE
+import me.fabiooliveira.getnotes.navigation.SearchNotesNavigation
 import me.fabiooliveira.getnotes.onboarding.presentation.activity.OnBoardingActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +42,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         AppBarLayout.OnOffsetChangedListener {
 
     private val noteDetailsNavigation: NoteDetailsNavigation by inject()
+    private val searchNotesNavigation: SearchNotesNavigation by inject()
     private val viewModel: ListNotesViewModel by viewModel()
     private val fragmentPagerAdapter by lazy {
         CustomFragmentPagerAdapter(
@@ -67,12 +68,12 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CREATE_NOTE_REQUEST_CODE) {
+            if (requestCode == NOTE_REQUEST_CODE ||
+                    requestCode == SEARCH_NOTES_REQUEST_CODE) {
                 viewModel.getRecentNotesList()
                 viewModel.getPastNotesList()
             }
         }
-
     }
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
@@ -98,7 +99,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
             })
             listNotesAction.observe(this@ListNotesActivity, Observer {
                 when (it) {
-                    is ListNotesAction.GoToEditNote -> openEditNote(it.noteItem, it.viewId)
+                    is ListNotesAction.GoToEditNote -> openEditNote(it.noteItem)
                     is ListNotesAction.GoToCreateNote -> openCreateNote()
                     is ListNotesAction.SetDarkMode -> setDarkMode()
                     is ListNotesAction.SetLightMode -> setLightMode()
@@ -130,7 +131,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
 
     private fun setupSearch() {
         etSearch.setOnClickListener {
-            openDialog(R.string.list_notes_feature_coming_soon_title, R.string.list_notes_feature_coming_soon_description)
+            searchNotesNavigation.navigateToFeature(this, SEARCH_NOTES_REQUEST_CODE)
         }
     }
 
@@ -175,20 +176,20 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         vpContent.isUserInputEnabled = isEnabled
     }
 
-    private fun openEditNote(noteItem: NoteItem, viewId: Int) {
+    private fun openEditNote(noteItem: NoteItem) {
         val bundle = Bundle().apply {
             putParcelable(NOTE_ITEM_TAG, noteItem)
         }
         noteDetailsNavigation.navigateToFeature(
                 this,
                 bundle,
-                CREATE_NOTE_REQUEST_CODE)
+                NOTE_REQUEST_CODE)
     }
 
     private fun openCreateNote() {
         noteDetailsNavigation.navigateToFeature(
                 this,
-                CREATE_NOTE_REQUEST_CODE)
+                NOTE_REQUEST_CODE)
     }
 
     private fun setDarkMode() {

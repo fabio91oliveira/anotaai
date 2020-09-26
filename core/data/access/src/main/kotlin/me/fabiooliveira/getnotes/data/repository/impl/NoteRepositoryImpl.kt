@@ -33,4 +33,10 @@ internal class NoteRepositoryImpl(
         }
     }
 
+    override fun getNotesByText(name: String): Flow<List<Note>> {
+        return localDataSource.getNotesByText(name).map {
+            it.map(notesPageMapper::map)
+        }
+    }
+
 }

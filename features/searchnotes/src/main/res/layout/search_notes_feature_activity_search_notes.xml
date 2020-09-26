@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_01"
+        android:background="@color/color_primary"
+        android:fitsSystemWindows="true"
+        app:elevation="@dimen/spacing_none">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:navigationIcon="?attr/homeAsUpIndicator">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_07"
+                android:layout_marginEnd="@dimen/spacing_12"
+                android:background="@drawable/search_notes_feature_bg_search_rounded"
+                android:hint="@string/search_notes_feature_search_hint"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size_04" />
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/loading"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="@dimen/spacing_04"
+                android:layout_height="@dimen/spacing_04"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/spacing_04"
+                android:indeterminate="false"
+                android:progressTint="@color/color_accent_dark" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/abContent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/spacing_01"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    tools:layoutAnimation="@null"
+                    tools:listitem="@layout/search_notes_feature_list_item_note" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/ivNotFound"
+                    android:layout_width="@dimen/spacing_12"
+                    android:layout_height="@dimen/spacing_12"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="list_notes_feature_ic_not_found.json"
+                    app:lottie_loop="true" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNotFound"
+                    style="@style/TextRegular.Huge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_01"
+                    android:text="@string/search_notes_feature_not_found"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/ivNotFound"
+                    app:layout_constraintStart_toStartOf="@+id/ivNotFound"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNotFound"
+                    app:layout_constraintVertical_bias="0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvErrorMessage"
+                    style="@style/TextRegular.Huge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_01"
+                    android:text="@string/search_notes_feature_error_message"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/ivNotFound"
+                    app:layout_constraintStart_toStartOf="@+id/ivNotFound"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNotFound"
+                    app:layout_constraintVertical_bias="0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
