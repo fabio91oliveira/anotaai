@@ -1,40 +1,25 @@
-# Anota Ai App - LATEST VERSION: 1.1.3
+# Anota Ai App - LATEST VERSION: 2.0.0
 
 <a href="https://play.google.com/store/apps/details?id=me.fabiooliveira.getnotes" target="_blank"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75"></a>
  
-<img src="https://lh3.googleusercontent.com/XSsZiyzvUHQ3zNbk-VU5HH1QLJCaNnjMVpUPuje5PYBtQRXRWeswRhf3CC9IbwQkLw=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/TrguQkcM1fcvXrb7YtAjx1BrDkl58Rn9P78lHSUBxgoeDEfgkMLkXikMql1HSW8vkA=w1604-h770-rw" width="280"/> <img src="https://lh3.googleusercontent.com/KESQnIbezUize-xKCNVmUdEzYbkv9EqKZ40PKtpIyBrT-7bLqki-DzCeq-2B-HVm8g=w1604-h770-rw" width="280" />
+<img src="https://lh3.googleusercontent.com/e6E1W5xKIpx3mKNR28QLhwHZpiMANs1JwEPRQ1jowC15qfYcoUqXSFuVpKlZv5qzfQ=w3360-h1780-rw" width="280"/> <img src="https://lh3.googleusercontent.com/IyjSYd-FUW2uiqtLWzC_qFGCfyTP47Ncw9mkTwtenIvvcjYhf_-eSyNZoKv88nbO5A=w3360-h1780-rw" width="280"/> <img src="https://lh3.googleusercontent.com/oiHt6FNShottv-znOT1KwE5eXEHirleFVArPpzXPYCbd-6Aw1r_R2_vzM2_ppKT2zA=w3360-h1780-rw" width="280" /> <img src="https://lh3.googleusercontent.com/OtsxS4GF122gbuilLmDi5ojLYxqlXrlIr_QGnIWakB0R1G_jaW9ZkMqqb0IfuL06SIc=w3360-h1780-rw" width="280" />
  
 ## About the app
 
-The app simply sorts by date and has a relevancy criterion, it is organized by:
-Red color - Very important
-Yellow - Medium Priority
-Blue color - Not so important
+A simple annotation app, where you put your notes.
 
-The purpose of this app is to have a a place of annotations indeed. 
-The intent of the app is also to study and make available to anyone who is studying and learning about Android Development, to have a base and knowledge about it.
+The purpose of the app is to study and make available to anyone who is studying and learning about Android Development and to have a base and knowledge about it.
 
 ## Architecture
 
-- Based on Android JetPack
-Android Jetpack is a set of components, tools and guidance to make great Android apps. 
-The Android Jetpack components bring together the existing Support Library and Architecture Components and arranges them into four categories.
-![alt text](https://cdn-images-1.medium.com/max/800/1*FB931aBGoALv3OLY5LSRGg.png)
+Soon...
 
 ## Basically using
 
-* Androidx Refactor Library
-* Kotlin
-* Lifecycle library (LiveData and ViewModels)
-* Room
-* Rx
-* Dagger
+Soon...
 
 ## Testing
-* Unit Tests of view models
-* Instrumented tests in progress
-
-You can see more here: <a href="https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE">https://developer.android.com/jetpack/?gclid=EAIaIQobChMIp4qNhIqS3AIVghGRCh17dAG3EAAYASAAEgJfNfD_BwE</a>
+Soon..
 
 If you are interested about doing something in this app or have some idea. Contact me!
 <a href="https://www.linkedin.com/in/fabio91oliveira" target="_blank">https://www.linkedin.com/in/fabio91oliveira</a>
