@@ -31,8 +31,8 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
         listNotesViewModel.setTabName(R.string.list_notes_feature_tab_past)
     }
 
-    override fun onClickNote(noteItem: NoteItem, view: View) {
-        listNotesViewModel.goToEditNote(noteItem, view.id)
+    override fun onClickNote(noteItem: NoteItem) {
+        listNotesViewModel.goToEditNote(noteItem)
     }
 
     private fun setupObservables() {
@@ -75,7 +75,7 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
 
     private fun showEmptyState(isVisible: Boolean) {
         val visibility = if (isVisible) View.VISIBLE else View.GONE
-        ivSuccess.visibility = visibility
+        ivNotFound.visibility = visibility
         tvNotFound.visibility = visibility
     }
 

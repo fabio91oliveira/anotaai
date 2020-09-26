@@ -4,6 +4,7 @@ object Versions {
     const val kotlin = "1.4.0"
     const val android_gradle_plugin = "3.4.0"
 
+    const val android_x_core = "1.1.0"
     const val support = "1.2.0"
     const val material = "1.3.0-alpha02"
     const val recyclerview = "1.0.0"
@@ -25,6 +26,7 @@ object Deps {
     const val tools_android_gradle_plugin =
             "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
     const val tools_kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val androidx_core = "androidx.core:core-ktx:${Versions.android_x_core}"
 
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 

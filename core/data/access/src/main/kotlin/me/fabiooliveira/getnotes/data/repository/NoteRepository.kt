@@ -8,4 +8,5 @@ interface NoteRepository {
     fun remoteNote(id: Long): Flow<Int>
     fun getNotesFromTodayToFuture(): Flow<List<Note>>
     fun getNotesBefore(): Flow<List<Note>>
+    fun getNotesByText(name: String): Flow<List<Note>>
 }

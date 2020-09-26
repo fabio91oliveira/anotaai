@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 
-const val CREATE_NOTE_REQUEST_CODE = 12
+const val NOTE_REQUEST_CODE = 12
 const val NOTE_ITEM_TAG = "note_item"
 
 interface NoteDetailsNavigation {

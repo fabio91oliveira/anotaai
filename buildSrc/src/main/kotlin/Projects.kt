@@ -10,6 +10,7 @@ object Core {
 object Features {
     const val ListNotes = ":features:listnotes"
     const val NoteDetails = ":features:notedetails"
+    const val SearchNotes = ":features:searchnotes"
 }
 
 object UI {

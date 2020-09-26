@@ -22,15 +22,11 @@ dependencies {
     // Features
     implementation project(Features.ListNotes)
     implementation project(Features.NoteDetails)
+    implementation project(Features.SearchNotes)
 
     // Koin
     implementation Deps.koin_scope
 
     // Timber
     implementation Deps.timber
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.3.0'
-    implementation 'androidx.navigation:navigation-ui:2.3.0'
 }

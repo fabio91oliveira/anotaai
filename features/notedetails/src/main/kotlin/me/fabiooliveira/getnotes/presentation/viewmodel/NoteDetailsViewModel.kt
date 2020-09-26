@@ -1,5 +1,6 @@
 package me.fabiooliveira.getnotes.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,10 +27,10 @@ internal class NoteDetailsViewModel(
 ) : ViewModel() {
 
     private val _noteDetailsAction by lazy { MutableLiveData<NoteDetailsAction>() }
-    val noteDetailsAction by lazy { _noteDetailsAction }
+    val noteDetailsAction: LiveData<NoteDetailsAction> = _noteDetailsAction
 
     private val _noteDetailsViewState by lazy { MutableLiveData<NoteDetailsViewState>() }
-    val noteDetailsViewState by lazy { _noteDetailsViewState }
+    val noteDetailsViewState: LiveData<NoteDetailsViewState> = _noteDetailsViewState
 
     init {
         initState()

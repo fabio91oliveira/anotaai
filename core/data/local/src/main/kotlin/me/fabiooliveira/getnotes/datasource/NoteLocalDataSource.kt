@@ -8,4 +8,5 @@ interface NoteLocalDataSource {
     fun remoteNote(id: Long): Flow<Int>
     fun getNotesFromTodayToFuture(): Flow<List<NoteEntity>>
     fun getNotesBeforeToday(): Flow<List<NoteEntity>>
+    fun getNotesByText(name: String): Flow<List<NoteEntity>>
 }

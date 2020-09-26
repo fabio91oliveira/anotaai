@@ -1,5 +1,6 @@
 package me.fabiooliveira.getnotes.onboarding.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +19,7 @@ internal class OnBoardingViewModel(
 ) : ViewModel() {
 
     private val _onBoardingActions by lazy { MutableLiveData<OnBoardingActions>() }
-    val onBoardingActions by lazy { _onBoardingActions }
+    val onBoardingActions: LiveData<OnBoardingActions> = _onBoardingActions
 
     init {
         showScreens()
