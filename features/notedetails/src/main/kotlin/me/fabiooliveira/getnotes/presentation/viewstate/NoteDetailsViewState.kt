@@ -19,6 +19,7 @@ internal data class NoteDetailsViewState(
                 @StringRes val descriptionRes: Int
         ) :
                 Dialog()
+
     }
 
     companion object {

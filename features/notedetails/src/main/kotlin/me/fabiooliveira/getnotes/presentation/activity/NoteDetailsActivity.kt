@@ -1,33 +1,42 @@
 package me.fabiooliveira.getnotes.presentation.activity
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
+import com.philliphsu.bottomsheetpickers.date.DatePickerDialog
+import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog
+import com.philliphsu.bottomsheetpickers.time.numberpad.NumberPadTimePickerDialog
 import features.notedetails.R
 import kotlinx.android.synthetic.main.note_details_feature_activity_note_details.*
 import me.fabiooliveira.getnotes.extensions.fadeIn
+import me.fabiooliveira.getnotes.extensions.getCalendarFromString
 import me.fabiooliveira.getnotes.extensions.getDateString
+import me.fabiooliveira.getnotes.extensions.getTimeOfTheDay
 import me.fabiooliveira.getnotes.extensions.hideKeyboardFrom
+import me.fabiooliveira.getnotes.extensions.isDarkMode
 import me.fabiooliveira.getnotes.extensions.whenNull
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
+import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
 import me.fabiooliveira.getnotes.presentation.action.NoteDetailsAction
 import me.fabiooliveira.getnotes.presentation.dialogfragment.LoadingDialog
 import me.fabiooliveira.getnotes.presentation.extensions.openDialog
-import me.fabiooliveira.getnotes.presentation.fragment.SelectDateFragment
 import me.fabiooliveira.getnotes.presentation.viewmodel.NoteDetailsViewModel
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
-import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
-import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import java.util.*
 
-internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_feature_activity_note_details) {
+internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_feature_activity_note_details),
+        DatePickerDialog.OnDateSetListener, BottomSheetTimePickerDialog.OnTimeSetListener {
 
     private val progressDialog by lazy {
         LoadingDialog(
@@ -37,8 +46,6 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         )
     }
 
-    private val noteDetailsViewModel: NoteDetailsViewModel by viewModel()
-
     private val titleNote: String
         get() = itNoteTitle.text.toString()
 
@@ -46,9 +53,17 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         get() = itNoteDescription.text.toString()
 
     private val dateNote: String
-        get() = etNoteDate.text.toString()
+        get() = tvDateDescription.text.toString()
+
+    private val timeNote: String
+        get() = tvTimeDescription.text.toString()
+
+    private val isReminder: Boolean
+        get() = swReminder.isChecked
 
     private val noteItem: NoteItem? by lazy { intent.extras?.getParcelable(NOTE_ITEM_TAG) as NoteItem? }
+
+    private val noteDetailsViewModel: NoteDetailsViewModel by viewModel { parametersOf(noteItem?.calendar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +94,14 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDateSet(dialog: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        noteDetailsViewModel.updateDate(year, monthOfYear, dayOfMonth)
+    }
+
+    override fun onTimeSet(viewGroup: ViewGroup?, hourOfDay: Int, minute: Int) {
+        noteDetailsViewModel.updateTime(hourOfDay, minute)
     }
 
     private fun showOptions(view: View) {
@@ -132,15 +155,13 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         with(noteDetailsViewModel) {
             noteDetailsAction.observe(this@NoteDetailsActivity, Observer {
                 when (it) {
-                    is NoteDetailsAction.Success -> {
-                        showSuccess()
-                    }
-                    is NoteDetailsAction.CloseScreen -> {
-                        closeScreen()
-                    }
+                    is NoteDetailsAction.Success -> showSuccess()
+                    is NoteDetailsAction.CloseScreen -> closeScreen()
                     is NoteDetailsAction.Error -> {
 
                     }
+                    is NoteDetailsAction.UpdateDate -> setDate(it.cal)
+                    is NoteDetailsAction.UpdateTime -> setTime(it.cal)
                 }
             })
             noteDetailsViewState.observe(this@NoteDetailsActivity, Observer {
@@ -150,13 +171,15 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun setupClickListener() {
-        etNoteDate.setOnClickListener {
+        clDate.setOnClickListener {
             openSelectDateBottomSheetDialog()
         }
-        etNoteDate.setOnTouchListener { _, _ ->
-           false
+        clTime.setOnClickListener {
+            openSelectTimeDialog()
+        }
+        clReminder.setOnClickListener {
+            swReminder.isChecked = swReminder.isChecked.not()
         }
     }
 
@@ -166,16 +189,24 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
 
     private fun setupNoteItem() {
         noteItem?.also {
-            itNoteTitle.setText(it.title)
-            itNoteDescription.setText(it.description)
-            etNoteDate.setText(it.date)
-            when (it.relevance) {
-                RelevanceEnum.NORMAL -> rbNormal.isChecked = true
-                RelevanceEnum.MEDIUM -> rbMedium.isChecked = true
-                RelevanceEnum.HIGH -> rbHigh.isChecked = true
-            }
+            handleNoteItemFields(it)
         }.whenNull {
             setupDefaultValue()
+        }
+    }
+
+    private fun handleNoteItemFields(noteItem: NoteItem) {
+        itNoteTitle.setText(noteItem.title)
+        itNoteDescription.setText(noteItem.description)
+        tvDateTitle.text = resources.getString(R.string.note_details_feature_date_filled_hint)
+        tvTimeTitle.text = resources.getString(R.string.note_details_feature_time_filled_hint)
+        setDate(noteItem.calendar)
+        setTime(noteItem.calendar)
+        swReminder.isChecked = noteItem.isReminder
+        when (noteItem.relevance) {
+            RelevanceEnum.NORMAL -> rbNormal.isChecked = true
+            RelevanceEnum.MEDIUM -> rbMedium.isChecked = true
+            RelevanceEnum.HIGH -> rbHigh.isChecked = true
         }
     }
 
@@ -185,7 +216,9 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
                 titleNote = titleNote,
                 descriptionNote = descriptionNote,
                 date = dateNote,
-                relevance = getRelevance()
+                time = timeNote,
+                relevance = getRelevance(),
+                isReminder = isReminder
         )
     }
 
@@ -203,13 +236,31 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
             if (hasToShow) progressDialog.show() else progressDialog.dismiss()
 
     private fun openSelectDateBottomSheetDialog() {
-        val selectDate = SelectDateFragment.newInstance(dateNote, object : SelectDateFragment.SelectDateListener {
-            override fun onSelectDate(date: Date) {
-                etNoteDate.setText(date.getDateString())
-            }
-        })
-        selectDate.show(supportFragmentManager,
-                SelectDateFragment::class.java.name)
+        val dialog = DatePickerDialog.Builder(this, dateNote.getCalendarFromString().get(Calendar.YEAR),
+                dateNote.getCalendarFromString().get(Calendar.MONTH),
+                dateNote.getCalendarFromString().get(Calendar.DAY_OF_MONTH))
+                .setMinDate(Calendar.getInstance())
+                .setThemeDark(isDarkMode())
+                .build()
+        dialog.show(supportFragmentManager, named<DatePickerDialog>().value)
+    }
+
+    private fun openSelectTimeDialog() {
+        val dialog = NumberPadTimePickerDialog.Builder(this,
+                DateFormat.is24HourFormat(this))
+                .setThemeDark(isDarkMode())
+                .build()
+        dialog.show(supportFragmentManager, named<NumberPadTimePickerDialog>().value)
+    }
+
+    private fun setDate(cal: Calendar) {
+        tvDateDescription.text = cal.time.getDateString()
+        tvDateDescription.visibility = View.VISIBLE
+    }
+
+    private fun setTime(calendar: Calendar) {
+        tvTimeDescription.text = calendar.time.getTimeOfTheDay(this)
+        tvTimeDescription.visibility = View.VISIBLE
     }
 
     private fun handleDialog(dialogViewState: NoteDetailsViewState.Dialog) {
@@ -233,6 +284,8 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
                             noteDetailsViewModel.hideDialogs()
                         }
                 )
+            }
+            else -> {
             }
         }
     }

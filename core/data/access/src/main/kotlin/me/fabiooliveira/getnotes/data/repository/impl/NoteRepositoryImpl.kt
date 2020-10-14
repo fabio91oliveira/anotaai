@@ -39,4 +39,9 @@ internal class NoteRepositoryImpl(
         }
     }
 
+    override fun getNotesOnlyFromToday(): List<Note> {
+        return localDataSource.getNotesOnlyFromToday().map {
+            notesPageMapper.map(it)
+        }
+    }
 }

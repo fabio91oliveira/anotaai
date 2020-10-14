@@ -19,6 +19,7 @@ object Versions {
     const val room = "2.2.5"
 
     const val koin = "2.1.6"
+    const val work_manager = "2.4.0"
     const val timber = "4.7.1"
 }
 
@@ -59,6 +60,8 @@ object Deps {
 
     const val koin_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koin_viemmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+
+    const val work_manager = "androidx.work:work-runtime-ktx:${Versions.work_manager}"
 
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }

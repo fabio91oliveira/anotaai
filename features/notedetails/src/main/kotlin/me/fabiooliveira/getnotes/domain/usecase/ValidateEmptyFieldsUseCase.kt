@@ -6,6 +6,7 @@ internal interface ValidateEmptyFieldsUseCase {
     suspend operator fun invoke(
             titleNote: String,
             descriptionNote: String,
-            date: String
+            date: String,
+            time: String
     ): Flow<Boolean>
 }

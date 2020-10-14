@@ -8,10 +8,11 @@ internal class ValidateEmptyFieldsUseCaseImpl : ValidateEmptyFieldsUseCase {
     override suspend fun invoke(
             titleNote: String,
             descriptionNote: String,
-            date: String
+            date: String,
+            time: String
     ): Flow<Boolean> {
         return flow {
-            emit(titleNote.isNotEmpty() && descriptionNote.isNotEmpty() && date.isNotEmpty())
+            emit(titleNote.isNotEmpty() && descriptionNote.isNotEmpty() && date.isNotEmpty() && time.isNotEmpty())
         }
     }
 }

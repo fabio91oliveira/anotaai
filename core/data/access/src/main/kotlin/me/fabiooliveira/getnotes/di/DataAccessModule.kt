@@ -2,7 +2,7 @@ package me.fabiooliveira.getnotes.di
 
 import me.fabiooliveira.getnotes.base.Mapper
 import me.fabiooliveira.getnotes.data.mapper.NoteEntityMapper
-import me.fabiooliveira.getnotes.data.mapper.NoteItemMapper
+import me.fabiooliveira.getnotes.data.mapper.NoteMapper
 import me.fabiooliveira.getnotes.data.repository.NoteRepository
 import me.fabiooliveira.getnotes.data.repository.impl.NoteRepositoryImpl
 import me.fabiooliveira.getnotes.domain.model.Note
@@ -16,13 +16,13 @@ object DataAccessModule {
         factory<Mapper<Note, NoteEntity>>(qualifier = named(NoteEntityMapper::class.java.name)) {
             NoteEntityMapper()
         }
-        factory<Mapper<NoteEntity, Note>>(qualifier = named(NoteItemMapper::class.java.name)) {
-            NoteItemMapper()
+        factory<Mapper<NoteEntity, Note>>(qualifier = named(NoteMapper::class.java.name)) {
+            NoteMapper()
         }
         factory<NoteRepository> {
             NoteRepositoryImpl(
                     localDataSource = get(),
-                    notesPageMapper = get(named(NoteItemMapper::class.java.name)),
+                    notesPageMapper = get(named(NoteMapper::class.java.name)),
                     noteEntityMapper = get(named(NoteEntityMapper::class.java.name))
             )
         }

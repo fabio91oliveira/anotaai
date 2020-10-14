@@ -10,7 +10,8 @@ internal class NoteEntityMapper : Mapper<Note, NoteEntity> {
                 title = source.title,
                 contentDescription = source.description,
                 date = source.date,
-                relevance = source.relevance
+                relevance = source.relevance,
+                isReminder = source.isReminder
         ).apply {
             id = source.id
         }

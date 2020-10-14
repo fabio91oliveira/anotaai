@@ -12,6 +12,7 @@ import me.fabiooliveira.getnotes.presentation.viewmodel.NoteDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
+import java.util.*
 
 object NoteDetailsModule {
     private val domainModule = module {
@@ -29,8 +30,10 @@ object NoteDetailsModule {
     }
 
     private val presentationModule = module {
-        viewModel {
+
+        viewModel { (calendar: Calendar?) ->
             NoteDetailsViewModel(
+                    calendar = calendar ?: Calendar.getInstance(),
                     publishNoteUseCase = get(),
                     removeNoteUseCase = get(),
                     validateEmptyFieldsUseCase = get()

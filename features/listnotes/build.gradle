@@ -36,4 +36,6 @@ dependencies {
 
     // Timber
     implementation Deps.timber
+
+    implementation project(Features.Notification)
 }

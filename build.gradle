@@ -30,6 +30,11 @@ subprojects {
                     testInstrumentationRunner Config.runner
                 }
 
+                testOptions {
+                    execution Config.orchestrator
+                    animationsDisabled = true
+                }
+
                 if (project.plugins.findPlugin('kotlin-android-extensions')) {
                     androidExtensions {
                         experimental = true
@@ -43,6 +48,12 @@ subprojects {
                 compileOptions {
                     sourceCompatibility Config.javaVersion
                     targetCompatibility Config.javaVersion
+
+                    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+                        kotlinOptions {
+                            jvmTarget = "1.8"
+                        }
+                    }
                 }
                 defaultConfig {
                     multiDexEnabled true

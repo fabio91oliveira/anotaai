@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_feature_push_notes_today_title">Tem algo para hoje!</string>
+    <string name="notification_feature_push_notes_today_message">Você tem alguma coisa agendada pra hoje, porque não dá uma olhada?!</string>
+</resources>

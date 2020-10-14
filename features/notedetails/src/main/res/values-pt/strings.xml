@@ -8,7 +8,12 @@
     <string name="note_details_feature_title_hint">Título</string>
     <string name="note_details_feature_description_hint">Escreva algo…</string>
     <string name="note_details_feature_date_hint">Selecionar data</string>
-    <string name="note_details_feature_select_relevance">Selecionar relevância</string>
+    <string name="note_details_feature_time_hint">Selecionar hora</string>
+    <string name="note_details_feature_date_filled_hint">Data</string>
+    <string name="note_details_feature_time_filled_hint">Hora</string>
+    <string name="note_details_feature_reminder_title">Lembrete</string>
+    <string name="note_details_feature_reminder_description">Habilite lembrete para tocar um alarme na hora selecionada</string>
+    <string name="note_details_feature_select_relevance">Relevância</string>
     <string name="note_details_feature_continue">Continuar</string>
 
     <string name="note_details_feature_remove_note_title">Atenção</string>

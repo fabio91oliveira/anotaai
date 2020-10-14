@@ -16,7 +16,7 @@ import me.fabiooliveira.getnotes.entity.converter.DateConverter
  * LinkedIn: https://www.linkedin.com/in/fabio91oliveira
  */
 
-@Database(entities = [(NoteEntity::class), (LogEntity::class)], version = 1, exportSchema = false)
+@Database(entities = [(NoteEntity::class), (LogEntity::class)], version = 2, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class Database : RoomDatabase() {
     abstract fun noteDao(): NoteDao

@@ -43,6 +43,7 @@
         android:layout_width="@dimen/spacing_none"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_01"
+        android:layout_marginEnd="@dimen/spacing_01"
         android:layout_marginBottom="@dimen/spacing_half"
         android:ellipsize="end"
         android:maxLines="1"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toStartOf="@id/gdEnd"
         app:layout_constraintStart_toEndOf="@+id/tvRelevance"
         app:layout_constraintTop_toTopOf="@+id/tvRelevance"
-        tools:text="Component Notes" />
+        tools:text="@tools:sample/lorem/random" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoteShortDescription"
@@ -79,6 +80,7 @@
         android:singleLine="true"
         android:textColor="@color/color_scale_2"
         android:theme="@style/TextRegular.Small"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintEnd_toStartOf="@id/tvNoteNameOfDay"
         app:layout_constraintStart_toStartOf="@+id/tvNoteShortDescription"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
@@ -86,18 +88,53 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoteNameOfDay"
-        android:layout_width="@dimen/spacing_none"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_01"
-        android:layout_marginTop="@dimen/spacing_02"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_scale_2"
         android:theme="@style/TextBold.Small"
-        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/etNoteDate"
         app:layout_constraintStart_toEndOf="@+id/etNoteDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoteShortDescription"
+        app:layout_constraintTop_toTopOf="@+id/etNoteDate"
         tools:text="Today" />
+
+    <View
+        android:id="@+id/vNoteTime"
+        android:layout_width="@dimen/spacing_none"
+        android:layout_height="@dimen/spacing_none"
+        android:background="@drawable/bg_rounded"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNoteTime"
+        app:layout_constraintEnd_toEndOf="@+id/tvNoteTime"
+        app:layout_constraintStart_toStartOf="@+id/tvNoteTime"
+        app:layout_constraintTop_toTopOf="@+id/tvNoteTime" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNoteTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_01"
+        android:paddingTop="@dimen/spacing_half"
+        android:paddingEnd="@dimen/spacing_01"
+        android:layout_marginEnd="@dimen/spacing_01"
+        android:paddingBottom="@dimen/spacing_half"
+        tools:text="11:00 am"
+        android:textColor="@color/color_scale_3"
+        android:theme="@style/TextBold.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/etNoteDate"
+        app:layout_constraintEnd_toStartOf="@id/ivReminderSet"
+        app:layout_constraintTop_toTopOf="@+id/etNoteDate" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivReminderSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_01"
+        app:layout_constraintBottom_toBottomOf="@id/tvNoteTime"
+        app:layout_constraintEnd_toEndOf="@id/gdEnd"
+        app:layout_constraintTop_toTopOf="@id/tvNoteTime"
+        tools:srcCompat="@drawable/list_notes_feature_ic_baseline_alarm_off_24" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdStart"

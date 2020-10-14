@@ -3,7 +3,7 @@ package me.fabiooliveira.getnotes.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.util.Date
+import java.util.*
 
 /**
  * Created by Fabio Oliveira
@@ -16,7 +16,9 @@ import java.util.Date
 data class NoteEntity(var title: String,
                       var contentDescription: String,
                       var date: Date,
-                      var relevance: Int): Serializable {
-                @PrimaryKey(autoGenerate = true) var id: Long = 0
-                var isDone: Boolean = false
+                      var relevance: Int,
+                      var isReminder: Boolean) : Serializable {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+    var isDone: Boolean = false
 }

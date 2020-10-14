@@ -11,6 +11,7 @@ object Features {
     const val ListNotes = ":features:listnotes"
     const val NoteDetails = ":features:notedetails"
     const val SearchNotes = ":features:searchnotes"
+    const val Notification = ":features:notification"
 }
 
 object UI {

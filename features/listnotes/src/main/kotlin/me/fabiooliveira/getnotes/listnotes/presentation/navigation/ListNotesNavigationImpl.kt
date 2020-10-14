@@ -9,4 +9,8 @@ class ListNotesNavigationImpl : ListNotesNavigation {
     override fun navigateToFeature(context: Context) {
         context.startActivity(Intent(context, ListNotesActivity::class.java))
     }
+
+    override fun getIntent(context: Context): Intent {
+        return Intent(context, ListNotesActivity::class.java)
+    }
 }

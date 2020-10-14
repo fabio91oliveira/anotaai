@@ -40,4 +40,6 @@ dependencies {
 
     // Timber
     implementation Deps.timber
+
+    implementation 'com.philliphsu:bottomsheetpickers:2.4.1'
 }

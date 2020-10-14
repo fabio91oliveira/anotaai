@@ -63,7 +63,6 @@
                 android:id="@+id/ctContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:elevation="@dimen/spacing_none"
                 app:expandedTitleGravity="center|top"
                 app:layout_scrollFlags="scroll|enterAlways">
 

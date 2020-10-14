@@ -1,0 +1,8 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    resourcePrefix "settings_feature"
+}
+
+dependencies {
+}

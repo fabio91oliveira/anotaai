@@ -7,5 +7,6 @@ data class Note(
         val title: String,
         val description: String,
         val date: Date,
-        val relevance: Int
+        val relevance: Int,
+        val isReminder: Boolean
 )

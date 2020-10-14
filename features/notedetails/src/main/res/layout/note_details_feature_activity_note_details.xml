@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
-        android:elevation="@dimen/popup_dialog_spacing_none"
         android:theme="@style/AppToolBarTheme"
-        app:elevation="@dimen/popup_dialog_spacing_none"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
@@ -20,8 +19,6 @@
             style="@style/AppToolBarTheme"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="@dimen/popup_dialog_spacing_none"
-            app:elevation="@dimen/popup_dialog_spacing_none"
             app:navigationIcon="@drawable/ic_close" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -73,24 +70,217 @@
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toBottomOf="@+id/itNoteTitle" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etNoteDate"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDate"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_03"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                android:hint="@string/note_details_feature_date_hint"
-                android:paddingTop="@dimen/spacing_02"
-                android:paddingBottom="@dimen/spacing_02"
-                android:singleLine="true"
-                android:textColor="@color/color_accent"
-                android:theme="@style/TextRegular.Huge"
+                android:layout_marginTop="@dimen/spacing_04"
+                app:cardBackgroundColor="@color/color_primary"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/itNoteDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/itNoteDescription"
+                app:strokeColor="@color/color_scale_4"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/spacing_02">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/color_scale_3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/note_details_feature_ic_baseline_date_range_48" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDateTitle"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:text="@string/note_details_feature_date_hint"
+                        android:textColor="@color/color_scale_3"
+                        android:theme="@style/TextBold.Big"
+                        app:layout_constraintBottom_toTopOf="@+id/tvDateDescription"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivDate"
+                        app:layout_constraintTop_toTopOf="@+id/ivDate"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDateDescription"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:layout_marginEnd="@dimen/spacing_01"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:textColor="@color/color_scale_1"
+                        android:theme="@style/TextRegular.Small"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivDate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivDate"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDateTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTime"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_half"
+                app:cardBackgroundColor="@color/color_primary"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/cvDate"
+                app:strokeColor="@color/color_scale_4"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/spacing_02">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/color_scale_3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/note_details_feature_ic_baseline_access_time_48" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTimeTitle"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:text="@string/note_details_feature_time_hint"
+                        android:textColor="@color/color_scale_3"
+                        android:theme="@style/TextBold.Big"
+                        app:layout_constraintBottom_toTopOf="@+id/tvTimeDescription"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivTime"
+                        app:layout_constraintTop_toTopOf="@+id/ivTime"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTimeDescription"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:layout_marginEnd="@dimen/spacing_01"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:textColor="@color/color_scale_1"
+                        android:theme="@style/TextRegular.Small"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivTime"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivTime"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTimeTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvReminder"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_01"
+                app:cardBackgroundColor="@color/note_details_feature_color_reminder_bg"
+                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/cvTime">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingStart="@dimen/spacing_02"
+                    android:paddingTop="@dimen/spacing_02"
+                    android:paddingEnd="@dimen/spacing_02"
+                    android:paddingBottom="@dimen/spacing_03">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/color_accent_dark"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/note_details_feature_ic_baseline_alarm_48" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvReminderTitle"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:text="@string/note_details_feature_reminder_title"
+                        android:textColor="@color/color_accent_dark"
+                        android:theme="@style/TextBold.Big"
+                        app:layout_constraintStart_toEndOf="@+id/ivReminder"
+                        app:layout_constraintTop_toTopOf="@+id/ivReminder" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvReminderDescription"
+                        android:layout_width="@dimen/spacing_none"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_02"
+                        android:layout_marginEnd="@dimen/spacing_01"
+                        android:includeFontPadding="false"
+                        android:maxLines="4"
+                        android:text="@string/note_details_feature_reminder_description"
+                        android:textColor="@color/color_accent"
+                        android:theme="@style/TextRegular.Small"
+                        app:layout_constraintEnd_toStartOf="@+id/swReminder"
+                        app:layout_constraintStart_toEndOf="@+id/ivReminder"
+                        app:layout_constraintTop_toBottomOf="@+id/tvReminderTitle" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/swReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSelectRelevance"
@@ -98,11 +288,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_04"
                 android:text="@string/note_details_feature_select_relevance"
-                android:textColor="@color/color_scale_1"
+                android:textColor="@color/color_scale_3"
                 android:theme="@style/TextRegular.Huge"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/etNoteDate" />
+                app:layout_constraintTop_toBottomOf="@+id/cvReminder" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvNormal"

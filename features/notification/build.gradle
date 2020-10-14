@@ -1,0 +1,23 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    resourcePrefix "notification_feature"
+}
+
+dependencies {
+    // Core
+    implementation project(Core.DataAccess)
+    implementation project(Core.Navigation)
+
+    // UI
+    implementation project(UI.Resources)
+
+    // Work Manager
+    implementation Deps.work_manager
+
+    // Koin
+    implementation Deps.koin_scope
+
+    // Timber
+    implementation Deps.timber
+}
