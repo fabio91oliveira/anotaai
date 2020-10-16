@@ -1,5 +1,6 @@
 package me.fabiooliveira.getnotes.presentation.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,9 +12,10 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.domain.exception.NoteDetailsException
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
-import me.fabiooliveira.getnotes.domain.usecase.ValidateEmptyFieldsUseCase
+import me.fabiooliveira.getnotes.domain.usecase.ValidateFieldsUseCase
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import me.fabiooliveira.getnotes.presentation.action.NoteDetailsAction
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
@@ -25,7 +27,7 @@ internal class NoteDetailsViewModel(
         private val calendar: Calendar,
         private val publishNoteUseCase: PublishNoteUseCase,
         private val removeNoteUseCase: RemoveNoteUseCase,
-        private val validateEmptyFieldsUseCase: ValidateEmptyFieldsUseCase
+        private val validateFieldsUseCase: ValidateFieldsUseCase
 ) : ViewModel() {
 
     private val _noteDetailsAction by lazy { MutableLiveData<NoteDetailsAction>() }
@@ -48,27 +50,28 @@ internal class NoteDetailsViewModel(
             isReminder: Boolean
     ) {
         viewModelScope.launch {
-            validateEmptyFieldsUseCase(
+            validateFieldsUseCase(
                     titleNote = titleNote,
                     descriptionNote = descriptionNote,
                     date = date,
-                    time = time)
+                    time = time,
+                    isReminder = isReminder,
+                    calendar = calendar)
                     .flowOn(Dispatchers.Default)
                     .catch {
-                        NoteDetailsAction.Error.sendAction()
-                    }
-                    .collect { isValid ->
-                        if (isValid) {
-                            saveNote(
-                                    idNote = idNote,
-                                    titleNote = titleNote,
-                                    descriptionNote = descriptionNote,
-                                    relevance = relevance,
-                                    isReminder = isReminder
-                            )
-                        } else {
-                            showEmptyFieldsDialog()
+                        when (it) {
+                            is NoteDetailsException -> showGenericDialogMessage(it.titleRes, it.descriptionRes)
+                            else -> NoteDetailsAction.Error.sendAction()
                         }
+                    }
+                    .collect {
+                        saveNote(
+                                idNote = idNote,
+                                titleNote = titleNote,
+                                descriptionNote = descriptionNote,
+                                relevance = relevance,
+                                isReminder = isReminder
+                        )
                     }
         }
     }
@@ -97,6 +100,7 @@ internal class NoteDetailsViewModel(
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
         NoteDetailsAction.UpdateDate(calendar).sendAction()
+        NoteDetailsAction.UpdateTime(calendar).sendAction()
     }
 
     fun updateTime(hourOfDay: Int, minute: Int) {
@@ -121,12 +125,15 @@ internal class NoteDetailsViewModel(
                 it.copy(dialog = NoteDetailsViewState.Dialog.NoDialog)
             }
 
-    private fun showEmptyFieldsDialog() =
+    private fun showGenericDialogMessage(
+            @StringRes titleRes: Int,
+            @StringRes descriptionRes: Int
+    ) =
             setViewState {
                 it.copy(
-                        dialog = NoteDetailsViewState.Dialog.EmptyFieldsDialog(
-                                R.string.note_details_feature_empty_fields_note_title,
-                                R.string.note_details_feature_empty_fields_note_message
+                        dialog = NoteDetailsViewState.Dialog.GenericMessageDialog(
+                                titleRes,
+                                descriptionRes
                         )
                 )
             }
@@ -153,6 +160,15 @@ internal class NoteDetailsViewModel(
                     NoteDetailsAction.Error.sendAction()
                 }
                 .collect {
+                    if (isReminder)
+                        NoteDetailsAction.SetAlarm(
+                                noteId = it,
+                                noteTitle = titleNote,
+                                noteContent = descriptionNote,
+                                cal = calendar
+                        ).sendAction()
+                    else
+                        NoteDetailsAction.CancelAlarm(noteId = it).sendAction()
                     handleLoading()
                     handleSuccess()
                 }

@@ -33,4 +33,7 @@ interface NoteDao {
 
     @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) == strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
     fun findNotesOnlyFromToday(): List<NoteEntity>
+
+    @Query("UPDATE note SET isReminder = 0 WHERE id = :id")
+    fun cancelReminder(id: Long): Int
 }

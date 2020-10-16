@@ -36,4 +36,10 @@ internal class NoteLocalDataSourceImpl(
     override fun getNotesOnlyFromToday(): List<NoteEntity> {
         return noteDao.findNotesOnlyFromToday()
     }
+
+    override fun cancelReminder(id: Long): Flow<Int> {
+        return flow {
+            emit(noteDao.cancelReminder(id))
+        }
+    }
 }

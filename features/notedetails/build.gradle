@@ -10,6 +10,7 @@ dependencies {
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
+    implementation project(Features.Alarm)
 
     // Ui
     implementation project(UI.Resources)

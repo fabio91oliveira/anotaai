@@ -15,6 +15,7 @@ import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog
 import com.philliphsu.bottomsheetpickers.time.numberpad.NumberPadTimePickerDialog
 import features.notedetails.R
 import kotlinx.android.synthetic.main.note_details_feature_activity_note_details.*
+import me.fabiooliveira.getnotes.alarm.domain.manager.NoteAlarmManager
 import me.fabiooliveira.getnotes.extensions.fadeIn
 import me.fabiooliveira.getnotes.extensions.getCalendarFromString
 import me.fabiooliveira.getnotes.extensions.getDateString
@@ -30,10 +31,12 @@ import me.fabiooliveira.getnotes.presentation.dialogfragment.LoadingDialog
 import me.fabiooliveira.getnotes.presentation.extensions.openDialog
 import me.fabiooliveira.getnotes.presentation.viewmodel.NoteDetailsViewModel
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import java.util.*
+
 
 internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_feature_activity_note_details),
         DatePickerDialog.OnDateSetListener, BottomSheetTimePickerDialog.OnTimeSetListener {
@@ -62,8 +65,8 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         get() = swReminder.isChecked
 
     private val noteItem: NoteItem? by lazy { intent.extras?.getParcelable(NOTE_ITEM_TAG) as NoteItem? }
-
     private val noteDetailsViewModel: NoteDetailsViewModel by viewModel { parametersOf(noteItem?.calendar) }
+    private val noteAlarmManager: NoteAlarmManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,6 +165,8 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
                     }
                     is NoteDetailsAction.UpdateDate -> setDate(it.cal)
                     is NoteDetailsAction.UpdateTime -> setTime(it.cal)
+                    is NoteDetailsAction.SetAlarm -> scheduleAlarm(it.noteId, it.noteTitle, it.noteContent, it.cal)
+                    is NoteDetailsAction.CancelAlarm -> cancelAlarm(it.noteId)
                 }
             })
             noteDetailsViewState.observe(this@NoteDetailsActivity, Observer {
@@ -232,6 +237,24 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         finish()
     }
 
+    private fun scheduleAlarm(noteId: Long,
+                              noteTitle: String,
+                              noteContent: String,
+                              calendar: Calendar) {
+        noteAlarmManager.scheduleAlarm(
+                noteId = noteId,
+                noteTitle = noteTitle,
+                noteContent = noteContent,
+                calendar = calendar
+        )
+    }
+
+    private fun cancelAlarm(noteId: Long) {
+        noteAlarmManager.cancelAlarm(
+                noteId = noteId
+        )
+    }
+
     private fun showLoading(hasToShow: Boolean) =
             if (hasToShow) progressDialog.show() else progressDialog.dismiss()
 
@@ -276,7 +299,7 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
                             noteDetailsViewModel.hideDialogs()
                         })
             }
-            is NoteDetailsViewState.Dialog.EmptyFieldsDialog -> {
+            is NoteDetailsViewState.Dialog.GenericMessageDialog -> {
                 openDialog(
                         titleRes = dialogViewState.titleRes,
                         descriptionRes = dialogViewState.descriptionRes,

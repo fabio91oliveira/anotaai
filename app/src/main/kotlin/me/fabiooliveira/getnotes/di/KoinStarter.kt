@@ -1,6 +1,7 @@
 package me.fabiooliveira.getnotes.di
 
 import android.app.Application
+import me.fabiooliveira.getnotes.alarm.di.AlarmModule
 import me.fabiooliveira.getnotes.notification.di.NotificationModule
 import me.fabiooliveira.getnotes.searchnotes.di.SearchNotesModule
 import org.koin.android.ext.koin.androidContext
@@ -38,6 +39,7 @@ object KoinStarter {
             NoteDetailsModule.load()
             SearchNotesModule.load()
             NotificationModule.load()
+            AlarmModule.load()
         }
     }
 }

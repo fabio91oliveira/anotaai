@@ -1,5 +1,5 @@
 package me.fabiooliveira.getnotes.notification.domain.controller
 
-internal interface NotificationController {
+internal interface TodayNotesNotificationController {
     fun handleNotesNotification()
 }

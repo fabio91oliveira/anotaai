@@ -44,4 +44,8 @@ internal class NoteRepositoryImpl(
             notesPageMapper.map(it)
         }
     }
+
+    override fun cancelReminder(id: Long): Flow<Int> {
+        return localDataSource.cancelReminder(id)
+    }
 }

@@ -1,5 +1,5 @@
 package me.fabiooliveira.getnotes.notification.domain.handler
 
-interface NotificationWorkerStarter {
+interface TodayNotesNotificationWorkerStarter {
     fun scheduleWorker()
 }

@@ -5,8 +5,10 @@
     <string name="note_details_feature_menu_save">Save</string>
     <string name="note_details_feature_menu_remove">Remove</string>
 
-    <string name="note_details_feature_title_hint">Title</string>
-    <string name="note_details_feature_description_hint">Type something…</string>
+    <string name="note_details_feature_title_text">Title</string>
+    <string name="note_details_feature_title_hint">Type your title</string>
+    <string name="note_details_feature_description_text">Description</string>
+    <string name="note_details_feature_description_hint">Describe about the note…</string>
     <string name="note_details_feature_date_hint">Select date</string>
     <string name="note_details_feature_time_hint">Select time</string>
     <string name="note_details_feature_date_filled_hint">Date</string>
@@ -21,4 +23,7 @@
 
     <string name="note_details_feature_empty_fields_note_title">Warning</string>
     <string name="note_details_feature_empty_fields_note_message">Please! Don`t forget to complete all the fields.</string>
+
+    <string name="note_details_feature_invalid_reminder_title">Warning</string>
+    <string name="note_details_feature_invalid_reminder_message">You can`t enable reminder if date or time is before today.</string>
 </resources>

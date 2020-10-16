@@ -35,52 +35,87 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/spacing_06">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/itNoteTitle"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoteTitle"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_03"
-                android:background="@null"
-                android:hint="@string/note_details_feature_title_hint"
-                android:imeOptions="actionNext"
-                android:maxLength="200"
-                android:singleLine="true"
-                android:textColor="@color/color_accent"
-                android:textSize="@dimen/text_size_10"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/note_details_feature_title_text"
+                android:textColor="@color/color_scale_3"
+                android:theme="@style/TextBold.Huge"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/itNoteTitle"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_02"
+                android:background="@drawable/note_details_feature_bg_input_rounded"
+                android:hint="@string/note_details_feature_title_hint"
+                android:imeOptions="actionNext"
+                android:maxLength="200"
+                android:paddingStart="@dimen/spacing_01"
+                android:paddingTop="@dimen/spacing_02"
+                android:paddingEnd="@dimen/spacing_01"
+                android:paddingBottom="@dimen/spacing_02"
+                android:singleLine="true"
+                android:textColor="@color/color_scale_1"
+                android:textSize="@dimen/text_size_05"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/tvNoteTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoteDescription"
+                android:layout_width="@dimen/popup_dialog_spacing_none"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_03"
+                android:text="@string/note_details_feature_description_text"
+                android:textColor="@color/color_scale_3"
+                android:theme="@style/TextBold.Huge"
+                app:layout_constraintEnd_toEndOf="@id/gdEnd"
+                app:layout_constraintStart_toStartOf="@id/gdStart"
+                app:layout_constraintTop_toBottomOf="@+id/itNoteTitle" />
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/itNoteDescription"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_04"
-                android:background="@null"
+                android:layout_marginTop="@dimen/spacing_02"
+                android:background="@drawable/note_details_feature_bg_input_rounded"
                 android:focusable="true"
                 android:gravity="top"
                 android:hint="@string/note_details_feature_description_hint"
                 android:imeOptions="actionNext"
-                android:minHeight="@dimen/spacing_12"
-                android:textColor="@color/color_accent"
-                android:textSize="@dimen/text_size_04"
+                android:lineSpacingMultiplier="1.2"
+                android:minHeight="@dimen/note_details_feature_description_min_height"
+                android:paddingStart="@dimen/spacing_01"
+                android:paddingTop="@dimen/spacing_02"
+                android:paddingEnd="@dimen/spacing_01"
+                android:paddingBottom="@dimen/spacing_02"
+                android:textColor="@color/color_scale_1"
+                android:textSize="@dimen/text_size_03"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/itNoteTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/tvNoteDescription" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvDate"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_04"
+                android:layout_marginTop="@dimen/spacing_02"
                 app:cardBackgroundColor="@color/color_primary"
                 app:cardElevation="@dimen/popup_dialog_spacing_none"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toBottomOf="@+id/itNoteDescription"
-                app:strokeColor="@color/color_scale_4"
+                app:strokeColor="@color/color_primary_dark"
                 app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,13 +178,13 @@
                 android:id="@+id/cvTime"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_half"
+                android:layout_marginTop="@dimen/spacing_01"
                 app:cardBackgroundColor="@color/color_primary"
                 app:cardElevation="@dimen/popup_dialog_spacing_none"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toBottomOf="@+id/cvDate"
-                app:strokeColor="@color/color_scale_4"
+                app:strokeColor="@color/color_primary_dark"
                 app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -286,97 +321,58 @@
                 android:id="@+id/tvSelectRelevance"
                 android:layout_width="@dimen/popup_dialog_spacing_none"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_04"
+                android:layout_marginTop="@dimen/spacing_02"
                 android:text="@string/note_details_feature_select_relevance"
                 android:textColor="@color/color_scale_3"
-                android:theme="@style/TextRegular.Huge"
+                android:theme="@style/TextBold.Huge"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toBottomOf="@+id/cvReminder" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvNormal"
-                android:layout_width="@dimen/popup_dialog_spacing_none"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llRelevanceOptions"
+                android:layout_width="@dimen/spacing_none"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_01"
-                app:cardBackgroundColor="@color/color_transparent_normal_relevance"
-                app:cardElevation="@dimen/popup_dialog_spacing_none"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@id/gdEnd"
                 app:layout_constraintStart_toStartOf="@id/gdStart"
                 app:layout_constraintTop_toBottomOf="@+id/tvSelectRelevance">
 
                 <RadioButton
-                    android:id="@+id/rbNormal"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rbHigh"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_01"
-                    android:buttonTint="@color/color_normal_relevance"
+                    android:buttonTint="@color/color_high_relevance"
                     android:onClick="onRadioButtonClicked"
-                    android:paddingStart="@dimen/spacing_01"
-                    android:paddingTop="@dimen/spacing_02"
-                    android:paddingBottom="@dimen/spacing_02"
-                    android:text="@string/list_notes_feature_relevance_normal"
-                    android:textColor="@color/color_normal_relevance"
-                    android:theme="@style/TextRegular.Big" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvMedium"
-                android:layout_width="@dimen/popup_dialog_spacing_none"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_01"
-                app:cardBackgroundColor="@color/color_transparent_medium_relevance"
-                app:cardElevation="@dimen/popup_dialog_spacing_none"
-                app:layout_constraintEnd_toEndOf="@id/gdEnd"
-                app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/cvNormal">
+                    android:padding="@dimen/spacing_01"
+                    android:text="@string/list_notes_feature_relevance_high"
+                    android:textColor="@color/color_high_relevance"
+                    android:theme="@style/TextRegular.Medium" />
 
                 <RadioButton
                     android:id="@+id/rbMedium"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_01"
                     android:buttonTint="@color/color_medium_relevance"
                     android:onClick="onRadioButtonClicked"
-                    android:paddingStart="@dimen/spacing_01"
-                    android:paddingTop="@dimen/spacing_02"
-                    android:paddingBottom="@dimen/spacing_02"
+                    android:padding="@dimen/spacing_01"
                     android:text="@string/list_notes_feature_relevance_medium"
                     android:textColor="@color/color_medium_relevance"
-                    android:theme="@style/TextRegular.Big" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvHigh"
-                android:layout_width="@dimen/popup_dialog_spacing_none"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_01"
-                android:layout_marginBottom="@dimen/spacing_02"
-                app:cardBackgroundColor="@color/color_transparent_high_relevance"
-                app:cardElevation="@dimen/popup_dialog_spacing_none"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/gdEnd"
-                app:layout_constraintStart_toStartOf="@id/gdStart"
-                app:layout_constraintTop_toBottomOf="@+id/cvMedium"
-                app:layout_constraintVertical_bias="0.0">
+                    android:theme="@style/TextRegular.Medium" />
 
                 <RadioButton
-                    android:id="@+id/rbHigh"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rbNormal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_01"
-                    android:buttonTint="@color/color_high_relevance"
+                    android:buttonTint="@color/color_normal_relevance"
                     android:onClick="onRadioButtonClicked"
-                    android:paddingStart="@dimen/spacing_01"
-                    android:paddingTop="@dimen/spacing_02"
-                    android:paddingBottom="@dimen/spacing_02"
-                    android:text="@string/list_notes_feature_relevance_high"
-                    android:textColor="@color/color_high_relevance"
-                    android:theme="@style/TextRegular.Big" />
+                    android:padding="@dimen/spacing_01"
+                    android:text="@string/list_notes_feature_relevance_normal"
+                    android:textColor="@color/color_normal_relevance"
+                    android:theme="@style/TextRegular.Medium" />
 
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/gdStart"

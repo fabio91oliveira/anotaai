@@ -2,10 +2,10 @@ package me.fabiooliveira.getnotes.di
 
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
-import me.fabiooliveira.getnotes.domain.usecase.ValidateEmptyFieldsUseCase
+import me.fabiooliveira.getnotes.domain.usecase.ValidateFieldsUseCase
 import me.fabiooliveira.getnotes.domain.usecase.impl.PublishNoteUseCaseImpl
 import me.fabiooliveira.getnotes.domain.usecase.impl.RemoveNoteUseCaseImpl
-import me.fabiooliveira.getnotes.domain.usecase.impl.ValidateEmptyFieldsUseCaseImpl
+import me.fabiooliveira.getnotes.domain.usecase.impl.ValidateFieldsUseCaseImpl
 import me.fabiooliveira.getnotes.navigation.NoteDetailsNavigation
 import me.fabiooliveira.getnotes.presentation.navigation.NoteDetailsDetailsNavigationImpl
 import me.fabiooliveira.getnotes.presentation.viewmodel.NoteDetailsViewModel
@@ -26,7 +26,7 @@ object NoteDetailsModule {
                     noteRepository = get()
             )
         }
-        factory<ValidateEmptyFieldsUseCase> { ValidateEmptyFieldsUseCaseImpl() }
+        factory<ValidateFieldsUseCase> { ValidateFieldsUseCaseImpl() }
     }
 
     private val presentationModule = module {
@@ -36,7 +36,7 @@ object NoteDetailsModule {
                     calendar = calendar ?: Calendar.getInstance(),
                     publishNoteUseCase = get(),
                     removeNoteUseCase = get(),
-                    validateEmptyFieldsUseCase = get()
+                    validateFieldsUseCase = get()
             )
         }
     }

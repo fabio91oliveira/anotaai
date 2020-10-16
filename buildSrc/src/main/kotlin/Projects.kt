@@ -12,6 +12,7 @@ object Features {
     const val NoteDetails = ":features:notedetails"
     const val SearchNotes = ":features:searchnotes"
     const val Notification = ":features:notification"
+    const val Alarm = ":features:alarm"
 }
 
 object UI {

@@ -96,6 +96,7 @@ class NoteItemsAdapter(
                 tvNoteNameOfDay.setTextColor(ContextCompat.getColor(containerView.context, R.color.color_accent_dark))
             } else {
                 tvNoteNameOfDay.text = noteItem.dateName
+                tvNoteNameOfDay.setTextColor(ContextCompat.getColor(containerView.context, R.color.color_scale_2))
             }
 
             if (noteItem.isReminder) {

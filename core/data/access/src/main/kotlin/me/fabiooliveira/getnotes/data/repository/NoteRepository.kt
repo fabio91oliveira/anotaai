@@ -10,4 +10,5 @@ interface NoteRepository {
     fun getNotesBefore(): Flow<List<Note>>
     fun getNotesByText(name: String): Flow<List<Note>>
     fun getNotesOnlyFromToday(): List<Note>
+    fun cancelReminder(id: Long): Flow<Int>
 }

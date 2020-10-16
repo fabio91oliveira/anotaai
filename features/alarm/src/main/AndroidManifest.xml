@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="features.alarm">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="features.alarm">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application android:excludeFromRecents="true">
+        <receiver android:name="me.fabiooliveira.getnotes.alarm.broadcastreceiver.NoteAlarmBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="me.fabiooliveira.getnotes.alarm.service.NoteAlarmService" />
+    </application>
 </manifest>

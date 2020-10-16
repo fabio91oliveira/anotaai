@@ -23,6 +23,7 @@ dependencies {
     implementation project(Features.NoteDetails)
     implementation project(Features.SearchNotes)
     implementation project(Features.Notification)
+    implementation project(Features.Alarm)
 
     // Koin
     implementation Deps.koin_scope
