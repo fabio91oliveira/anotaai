@@ -5,9 +5,6 @@ android {
 }
 
 dependencies {
-    // Features
-    implementation project(Features.ListNotes)
-
     // Core
     implementation project(Core.DataAccess)
     implementation project(Core.Navigation)
@@ -20,7 +17,6 @@ dependencies {
 
     // Koin
     implementation Deps.koin_scope
-
 
     // Timber
     implementation Deps.timber

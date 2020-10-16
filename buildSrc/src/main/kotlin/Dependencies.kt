@@ -14,6 +14,7 @@ object Versions {
 
     const val lifecycle = "2.2.0"
     const val navigation = "2.2.1"
+    const val bottom_sheet_picker = "2.4.1"
 
     const val coroutines = "1.3.9"
     const val room = "2.2.5"
@@ -48,6 +49,7 @@ object Deps {
 
     const val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val bottom_sheet_picker = "com.philliphsu:bottomsheetpickers:${Versions.bottom_sheet_picker}"
 
     const val coroutines_core =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"

@@ -5,6 +5,7 @@ android {
 }
 
 dependencies {
+    // Features
     implementation project(Features.ListNotes)
 
     // Core
@@ -16,6 +17,7 @@ dependencies {
     implementation project(UI.Resources)
     implementation project(UI.LoadingDialog)
     implementation project(UI.PopupDialog)
+    implementation Deps.bottom_sheet_picker
 
     // Support
     implementation Deps.support_material
@@ -41,6 +43,4 @@ dependencies {
 
     // Timber
     implementation Deps.timber
-
-    implementation 'com.philliphsu:bottomsheetpickers:2.4.1'
 }
