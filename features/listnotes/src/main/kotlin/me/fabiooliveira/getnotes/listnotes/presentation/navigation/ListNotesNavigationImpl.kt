@@ -2,10 +2,10 @@ package me.fabiooliveira.getnotes.listnotes.presentation.navigation
 
 import android.content.Context
 import android.content.Intent
-import me.fabiooliveira.getnotes.navigation.ListNotesNavigation
 import me.fabiooliveira.getnotes.listnotes.presentation.activity.ListNotesActivity
+import me.fabiooliveira.getnotes.navigation.ListNotesNavigation
 
-class ListNotesNavigationImpl : ListNotesNavigation {
+internal class ListNotesNavigationImpl : ListNotesNavigation {
     override fun navigateToFeature(context: Context) {
         context.startActivity(Intent(context, ListNotesActivity::class.java))
     }

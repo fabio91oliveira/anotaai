@@ -10,7 +10,17 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver android:name="me.fabiooliveira.getnotes.alarm.broadcastreceiver.NoteNotificationBeforeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
-        <service android:name="me.fabiooliveira.getnotes.alarm.service.NoteAlarmService" />
+        <service
+            android:name="me.fabiooliveira.getnotes.alarm.service.NoteAlarmService"
+            android:exported="false" />
+        <service
+            android:name="me.fabiooliveira.getnotes.alarm.service.NoteNotificationBeforeService"
+            android:exported="false" />
     </application>
 </manifest>

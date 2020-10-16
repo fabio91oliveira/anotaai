@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="alarm_feature_alarm_title">Reminder</string>
+    <string name="alarm_feature_reminder_title">Reminder: %s</string>
+    <string name="alarm_feature_reminder_before_description">10 minutes before your note reminder.</string>
     <string name="alarm_feature_alarm_stop">Stop</string>
 </resources>
