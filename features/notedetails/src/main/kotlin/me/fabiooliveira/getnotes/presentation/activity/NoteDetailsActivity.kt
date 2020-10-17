@@ -22,6 +22,7 @@ import me.fabiooliveira.getnotes.extensions.getDateString
 import me.fabiooliveira.getnotes.extensions.getTimeOfTheDay
 import me.fabiooliveira.getnotes.extensions.hideKeyboardFrom
 import me.fabiooliveira.getnotes.extensions.isDarkMode
+import me.fabiooliveira.getnotes.extensions.safeClick
 import me.fabiooliveira.getnotes.extensions.whenNull
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
@@ -177,12 +178,12 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
     }
 
     private fun setupClickListener() {
-        clDate.setOnClickListener {
+        clDate.safeClick({
             openSelectDateBottomSheetDialog()
-        }
-        clTime.setOnClickListener {
+        })
+        clTime.safeClick({
             openSelectTimeDialog()
-        }
+        })
         clReminder.setOnClickListener {
             swReminder.isChecked = swReminder.isChecked.not()
         }

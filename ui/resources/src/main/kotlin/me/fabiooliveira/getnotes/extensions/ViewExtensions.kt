@@ -1,6 +1,7 @@
 package me.fabiooliveira.getnotes.extensions
 
 import android.animation.ValueAnimator
+import android.os.SystemClock
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
@@ -62,4 +63,13 @@ fun View.doPopAnimation(duration: Long, func: () -> Unit) {
                 }
                 start()
             }
+}
+
+fun View.safeClick(listener: View.OnClickListener, blockInMillis: Long = 500) {
+    var lastClickTime: Long = 0
+    this.setOnClickListener {
+        if (SystemClock.elapsedRealtime() - lastClickTime < blockInMillis) return@setOnClickListener
+        lastClickTime = SystemClock.elapsedRealtime()
+        listener.onClick(this)
+    }
 }

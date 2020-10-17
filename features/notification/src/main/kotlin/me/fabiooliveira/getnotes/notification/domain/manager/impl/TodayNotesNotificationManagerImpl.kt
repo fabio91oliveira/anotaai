@@ -40,6 +40,7 @@ internal class TodayNotesNotificationManagerImpl(
             setContentText(context.getString(R.string.notification_feature_push_notes_today_message))
             setSmallIcon(R.mipmap.ic_launcher)
             setContentIntent(pIntent)
+            setAutoCancel(true)
             priority = NotificationCompat.PRIORITY_MAX
         }.build()
 
