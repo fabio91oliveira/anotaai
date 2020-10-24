@@ -6,6 +6,6 @@ import core.analytics.BuildConfig
 
 object FirebaseAnalyticsProvider {
     fun provideFirebaseAnalytics() = Firebase.analytics.apply {
-        setAnalyticsCollectionEnabled(BuildConfig.DEBUG.not())
+        setAnalyticsCollectionEnabled(BuildConfig.IS_ANALYTICS_ENABLED)
     }
 }

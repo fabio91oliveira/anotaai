@@ -2,6 +2,7 @@ package me.fabiooliveira.getnotes.analytics.domain.impl
 
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
+import core.analytics.BuildConfig
 import me.fabiooliveira.getnotes.analytics.domain.Analytics
 
 internal class AnalyticsImpl(
@@ -9,14 +10,20 @@ internal class AnalyticsImpl(
 ) : Analytics {
 
     override fun trackEvent(event: String) {
-        firebaseAnalytics.logEvent(event) {}
+        if (isAnalyticsEnabled()) {
+            firebaseAnalytics.logEvent(event) {}
+        }
     }
 
     override fun trackEventWithParamsDefault(event: String, vararg item: String) {
-        firebaseAnalytics.logEvent(event) {
-            item.forEach {
-                param(FirebaseAnalytics.Param.VALUE, it)
+        if (isAnalyticsEnabled()) {
+            firebaseAnalytics.logEvent(event) {
+                item.forEach {
+                    param(FirebaseAnalytics.Param.VALUE, it)
+                }
             }
         }
     }
+
+    private fun isAnalyticsEnabled() = BuildConfig.IS_ANALYTICS_ENABLED
 }
