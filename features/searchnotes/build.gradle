@@ -11,6 +11,7 @@ dependencies {
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
+    implementation project(Core.Analytics)
 
     // Ui
     implementation project(UI.Resources)

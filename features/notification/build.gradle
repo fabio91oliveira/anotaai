@@ -8,6 +8,7 @@ dependencies {
     // Core
     implementation project(Core.DataAccess)
     implementation project(Core.Navigation)
+    implementation project(Core.Analytics)
 
     // UI
     implementation project(UI.Resources)

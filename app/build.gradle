@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     defaultConfig {
@@ -8,12 +10,45 @@ android {
         versionCode Config.versionCode
         versionName Config.versionName
     }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".debug"
+        }
+        release {
+            minifyEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    task switchToDebug(type: Copy) {
+        description = 'Switches to DEBUG google-services.json'
+        from "src/debug"
+        include "google-services.json"
+        into "."
+    }
+
+    task switchToRelease(type: Copy) {
+        description = 'Switches to RELEASE google-services.json'
+        from "src/main"
+        include "google-services.json"
+        into "."
+    }
+    afterEvaluate {
+        processDebugGoogleServices.dependsOn switchToDebug
+        processReleaseGoogleServices.dependsOn switchToRelease
+    }
 }
 
 dependencies {
     // Core
     implementation project(Core.DataAccess)
     implementation project(Core.Navigation)
+    implementation project(Core.Analytics)
+    implementation project(Core.RemoteConfig)
 
     // UI
     implementation project(UI.Resources)

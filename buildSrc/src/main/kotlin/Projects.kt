@@ -5,6 +5,8 @@ object Core {
     const val DataRemote = ":core:data:remote"
     const val DataAccess = ":core:data:access"
     const val Navigation = ":core:navigation"
+    const val Analytics = ":core:analytics"
+    const val RemoteConfig = ":core:remoteconfig"
 }
 
 object Features {

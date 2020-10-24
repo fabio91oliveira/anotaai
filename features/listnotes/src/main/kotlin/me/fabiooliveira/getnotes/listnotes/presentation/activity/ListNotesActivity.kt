@@ -16,12 +16,15 @@ import me.fabiooliveira.getnotes.extensions.disableDarkMode
 import me.fabiooliveira.getnotes.extensions.doSlideDownAnimation
 import me.fabiooliveira.getnotes.extensions.enableDarkMode
 import me.fabiooliveira.getnotes.extensions.isDarkMode
+import me.fabiooliveira.getnotes.extensions.openDialogWithCancelButton
 import me.fabiooliveira.getnotes.extensions.whenNull
 import me.fabiooliveira.getnotes.listnotes.presentation.action.ListNotesAction
 import me.fabiooliveira.getnotes.listnotes.presentation.adapter.CustomFragmentPagerAdapter
+import me.fabiooliveira.getnotes.listnotes.presentation.extensions.openAppInPlayStore
 import me.fabiooliveira.getnotes.listnotes.presentation.fragment.PastListNotesFragment
 import me.fabiooliveira.getnotes.listnotes.presentation.fragment.RecentListNotesFragment
 import me.fabiooliveira.getnotes.listnotes.presentation.viewmodel.ListNotesViewModel
+import me.fabiooliveira.getnotes.listnotes.presentation.viewstate.ListNotesPopUpViewState
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
 import me.fabiooliveira.getnotes.navigation.NOTE_REQUEST_CODE
@@ -59,7 +62,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         setupSearch()
         setupClickListeners()
         savedInstanceState?.also {
-            viewModel.checkIfShowsOnBoarding()
+            viewModel.showOnBoardingPopUp()
         }.whenNull {
             viewModel.setColorScheme()
         }
@@ -96,6 +99,9 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
                 setHeaderTitle(it.tabSelected)
                 showHeader(it.isHeaderVisible)
                 enableChangeTab(it.isChangeTabEnabled)
+            })
+            listNotesPopUpViewState.observe(this@ListNotesActivity, Observer {
+                handleDialog(it.dialog)
             })
             listNotesAction.observe(this@ListNotesActivity, Observer {
                 when (it) {
@@ -202,5 +208,29 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
 
     private fun showOnBoarding() {
         startActivity(OnBoardingActivity.newIntent(this))
+    }
+
+    private fun handleDialog(dialogViewState: ListNotesPopUpViewState.Dialog) {
+        when (dialogViewState) {
+            is ListNotesPopUpViewState.Dialog.ShowUpdateDialog -> {
+                openDialogWithCancelButton(titleRes = dialogViewState.titleRes,
+                        descriptionRes = dialogViewState.descriptionRes,
+                        okButtonTextRes = dialogViewState.okButtonTextRes,
+                        cancelButtonTextRes = dialogViewState.cancelButtonTextRes,
+                        blockConfirm = {
+                            viewModel.trackUpdateOkClicked()
+                            openAppInPlayStore()
+                            if (dialogViewState.isForceUpdate) finish() else viewModel.hideDialogs()
+                        },
+                        blockCancel = {
+                            viewModel.trackUpdateCancelClicked()
+                            viewModel.hideDialogs()
+                        },
+                        isCancelable = dialogViewState.isForceUpdate.not()
+                )
+            }
+            else -> {
+            }
+        }
     }
 }

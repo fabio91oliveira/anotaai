@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">GetNotes</string>
+    <string name="app_store_link" translatable="false">market://details?id=me.fabiooliveira.getnotes</string>
+    <string name="app_web_store_link" translatable="false">https://play.google.com/store/apps/details?id=me.fabiooliveira.getnotes</string>
 
     <!-- All -->
-    <string name="all_button_ok">Ok</string>
+    <string name="all_button_ok">OK</string>
     <string name="all_button_go_back">Back</string>
     <string name="all_button_continue">Continue</string>
     <string name="all_button_yes">Yes</string>

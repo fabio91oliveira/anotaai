@@ -7,11 +7,12 @@ android {
 dependencies {
     // Features
     implementation project(Features.ListNotes)
+    implementation project(Features.Alarm)
 
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
-    implementation project(Features.Alarm)
+    implementation project(Core.Analytics)
 
     // Ui
     implementation project(UI.Resources)

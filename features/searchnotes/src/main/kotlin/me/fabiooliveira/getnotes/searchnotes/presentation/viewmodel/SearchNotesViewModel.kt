@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import me.fabiooliveira.getnotes.listnotes.domain.usecase.MountNoteItemsUseCase
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
+import me.fabiooliveira.getnotes.searchnotes.domain.analytics.SearchNotesAnalytics
 import me.fabiooliveira.getnotes.searchnotes.domain.usecase.GetNotesByTextUseCase
 import me.fabiooliveira.getnotes.searchnotes.presentation.action.SearchNotesAction
 import me.fabiooliveira.getnotes.searchnotes.presentation.viewstate.SearchNotesViewState
@@ -19,7 +20,8 @@ import timber.log.Timber
 
 internal class SearchNotesViewModel(
         private val getNotesByTextUseCase: GetNotesByTextUseCase,
-        private val mountNoteItemsUseCase: MountNoteItemsUseCase
+        private val mountNoteItemsUseCase: MountNoteItemsUseCase,
+        searchNotesAnalytics: SearchNotesAnalytics
 ) : ViewModel() {
 
     private val _searchNotesViewState by lazy { MutableLiveData<SearchNotesViewState>() }
@@ -30,6 +32,7 @@ internal class SearchNotesViewModel(
 
     init {
         initState()
+        searchNotesAnalytics.trackScreen()
     }
 
     fun getNotesByText(text: String) {

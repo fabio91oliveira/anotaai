@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.fabiooliveira.getnotes">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-
     <application
         android:name=".GetNotesApplication"
         android:allowBackup="true"

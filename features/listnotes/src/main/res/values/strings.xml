@@ -27,4 +27,13 @@
 
     <string name="list_notes_feature_on_boarding_fourth_screen_title">Enjoy the app</string>
     <string name="list_notes_feature_on_boarding_fourth_screen_description">I hope you like this new experience. Coming soon new features.</string>
+
+    <string name="list_notes_feature_update_message_title">New version</string>
+    <string name="list_notes_feature_update_message_description">There is a new version on the store available.</string>
+    <string name="list_notes_feature_update_message_ok_button_text">Go to store</string>
+    <string name="list_notes_feature_update_message_cancel_button_text">Not now</string>
+
+    <string name="list_notes_feature_force_update_message_title">It needs update</string>
+    <string name="list_notes_feature_force_update_message_description">There is a new version of the app on the store available and its update is needed, please update the app.</string>
+    <string name="list_notes_feature_force_update_message_ok_button_text">Go to store</string>
 </resources>

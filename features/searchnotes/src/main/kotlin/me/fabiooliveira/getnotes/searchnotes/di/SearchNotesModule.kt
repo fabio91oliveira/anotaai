@@ -1,6 +1,8 @@
 package me.fabiooliveira.getnotes.searchnotes.di
 
 import me.fabiooliveira.getnotes.navigation.SearchNotesNavigation
+import me.fabiooliveira.getnotes.searchnotes.domain.analytics.SearchNotesAnalytics
+import me.fabiooliveira.getnotes.searchnotes.domain.analytics.impl.SearchNotesAnalyticsImpl
 import me.fabiooliveira.getnotes.searchnotes.domain.usecase.GetNotesByTextUseCase
 import me.fabiooliveira.getnotes.searchnotes.domain.usecase.impl.GetNotesByTextUseCaseImpl
 import me.fabiooliveira.getnotes.searchnotes.presentation.navigation.SearchNotesNavigationImpl
@@ -16,13 +18,19 @@ object SearchNotesModule {
                     noteRepository = get()
             )
         }
+        factory<SearchNotesAnalytics> {
+            SearchNotesAnalyticsImpl(
+                    analytics = get()
+            )
+        }
     }
     private val presentationModule = module {
         factory<SearchNotesNavigation> { SearchNotesNavigationImpl() }
         viewModel {
             SearchNotesViewModel(
                     getNotesByTextUseCase = get(),
-                    mountNoteItemsUseCase = get()
+                    mountNoteItemsUseCase = get(),
+                    searchNotesAnalytics = get()
             )
         }
     }

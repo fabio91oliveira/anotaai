@@ -1,6 +1,8 @@
 package me.fabiooliveira.getnotes.notification.di
 
 import androidx.work.WorkManager
+import me.fabiooliveira.getnotes.notification.domain.analytics.TodayNotesNotificationAnalytics
+import me.fabiooliveira.getnotes.notification.domain.analytics.impl.TodayNotesNotificationAnalyticsImpl
 import me.fabiooliveira.getnotes.notification.domain.controller.TodayNotesNotificationController
 import me.fabiooliveira.getnotes.notification.domain.controller.impl.TodayNotesNotificationControllerImpl
 import me.fabiooliveira.getnotes.notification.domain.handler.TodayNotesNotificationWorkerStarter
@@ -26,10 +28,16 @@ object NotificationModule {
             GetNotesOnlyFromTodayUseCaseImpl(
                     noteRepository = get())
         }
+        factory<TodayNotesNotificationAnalytics> {
+            TodayNotesNotificationAnalyticsImpl(
+                    analytics = get()
+            )
+        }
         factory<TodayNotesNotificationController> {
             TodayNotesNotificationControllerImpl(
                     getNotesOnlyFromTodayUseCase = get(),
-                    todayNotesNotificationManager = get()
+                    todayNotesNotificationManager = get(),
+                    todayNotesNotificationAnalytics = get()
             )
         }
         factory<TodayNotesNotificationWorkerStarter> {

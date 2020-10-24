@@ -10,6 +10,8 @@ include ':app',
         ':core:data:local',
         ':core:data:remote',
         ':core:navigation',
+        ':core:analytics',
+        ':core:remoteconfig',
         ':ui:resources',
         ':ui:loadingdialog',
         ':ui:popupdialog'

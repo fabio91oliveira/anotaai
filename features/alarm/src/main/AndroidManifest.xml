@@ -3,6 +3,7 @@
     package="features.alarm">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application android:excludeFromRecents="true">
         <receiver android:name="me.fabiooliveira.getnotes.alarm.broadcastreceiver.NoteAlarmBroadcastReceiver">
@@ -10,17 +11,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="me.fabiooliveira.getnotes.alarm.broadcastreceiver.NoteNotificationBeforeBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
         <service
             android:name="me.fabiooliveira.getnotes.alarm.service.NoteAlarmService"
-            android:exported="false" />
-        <service
-            android:name="me.fabiooliveira.getnotes.alarm.service.NoteNotificationBeforeService"
             android:exported="false" />
     </application>
 </manifest>

@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.domain.analytics.NoteDetailsAnalytics
 import me.fabiooliveira.getnotes.domain.exception.NoteDetailsException
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
@@ -27,7 +28,8 @@ internal class NoteDetailsViewModel(
         private val calendar: Calendar,
         private val publishNoteUseCase: PublishNoteUseCase,
         private val removeNoteUseCase: RemoveNoteUseCase,
-        private val validateFieldsUseCase: ValidateFieldsUseCase
+        private val validateFieldsUseCase: ValidateFieldsUseCase,
+        private val noteDetailsAnalytics: NoteDetailsAnalytics
 ) : ViewModel() {
 
     private val _noteDetailsAction by lazy { MutableLiveData<NoteDetailsAction>() }
@@ -38,6 +40,7 @@ internal class NoteDetailsViewModel(
 
     init {
         initState()
+        noteDetailsAnalytics.trackScreen()
     }
 
     fun publishNote(
@@ -49,6 +52,7 @@ internal class NoteDetailsViewModel(
             relevance: RelevanceEnum,
             isReminder: Boolean
     ) {
+        if (idNote == null) trackSaveButtonClicked() else trackButtonPublishClicked()
         viewModelScope.launch {
             validateFieldsUseCase(
                     titleNote = titleNote,
@@ -78,7 +82,7 @@ internal class NoteDetailsViewModel(
 
     fun removeNote(noteId: Long?) {
         viewModelScope.launch {
-            noteId?.also {
+            noteId?.also { id ->
                 handleLoading()
                 removeNoteUseCase(noteId)
                         .flowOn(Dispatchers.IO)
@@ -88,6 +92,7 @@ internal class NoteDetailsViewModel(
                         }
                         .collect {
                             handleLoading()
+                            NoteDetailsAction.CancelAlarm(id).sendAction()
                             handleSuccess()
                         }
             }
@@ -125,6 +130,30 @@ internal class NoteDetailsViewModel(
                 it.copy(dialog = NoteDetailsViewState.Dialog.NoDialog)
             }
 
+    fun trackScreenMode(isEdit: Boolean) {
+        noteDetailsAnalytics.trackScreenMode(isEdit)
+    }
+
+    fun trackReminderClicked(isEnabled: Boolean) {
+        noteDetailsAnalytics.trackReminderClicked(isEnabled)
+    }
+
+    fun trackButtonCloseClicked() {
+        noteDetailsAnalytics.trackCloseButtonClicked()
+    }
+
+    private fun trackButtonPublishClicked() {
+        noteDetailsAnalytics.trackPublishButtonClicked()
+    }
+
+    private fun trackSaveButtonClicked() {
+        noteDetailsAnalytics.trackSaveButtonClicked()
+    }
+
+    fun trackRemoveButtonClicked() {
+        noteDetailsAnalytics.trackRemoveButtonClicked()
+    }
+
     private fun showGenericDialogMessage(
             @StringRes titleRes: Int,
             @StringRes descriptionRes: Int
@@ -160,15 +189,19 @@ internal class NoteDetailsViewModel(
                     NoteDetailsAction.Error.sendAction()
                 }
                 .collect {
-                    if (isReminder)
+                    if (isReminder) {
                         NoteDetailsAction.SetAlarm(
                                 noteId = it,
                                 noteTitle = titleNote,
                                 noteContent = descriptionNote,
                                 cal = calendar
                         ).sendAction()
-                    else
+                        noteDetailsAnalytics.trackReminderScheduled()
+                    } else {
                         NoteDetailsAction.CancelAlarm(noteId = it).sendAction()
+                        noteDetailsAnalytics.trackReminderCancelled()
+                    }
+
                     handleLoading()
                     handleSuccess()
                 }

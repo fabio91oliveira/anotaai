@@ -1,5 +1,7 @@
 package me.fabiooliveira.getnotes.di
 
+import me.fabiooliveira.getnotes.domain.analytics.NoteDetailsAnalytics
+import me.fabiooliveira.getnotes.domain.analytics.impl.NoteDetailsAnalyticsImpl
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.ValidateFieldsUseCase
@@ -27,6 +29,11 @@ object NoteDetailsModule {
             )
         }
         factory<ValidateFieldsUseCase> { ValidateFieldsUseCaseImpl() }
+        factory<NoteDetailsAnalytics> {
+            NoteDetailsAnalyticsImpl(
+                    analytics = get()
+            )
+        }
     }
 
     private val presentationModule = module {
@@ -36,7 +43,8 @@ object NoteDetailsModule {
                     calendar = calendar ?: Calendar.getInstance(),
                     publishNoteUseCase = get(),
                     removeNoteUseCase = get(),
-                    validateFieldsUseCase = get()
+                    validateFieldsUseCase = get(),
+                    noteDetailsAnalytics = get()
             )
         }
     }

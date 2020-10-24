@@ -3,7 +3,7 @@ package me.fabiooliveira.getnotes.alarm.broadcastreceiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.Build
+import androidx.core.content.ContextCompat
 import me.fabiooliveira.getnotes.alarm.domain.manager.NOTE_CONTENT
 import me.fabiooliveira.getnotes.alarm.domain.manager.NOTE_ID
 import me.fabiooliveira.getnotes.alarm.domain.manager.NOTE_TITLE
@@ -21,10 +21,6 @@ class NoteAlarmBroadcastReceiver : BroadcastReceiver() {
         intentService.putExtra(NOTE_ID, intent.getLongExtra(NOTE_ID, DEFAULT_VALUE))
         intentService.putExtra(NOTE_TITLE, intent.getStringExtra(NOTE_TITLE))
         intentService.putExtra(NOTE_CONTENT, intent.getStringExtra(NOTE_CONTENT))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intentService)
-        } else {
-            context.startService(intentService)
-        }
+        ContextCompat.startForegroundService(context, intentService)
     }
 }

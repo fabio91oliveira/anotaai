@@ -1,0 +1,11 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+    // Firebase
+    implementation platform(Deps.firebase_bom)
+    implementation Deps.firebase_crashlytics
+    implementation Deps.firebase_analytics
+
+    // Koin
+    implementation Deps.koin_scope
+}

@@ -8,6 +8,7 @@ import me.fabiooliveira.getnotes.alarm.domain.manager.CHANNEL_ID
 import me.fabiooliveira.getnotes.alarm.domain.manager.CHANNEL_NAME
 import me.fabiooliveira.getnotes.di.KoinStarter
 import me.fabiooliveira.getnotes.notification.domain.handler.TodayNotesNotificationWorkerStarter
+import me.fabiooliveira.getnotes.remoteconfig.domain.RemoteConfigManager
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import timber.log.Timber
@@ -15,12 +16,14 @@ import timber.log.Timber
 class GetNotesApplication : Application(), KoinComponent {
 
     private val todayNotesNotificationWorkerStarter: TodayNotesNotificationWorkerStarter by inject()
+    private val remoteConfigManager: RemoteConfigManager by inject()
 
     override fun onCreate() {
         super.onCreate()
         startTimber()
         startKoin()
         startWorker()
+        startRemoteConfig()
         createNotificationChannel()
     }
 
@@ -35,6 +38,10 @@ class GetNotesApplication : Application(), KoinComponent {
 
     private fun startWorker() {
         todayNotesNotificationWorkerStarter.scheduleWorker()
+    }
+
+    private fun startRemoteConfig() {
+        remoteConfigManager.fetchAndActive()
     }
 
     private fun createNotificationChannel() {

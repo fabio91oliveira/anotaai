@@ -10,6 +10,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.app.NotificationCompat
 import features.alarm.R
+import me.fabiooliveira.getnotes.alarm.domain.analytics.NoteAlarmAnalytics
 import me.fabiooliveira.getnotes.alarm.domain.manager.CHANNEL_ID
 import me.fabiooliveira.getnotes.alarm.domain.manager.NOTE_CONTENT
 import me.fabiooliveira.getnotes.alarm.domain.manager.NOTE_ID
@@ -34,6 +35,7 @@ internal class NoteAlarmService : Service(), KoinComponent {
     private val vibrator: Vibrator by inject()
     private val reminderStatusManager: ReminderStatusManager by inject()
     private val listNotesNavigation: ListNotesNavigation by inject()
+    private val noteAlarmAnalytics: NoteAlarmAnalytics by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -46,6 +48,7 @@ internal class NoteAlarmService : Service(), KoinComponent {
                 stopForeground(REMOVE_NOTIFICATION)
             }
             stopSelf()
+            noteAlarmAnalytics.trackAlarmStopped()
         } else {
             val noteId = intent.extras?.getLong(NOTE_ID, DEFAULT_NOTE_ID) ?: 0L
             val noteTitle = intent.extras?.getString(NOTE_TITLE).orEmpty()
@@ -56,6 +59,7 @@ internal class NoteAlarmService : Service(), KoinComponent {
             showNotification(noteTitle, noteContent)
 
             reminderStatusManager.cancelReminder(noteId)
+            noteAlarmAnalytics.trackAlarmStarted()
         }
         return START_STICKY
     }
@@ -82,6 +86,7 @@ internal class NoteAlarmService : Service(), KoinComponent {
 
         val appIntent = listNotesNavigation.getIntent(this)
         appIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        appIntent.action = ACTION_STOP
         val pendingAppIntent = PendingIntent.getActivity(this, REQUEST_CODE_APP, appIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {

@@ -151,7 +151,10 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         with(toolbar) {
             setSupportActionBar(this)
             supportActionBar?.setDisplayShowTitleEnabled(false)
-            setNavigationOnClickListener { onBackPressed() }
+            setNavigationOnClickListener {
+                noteDetailsViewModel.trackButtonCloseClicked()
+                onBackPressed()
+            }
         }
     }
 
@@ -186,6 +189,7 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
         })
         clReminder.setOnClickListener {
             swReminder.isChecked = swReminder.isChecked.not()
+            noteDetailsViewModel.trackReminderClicked(swReminder.isChecked)
         }
     }
 
@@ -194,6 +198,7 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
     }
 
     private fun setupNoteItem() {
+        noteDetailsViewModel.trackScreenMode(noteItem != null)
         noteItem?.also {
             handleNoteItemFields(it)
         }.whenNull {
@@ -295,6 +300,7 @@ internal class NoteDetailsActivity : AppCompatActivity(R.layout.note_details_fea
                         blockConfirm = {
                             noteDetailsViewModel.hideDialogs()
                             noteDetailsViewModel.removeNote(noteItem?.id)
+                            noteDetailsViewModel.trackRemoveButtonClicked()
                         },
                         blockCancel = {
                             noteDetailsViewModel.hideDialogs()
