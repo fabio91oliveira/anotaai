@@ -147,6 +147,7 @@ internal class ListNotesActivity : AppCompatActivity(R.layout.list_notes_feature
         }
         ivDarkMode.setOnClickListener {
             viewModel.switchDarkMode(isDarkMode())
+            viewModel.trackChangeThemeMode(isDarkMode())
         }
         abInside.addOnOffsetChangedListener(this)
 

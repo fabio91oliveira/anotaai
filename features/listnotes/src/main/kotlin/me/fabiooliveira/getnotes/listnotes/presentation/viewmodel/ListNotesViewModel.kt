@@ -170,6 +170,10 @@ internal class ListNotesViewModel(
         listNotesAnalytics.trackUpdatePopUpCancelClicked()
     }
 
+    fun trackChangeThemeMode(isDarkModeEnabled: Boolean) {
+        listNotesAnalytics.trackChangeThemeMode(isDarkModeEnabled)
+    }
+
     private fun checkIfNeedsToShowPopUpUpdateMessage() {
         viewModelScope.launch {
             fetchUpdateConfigUseCase()
@@ -262,7 +266,6 @@ internal class ListNotesViewModel(
     }
 
     private fun handleDarkMode(isDarkModeEnabled: Boolean) {
-        listNotesAnalytics.trackChangeThemeMode(isDarkModeEnabled)
         when (isDarkModeEnabled) {
             true -> ListNotesAction.SetDarkMode.sendAction()
             else -> ListNotesAction.SetLightMode.sendAction()
