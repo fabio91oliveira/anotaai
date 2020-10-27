@@ -1,6 +1,10 @@
 package me.fabiooliveira.getnotes.di
 
 import android.app.Application
+import me.fabiooliveira.getnotes.alarm.di.AlarmModule
+import me.fabiooliveira.getnotes.analytics.di.AnalyticsModule
+import me.fabiooliveira.getnotes.notification.di.NotificationModule
+import me.fabiooliveira.getnotes.remoteconfig.di.RemoteConfigModule
 import me.fabiooliveira.getnotes.searchnotes.di.SearchNotesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -32,10 +36,18 @@ object KoinStarter {
             AppModule.load()
             DataAccessModule.load()
 
+            // Analytics
+            AnalyticsModule.load()
+
+            // RemoteConfig
+            RemoteConfigModule.load()
+
             // Features
             ListNotesModule.load()
             NoteDetailsModule.load()
             SearchNotesModule.load()
+            NotificationModule.load()
+            AlarmModule.load()
         }
     }
 }

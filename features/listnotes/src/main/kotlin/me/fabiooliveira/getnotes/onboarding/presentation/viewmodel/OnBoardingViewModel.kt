@@ -9,13 +9,15 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.onboarding.domain.analytics.OnBoardingAnalytics
 import me.fabiooliveira.getnotes.onboarding.domain.usecase.CreateOnBoardingScreensUseCase
 import me.fabiooliveira.getnotes.onboarding.presentation.action.OnBoardingActions
 import timber.log.Timber
 
 
 internal class OnBoardingViewModel(
-        private val createOnBoardingScreensUseCase: CreateOnBoardingScreensUseCase
+        private val createOnBoardingScreensUseCase: CreateOnBoardingScreensUseCase,
+        onBoardingAnalytics: OnBoardingAnalytics
 ) : ViewModel() {
 
     private val _onBoardingActions by lazy { MutableLiveData<OnBoardingActions>() }
@@ -23,6 +25,7 @@ internal class OnBoardingViewModel(
 
     init {
         showScreens()
+        onBoardingAnalytics.trackScreen()
     }
 
     fun closeScreen() {

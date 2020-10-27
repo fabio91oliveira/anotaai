@@ -22,12 +22,18 @@ interface NoteDao {
     @Query("DELETE FROM note WHERE id == :id")
     fun delete(id: Long): Int
 
-    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) >= strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
+    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch','localtime')) >= strftime('%Y %m %d','now','localtime') ORDER BY strftime('%Y %m %d', datetime(date/1000, 'unixepoch','localtime')) ASC, relevance DESC, id DESC")
     fun findNotesStartingFromToday(): Flow<List<NoteEntity>>
 
-    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch')) < strftime('%Y %m %d','now','localtime') ORDER BY date ASC, relevance DESC, id DESC")
+    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', datetime(date/1000, 'unixepoch','localtime')) < strftime('%Y %m %d','now','localtime') ORDER BY strftime('%Y %m %d', datetime(date/1000, 'unixepoch','localtime')) ASC, relevance DESC, id DESC")
     fun findNotesBeforeToday(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM note WHERE title LIKE '%' || :text || '%' OR contentDescription LIKE '%' || :text || '%'")
     fun findNotesByText(text: String): Flow<List<NoteEntity>>
+
+    @Query("SELECT * FROM note WHERE strftime('%Y %m %d', date(date/1000,'unixepoch','localtime')) == strftime('%Y %m %d','now','localtime')")
+    fun findNotesOnlyFromToday(): List<NoteEntity>
+
+    @Query("UPDATE note SET isReminder = 0 WHERE id = :id")
+    fun cancelReminder(id: Long): Int
 }

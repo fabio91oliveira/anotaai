@@ -9,7 +9,7 @@
         <item name="colorControlNormal">@color/color_accent_dark</item>
         <item name="colorControlHighlight">@color/color_ripple</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/color_primary_dark</item>
+        <item name="android:statusBarColor">@color/color_primary</item>
         <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
         <item name="android:listPreferredItemPaddingLeft">2dp</item>
         <item name="android:listPreferredItemPaddingRight">2dp</item>

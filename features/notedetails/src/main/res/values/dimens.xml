@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="note_details_feature_description_min_height">124dp</dimen>
+</resources>

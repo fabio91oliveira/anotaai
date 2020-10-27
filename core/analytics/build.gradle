@@ -1,0 +1,17 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+    defaultConfig {
+        buildConfigField "boolean", "IS_ANALYTICS_ENABLED", "true"
+    }
+}
+
+dependencies {
+    // Firebase
+    implementation platform(Deps.firebase_bom)
+    implementation Deps.firebase_crashlytics
+    implementation Deps.firebase_analytics
+
+    // Koin
+    implementation Deps.koin_scope
+}

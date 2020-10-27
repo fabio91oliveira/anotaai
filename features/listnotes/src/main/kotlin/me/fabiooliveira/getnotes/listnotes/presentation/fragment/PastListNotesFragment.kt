@@ -29,6 +29,7 @@ internal class PastListNotesFragment : Fragment(R.layout.list_notes_feature_frag
     override fun onResume() {
         super.onResume()
         listNotesViewModel.setTabName(R.string.list_notes_feature_tab_past)
+        listNotesViewModel.trackPastTab()
     }
 
     override fun onClickNote(noteItem: NoteItem) {

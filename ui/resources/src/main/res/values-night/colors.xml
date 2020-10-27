@@ -3,10 +3,11 @@
     <color name="color_primary">#1f1f1f</color>
     <color name="color_primary_dark">#2f2f2f</color>
 
-    <color name="color_scale_1">#a8a8a8</color>
+    <color name="color_scale_1">#868686</color>
     <color name="color_scale_2">#cacaca</color>
     <color name="color_scale_3">#757575</color>
     <color name="color_scale_4">#3C3C3C</color>
+    <color name="color_scale_5">#252525</color>
 
     <color name="color_accent">#5262bc</color>
     <color name="color_accent_dark">#3f51b5</color>

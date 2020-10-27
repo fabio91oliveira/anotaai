@@ -6,6 +6,8 @@ buildscript {
     dependencies {
         classpath Deps.tools_android_gradle_plugin
         classpath Deps.tools_kotlin_plugin
+        classpath Deps.google_services
+        classpath Deps.firebase_crashlytics_gradle
     }
 }
 
@@ -28,6 +30,14 @@ subprojects {
                     minSdkVersion Config.minSdk
                     targetSdkVersion Config.targetSdk
                     testInstrumentationRunner Config.runner
+                    versionCode Config.versionCode
+                    versionName Config.versionName
+                    multiDexEnabled true
+                }
+
+                testOptions {
+                    execution Config.orchestrator
+                    animationsDisabled = true
                 }
 
                 if (project.plugins.findPlugin('kotlin-android-extensions')) {
@@ -43,14 +53,11 @@ subprojects {
                 compileOptions {
                     sourceCompatibility Config.javaVersion
                     targetCompatibility Config.javaVersion
-                }
-                defaultConfig {
-                    multiDexEnabled true
-                }
-                buildTypes {
-                    release {
-                        minifyEnabled true
-                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+                    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+                        kotlinOptions {
+                            jvmTarget = "1.8"
+                        }
                     }
                 }
             }

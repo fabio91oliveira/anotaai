@@ -5,10 +5,17 @@
     <string name="note_details_feature_menu_save">Salvar</string>
     <string name="note_details_feature_menu_remove">Remover</string>
 
-    <string name="note_details_feature_title_hint">Título</string>
-    <string name="note_details_feature_description_hint">Escreva algo…</string>
+    <string name="note_details_feature_title_text">Título</string>
+    <string name="note_details_feature_title_hint">Digite o título</string>
+    <string name="note_details_feature_description_text">Descrição</string>
+    <string name="note_details_feature_description_hint">Descreva a sua nota...</string>
     <string name="note_details_feature_date_hint">Selecionar data</string>
-    <string name="note_details_feature_select_relevance">Selecionar relevância</string>
+    <string name="note_details_feature_time_hint">Selecionar hora</string>
+    <string name="note_details_feature_date_filled_hint">Data</string>
+    <string name="note_details_feature_time_filled_hint">Hora</string>
+    <string name="note_details_feature_reminder_title">Lembrete</string>
+    <string name="note_details_feature_reminder_description">Habilite lembrete para tocar um alarme na hora selecionada</string>
+    <string name="note_details_feature_select_relevance">Relevância</string>
     <string name="note_details_feature_continue">Continuar</string>
 
     <string name="note_details_feature_remove_note_title">Atenção</string>
@@ -16,4 +23,7 @@
 
     <string name="note_details_feature_empty_fields_note_title">Atenção</string>
     <string name="note_details_feature_empty_fields_note_message">Por favor! Preenchar os campos em branco.</string>
+
+    <string name="note_details_feature_invalid_reminder_title">Atenção</string>
+    <string name="note_details_feature_invalid_reminder_message">Você não pode habilitar o lembrete se a data ou hora é anterior a de hoje.</string>
 </resources>

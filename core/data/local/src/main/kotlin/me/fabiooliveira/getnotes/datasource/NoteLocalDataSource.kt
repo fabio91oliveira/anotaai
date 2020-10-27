@@ -9,4 +9,6 @@ interface NoteLocalDataSource {
     fun getNotesFromTodayToFuture(): Flow<List<NoteEntity>>
     fun getNotesBeforeToday(): Flow<List<NoteEntity>>
     fun getNotesByText(name: String): Flow<List<NoteEntity>>
+    fun getNotesOnlyFromToday(): List<NoteEntity>
+    fun cancelReminder(id: Long): Flow<Int>
 }

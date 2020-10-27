@@ -17,7 +17,7 @@
     <string name="list_notes_feature_on_boarding_go_to_app_button">Ir para o app</string>
 
     <string name="list_notes_feature_on_boarding_first_screen_title">Olá, bem-vindo!</string>
-    <string name="list_notes_feature_on_boarding_first_screen_description">O Anota Ai é um simlpes aplicativo onde você pode anotar tudo o que você quiser! Nós melhores nossa cara pra te trazer uma experiência mais agradável.</string>
+    <string name="list_notes_feature_on_boarding_first_screen_description">O Anota Ai é um simlpes aplicativo onde você pode anotar tudo o que você quiser! Nós melhoramos nossa cara pra te trazer uma experiência mais agradável.</string>
 
     <string name="list_notes_feature_on_boarding_second_screen_title">Anote tudo o quê vem na sua cabeça</string>
     <string name="list_notes_feature_on_boarding_second_screen_description">Você pode criar uma simples nota e ordenar por relevância.</string>
@@ -27,4 +27,13 @@
 
     <string name="list_notes_feature_on_boarding_fourth_screen_title">Aproveite o app</string>
     <string name="list_notes_feature_on_boarding_fourth_screen_description">Esperamos que você goste e em breve teremos novidades em funcionalidades.</string>
+
+    <string name="list_notes_feature_update_message_title">Nova versão</string>
+    <string name="list_notes_feature_update_message_description">Nova versão disponível na loja.</string>
+    <string name="list_notes_feature_update_message_ok_button_text">Ir para a loja</string>
+    <string name="list_notes_feature_update_message_cancel_button_text">Agora não</string>
+
+    <string name="list_notes_feature_force_update_message_title">Atualização necessária</string>
+    <string name="list_notes_feature_force_update_message_description">Para continuar a utilizar o aplicativo, é necessário a atualização.</string>
+    <string name="list_notes_feature_force_update_message_ok_button_text">Ir para a loja</string>
 </resources>

@@ -1,5 +1,6 @@
 package me.fabiooliveira.getnotes.presentation.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,19 +12,24 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import me.fabiooliveira.getnotes.domain.analytics.NoteDetailsAnalytics
+import me.fabiooliveira.getnotes.domain.exception.NoteDetailsException
 import me.fabiooliveira.getnotes.domain.usecase.PublishNoteUseCase
 import me.fabiooliveira.getnotes.domain.usecase.RemoveNoteUseCase
-import me.fabiooliveira.getnotes.domain.usecase.ValidateEmptyFieldsUseCase
+import me.fabiooliveira.getnotes.domain.usecase.ValidateFieldsUseCase
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.RelevanceEnum
 import me.fabiooliveira.getnotes.presentation.action.NoteDetailsAction
 import me.fabiooliveira.getnotes.presentation.viewstate.NoteDetailsViewState
+import java.util.*
 
 private const val DELAY_ANIMATION_SUCCESS = 1200L
 
 internal class NoteDetailsViewModel(
+        private val calendar: Calendar,
         private val publishNoteUseCase: PublishNoteUseCase,
         private val removeNoteUseCase: RemoveNoteUseCase,
-        private val validateEmptyFieldsUseCase: ValidateEmptyFieldsUseCase
+        private val validateFieldsUseCase: ValidateFieldsUseCase,
+        private val noteDetailsAnalytics: NoteDetailsAnalytics
 ) : ViewModel() {
 
     private val _noteDetailsAction by lazy { MutableLiveData<NoteDetailsAction>() }
@@ -34,6 +40,7 @@ internal class NoteDetailsViewModel(
 
     init {
         initState()
+        noteDetailsAnalytics.trackScreen()
     }
 
     fun publishNote(
@@ -41,36 +48,41 @@ internal class NoteDetailsViewModel(
             titleNote: String,
             descriptionNote: String,
             date: String,
-            relevance: RelevanceEnum
+            time: String,
+            relevance: RelevanceEnum,
+            isReminder: Boolean
     ) {
+        if (idNote == null) trackSaveButtonClicked() else trackButtonPublishClicked()
         viewModelScope.launch {
-            validateEmptyFieldsUseCase(
+            validateFieldsUseCase(
                     titleNote = titleNote,
                     descriptionNote = descriptionNote,
-                    date = date)
+                    date = date,
+                    time = time,
+                    isReminder = isReminder,
+                    calendar = calendar)
                     .flowOn(Dispatchers.Default)
                     .catch {
-                        NoteDetailsAction.Error.sendAction()
-                    }
-                    .collect { isValid ->
-                        if (isValid) {
-                            saveNote(
-                                    idNote = idNote,
-                                    titleNote = titleNote,
-                                    descriptionNote = descriptionNote,
-                                    date = date,
-                                    relevance = relevance
-                            )
-                        } else {
-                            showEmptyFieldsDialog()
+                        when (it) {
+                            is NoteDetailsException -> showGenericDialogMessage(it.titleRes, it.descriptionRes)
+                            else -> NoteDetailsAction.Error.sendAction()
                         }
+                    }
+                    .collect {
+                        saveNote(
+                                idNote = idNote,
+                                titleNote = titleNote,
+                                descriptionNote = descriptionNote,
+                                relevance = relevance,
+                                isReminder = isReminder
+                        )
                     }
         }
     }
 
     fun removeNote(noteId: Long?) {
         viewModelScope.launch {
-            noteId?.also {
+            noteId?.also { id ->
                 handleLoading()
                 removeNoteUseCase(noteId)
                         .flowOn(Dispatchers.IO)
@@ -80,10 +92,27 @@ internal class NoteDetailsViewModel(
                         }
                         .collect {
                             handleLoading()
+                            NoteDetailsAction.CancelAlarm(id).sendAction()
                             handleSuccess()
                         }
             }
         }
+    }
+
+    fun updateDate(year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, monthOfYear)
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+        NoteDetailsAction.UpdateDate(calendar).sendAction()
+        NoteDetailsAction.UpdateTime(calendar).sendAction()
+    }
+
+    fun updateTime(hourOfDay: Int, minute: Int) {
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.MINUTE, minute)
+
+        NoteDetailsAction.UpdateTime(calendar).sendAction()
     }
 
     fun showConfirmationDialogRemoveRecentNote() =
@@ -101,12 +130,39 @@ internal class NoteDetailsViewModel(
                 it.copy(dialog = NoteDetailsViewState.Dialog.NoDialog)
             }
 
-    private fun showEmptyFieldsDialog() =
+    fun trackScreenMode(isEdit: Boolean) {
+        noteDetailsAnalytics.trackScreenMode(isEdit)
+    }
+
+    fun trackReminderClicked(isEnabled: Boolean) {
+        noteDetailsAnalytics.trackReminderClicked(isEnabled)
+    }
+
+    fun trackButtonCloseClicked() {
+        noteDetailsAnalytics.trackCloseButtonClicked()
+    }
+
+    private fun trackButtonPublishClicked() {
+        noteDetailsAnalytics.trackPublishButtonClicked()
+    }
+
+    private fun trackSaveButtonClicked() {
+        noteDetailsAnalytics.trackSaveButtonClicked()
+    }
+
+    fun trackRemoveButtonClicked() {
+        noteDetailsAnalytics.trackRemoveButtonClicked()
+    }
+
+    private fun showGenericDialogMessage(
+            @StringRes titleRes: Int,
+            @StringRes descriptionRes: Int
+    ) =
             setViewState {
                 it.copy(
-                        dialog = NoteDetailsViewState.Dialog.EmptyFieldsDialog(
-                                R.string.note_details_feature_empty_fields_note_title,
-                                R.string.note_details_feature_empty_fields_note_message
+                        dialog = NoteDetailsViewState.Dialog.GenericMessageDialog(
+                                titleRes,
+                                descriptionRes
                         )
                 )
             }
@@ -115,8 +171,8 @@ internal class NoteDetailsViewModel(
             idNote: Long? = null,
             titleNote: String,
             descriptionNote: String,
-            date: String,
-            relevance: RelevanceEnum
+            relevance: RelevanceEnum,
+            isReminder: Boolean
     ) {
         handleLoading()
 
@@ -124,14 +180,28 @@ internal class NoteDetailsViewModel(
                 idNote = idNote,
                 titleNote = titleNote,
                 descriptionNote = descriptionNote,
-                date = date,
-                relevance = relevance)
+                calendar = calendar,
+                relevance = relevance,
+                isReminder = isReminder)
                 .flowOn(Dispatchers.IO)
                 .catch {
                     handleLoading()
                     NoteDetailsAction.Error.sendAction()
                 }
                 .collect {
+                    if (isReminder) {
+                        NoteDetailsAction.SetAlarm(
+                                noteId = it,
+                                noteTitle = titleNote,
+                                noteContent = descriptionNote,
+                                cal = calendar
+                        ).sendAction()
+                        noteDetailsAnalytics.trackReminderScheduled()
+                    } else {
+                        NoteDetailsAction.CancelAlarm(noteId = it).sendAction()
+                        noteDetailsAnalytics.trackReminderCancelled()
+                    }
+
                     handleLoading()
                     handleSuccess()
                 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="alarm_feature_reminder_title">Lembrete: %s</string>
+    <string name="alarm_feature_reminder_before_description">10 minutes antes do lembrete da sua nota.</string>
+    <string name="alarm_feature_alarm_stop">Parar</string>
+</resources>

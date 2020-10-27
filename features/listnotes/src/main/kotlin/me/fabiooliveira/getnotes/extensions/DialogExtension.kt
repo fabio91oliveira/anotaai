@@ -22,3 +22,37 @@ fun FragmentActivity.openDialog(@StringRes titleRes: Int,
             .build()
             .show(supportFragmentManager, PopupDialog.TAG)
 }
+
+fun FragmentActivity.openDialogWithCancelButton(@StringRes titleRes: Int,
+                                                @StringRes descriptionRes: Int,
+                                                @StringRes okButtonTextRes: Int,
+                                                @StringRes cancelButtonTextRes: Int,
+                                                blockConfirm: () -> Unit,
+                                                blockCancel: () -> Unit,
+                                                isCancelable: Boolean = true) {
+    PopupDialog.Builder()
+            .setTitle(titleRes)
+            .setSubtitle(descriptionRes)
+            .setupConfirmButtonColor(R.color.color_accent)
+            .setupConfirmButton(
+                    okButtonTextRes,
+                    object : PopupDialog.PopupDialogConfirmListener {
+                        override fun onClickConfirmButton() {
+                            blockConfirm()
+                        }
+                    }
+            ).apply {
+                if (isCancelable) {
+                    setupCancelButton(
+                            cancelButtonTextRes,
+                            object : PopupDialog.PopupDialogCancelListener {
+                                override fun onClickCancelButton() {
+                                    blockCancel()
+                                }
+                            }
+                    )
+                }
+            }
+            .build()
+            .show(supportFragmentManager, PopupDialog.TAG)
+}

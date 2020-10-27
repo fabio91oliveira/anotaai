@@ -14,11 +14,12 @@ internal data class NoteDetailsViewState(
         ) :
                 Dialog()
 
-        data class EmptyFieldsDialog(
+        data class GenericMessageDialog(
                 @StringRes val titleRes: Int,
                 @StringRes val descriptionRes: Int
         ) :
                 Dialog()
+
     }
 
     companion object {

@@ -2,7 +2,7 @@ package me.fabiooliveira.getnotes.listnotes.domain.usecase.impl
 
 import android.text.format.DateUtils
 import me.fabiooliveira.getnotes.domain.model.Note
-import me.fabiooliveira.getnotes.extensions.getDateString
+import me.fabiooliveira.getnotes.extensions.getCalendarFromDate
 import me.fabiooliveira.getnotes.extensions.getNameOfTheDay
 import me.fabiooliveira.getnotes.listnotes.domain.usecase.MountNoteItemsUseCase
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
@@ -16,9 +16,10 @@ internal class MountNoteItemsUseCaseImpl : MountNoteItemsUseCase {
                     id = note.id,
                     title = note.title,
                     description = note.description,
-                    date = note.date.getDateString(),
+                    calendar = note.date.getCalendarFromDate(),
                     dateName = note.date.getNameOfTheDay(),
                     relevance = getRelevance(note.relevance),
+                    isReminder = note.isReminder,
                     isToday = DateUtils.isToday(note.date.time)
             )
 

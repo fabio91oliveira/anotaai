@@ -10,7 +10,6 @@ private const val DEFAULT = "default"
 
 internal object AppModule {
     private val appModule = module {
-
         single {
             getSharedPrefs(androidApplication())
         }

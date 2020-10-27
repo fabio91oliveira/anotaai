@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import features.searchnotes.R
 import kotlinx.android.synthetic.main.search_notes_feature_activity_search_notes.*
+import me.fabiooliveira.getnotes.listnotes.presentation.adapter.NoteItemsAdapter
 import me.fabiooliveira.getnotes.listnotes.presentation.vo.NoteItem
-import me.fabiooliveira.getnotes.navigation.NOTE_REQUEST_CODE
 import me.fabiooliveira.getnotes.navigation.NOTE_ITEM_TAG
+import me.fabiooliveira.getnotes.navigation.NOTE_REQUEST_CODE
 import me.fabiooliveira.getnotes.navigation.NoteDetailsNavigation
 import me.fabiooliveira.getnotes.searchnotes.presentation.action.SearchNotesAction
-import me.fabiooliveira.getnotes.searchnotes.presentation.adapter.NoteItemsAdapter
 import me.fabiooliveira.getnotes.searchnotes.presentation.viewmodel.SearchNotesViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

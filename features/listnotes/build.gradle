@@ -5,9 +5,14 @@ android {
 }
 
 dependencies {
+    // Features
+    implementation project(Features.Notification)
+
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
+    implementation project(Core.Analytics)
+    implementation project(Core.RemoteConfig)
 
     // Ui
     implementation project(UI.Resources)
@@ -30,10 +35,15 @@ dependencies {
     implementation Deps.koin_scope
     implementation Deps.koin_viemmodel
 
+    // Gson
+    implementation Deps.gson
+
     // Coroutines
     implementation Deps.coroutines_core
     implementation Deps.coroutines_android
 
     // Timber
     implementation Deps.timber
+
+
 }

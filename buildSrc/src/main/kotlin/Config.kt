@@ -6,11 +6,11 @@ object Config {
     val javaVersion = JavaVersion.VERSION_1_8
 
     const val minSdk = 23
-    const val compileSdk = 28
-    const val targetSdk = 28
-    const val versionCode = 7
-    const val versionName = "2.1.0"
-    const val buildTools = "28.0.3"
+    const val compileSdk = 29
+    const val targetSdk = 29
+    const val versionCode = 9
+    const val versionName = "3.1.0"
+    const val buildTools = "29.0.2"
     const val applicationId = "me.fabiooliveira.getnotes"
 
     const val srcDirMain = "src/main/kotlin"

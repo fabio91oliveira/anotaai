@@ -5,16 +5,20 @@ android {
 }
 
 dependencies {
+    // Features
     implementation project(Features.ListNotes)
+    implementation project(Features.Alarm)
 
     // Core
     implementation project(Core.Navigation)
     implementation project(Core.DataAccess)
+    implementation project(Core.Analytics)
 
     // Ui
     implementation project(UI.Resources)
     implementation project(UI.LoadingDialog)
     implementation project(UI.PopupDialog)
+    implementation Deps.bottom_sheet_picker
 
     // Support
     implementation Deps.support_material

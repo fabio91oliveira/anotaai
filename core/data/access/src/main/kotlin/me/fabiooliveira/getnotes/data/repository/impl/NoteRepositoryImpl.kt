@@ -39,4 +39,13 @@ internal class NoteRepositoryImpl(
         }
     }
 
+    override fun getNotesOnlyFromToday(): List<Note> {
+        return localDataSource.getNotesOnlyFromToday().map {
+            notesPageMapper.map(it)
+        }
+    }
+
+    override fun cancelReminder(id: Long): Flow<Int> {
+        return localDataSource.cancelReminder(id)
+    }
 }

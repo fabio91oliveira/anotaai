@@ -1,5 +1,6 @@
 package me.fabiooliveira.getnotes.listnotes.presentation.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -29,6 +30,7 @@ internal class RecentListNotesFragment : Fragment(R.layout.list_notes_feature_fr
     override fun onResume() {
         super.onResume()
         listNotesViewModel.setTabName(R.string.list_notes_feature_tab_recents)
+        listNotesViewModel.trackRecentTab()
     }
 
     override fun onClickNote(noteItem: NoteItem) {

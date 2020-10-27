@@ -21,7 +21,7 @@ class NoteDetailsDetailsNavigationImpl : NoteDetailsNavigation {
     override fun navigateToFeature(fragmentActivity: FragmentActivity,
                                    bundle: Bundle,
                                    requestCode: Int) {
-        val noteItem = bundle.getParcelable(NOTE_ITEM_TAG) as NoteItem
+        val noteItem = bundle.getParcelable(NOTE_ITEM_TAG) as NoteItem?
         fragmentActivity.startActivityForResult(
                 Intent(fragmentActivity,
                         NoteDetailsActivity::class.java).apply {
